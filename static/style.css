@@ -83,3 +83,74 @@ body {
 .info {
     flex-grow: 1;
 }
+
+.card {
+    width: 650px;
+    background-color: #fff;
+    border: 3px solid rgba(0, 0, 0, 0.5);
+    border-radius: 10px;
+    box-shadow: 0 10px 10px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    box-sizing: border-box;
+  }
+  
+  .garis {
+    width: 100%;
+    border-bottom: 1px solid black;
+    margin: 20px 0;
+  }
+
+  .form-group {
+    margin-bottom: 15px;
+  }
+
+  .form-group label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 5px;
+  }
+
+  .form-group input,
+  .form-group textarea,
+  .form-group select {
+    width: 100%;
+    padding: 8px;
+    box-sizing: border-box;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  }
+
+  .form-group input[type="file"] {
+    cursor: pointer;
+  }
+
+  .buttons {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+  }
+
+  .buttons button {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+
+  .buttons .cancel {
+    background-color: #ddd;
+    color: #333;
+  }
+
+  .buttons .tambah {
+    background-color: #4CAF50;
+    color: #fff;
+  }
+
+  .add {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+    margin-bottom: 20px;
+  }

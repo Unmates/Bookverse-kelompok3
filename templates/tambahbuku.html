@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" href="{{ url_for('static', filename='icon.png') }}" type="image/x-icon" />
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+
+    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" />
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}" />
+    <script src="{{ url_for('static', filename='myjs.js') }}"></script>
+
+    <title>BookVerse</title>
+</head>
+
+<body>
+    <nav class="navbar navbar-expand navbar-light bg-nav">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="index.html">
+                <img src="{{ url_for('static', filename='logo.png') }}" alt="Logo" height="55" width="200">
+            </a>
+            <div class="collapse navbar-collapse justify-content-end" id="navbarNavAltMarkup">
+                <div class="navbar-nav">
+                    <form class="d-flex">
+                        <div class="form-control me-4 form-nav">
+                            <input class="inp-nav" placeholder="Cari Buku" aria-label="Search">
+                            <a href="#"><i class="fa fa-search fa-lg icon-src-nav" aria-hidden="true"></i></a>
+                        </div>
+                    </form>
+                    <a class="nav-link active semibold" style="color: black;" aria-current="page" href="#">Input
+                        Buku</a>
+                    <a class="nav-link semibold" style="color: #D60000;" href="#">Keluar</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container add">
+        <div class="card">
+            <h1 class="garis" style="text-align: center;">TAMBAH BUKU BARU</h1>
+            <div class="form-group">
+                <label for="judul">Judul Buku:</label>
+                <input type="text" id="judul" name="judul">
+            </div>
+
+            <div class="form-group">
+                <label for="deskripsi">Deskripsi Buku:</label>
+                <textarea id="deskripsi" name="deskripsi" rows="4"></textarea>
+            </div>
+
+            <div class="form-group">
+                <label for="harga">Harga Buku:</label>
+                <input type="text" id="harga" name="harga">
+            </div>
+
+            <div class="form-group">
+                <label for="kategori">Kategori Buku:</label>
+                <select id="kategori" name="kategori">
+                    <option value="Fiksi">Fiksi</option>
+                    <option value="Non-Fiksi">Non-Fiksi</option>
+                    <option value="Non-Fiksi">Gore</option>
+                    <option value="Non-Fiksi">Romance</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="bahasa">Bahasa Buku:</label>
+                <input type="text" id="bahasa" name="bahasa">
+            </div>
+
+            <div class="form-group">
+                <label for="gambar">Gambar Buku:</label>
+                <input type="file" id="gambar" name="gambar">
+            </div>
+
+            <div class="buttons">
+                <button class="cancel">Cancel</button>
+                <button class="tambah">Tambah</button>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
