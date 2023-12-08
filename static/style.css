@@ -71,6 +71,10 @@ body {
     box-shadow: 0 10px 10px rgba(0, 0, 0, 0.1);
 }
 
+.dash {
+    margin-top: 20px;
+}
+
 .box i {
     font-size: 36px;
 }
