@@ -43,13 +43,13 @@ body {
 
 .form-nav {
     border-radius: 30px;
-    width: 300px;
+    width: auto;
 }
 
 .inp-nav {
     border: white;
     outline: white;
-    width: 250px;
+    width: 300px;
 }
 
 .icon-src-nav {
