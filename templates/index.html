@@ -16,13 +16,13 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}" />
     <script src="{{ url_for('static', filename='myjs.js') }}"></script>
 
-    <title>BookVerse</title>
+    <title>BookVerse - Home</title>
 </head>
 
 <body>
     <nav class="navbar fixed-top navbar-expand bg-nav">
         <div class="container-fluid">
-            <a class="navbar-brand" href="index.html">
+            <a class="navbar-brand" href="/">
                 <img src="{{ url_for('static', filename='logo.png') }}" alt="Logo" height="55" width="200">
             </a>
             <div class="collapse navbar-collapse justify-content-end" id="navbarNavAltMarkup">
@@ -35,7 +35,7 @@
                     </form>
                 </div>
                 <!-- <a class="login" style="margin-top: 3px;" href="/login"><img src="{{ url_for('static', filename='login.png') }}" alt="Icon" height="35"></a> -->
-                <i class="fa fa-sign-in fa-3x me-2" style="color: #0A868C;" aria-hidden="true"></i>
+                <a href="/login"><i class="fa fa-sign-in fa-3x me-2" style="color: #0A868C;" aria-hidden="true"></i></a>
             </div>
         </div>
     </nav>
@@ -43,14 +43,11 @@
     <div class="container m-top">
         <div class="row">
             <div class="col">
-                <p class="semibold">Hallo, Selamat Datang</p>
-                <h1 class="extrabold">Temukan buku pilihanmu disini</h1>
-                <p class="regular" style="margin: 20px auto 0 0;">Pilihlah buku yang kamu sukai dan kamu inginkan.</p>
-                <p class="regular">Silahkan daftar atau login terlebih dahulu...</p>
-                <a class="btn btnhome btnregis bold" href="register.html">Register</a>
-                <a class="btn btnhome btnlogin bold" href="login.html">Login</a>
+                <p class="semibold" style="color: #0A868C;">Hallo, Selamat Datang</p>
+                <h1 class="extrabold">Beli Buku Jadi Mudah Dengan BookVerse</h1>
+                <p class="regular" style="margin-top: 20px;">Temukan buku pilihanmu disini</p>
             </div>
-            <div class="col" style="padding: 50px 0 0 250px;">
+            <div class="col" style="padding-left: 250px;">
                 <img src="{{ url_for('static', filename='book.png') }}" alt="Gambar">
             </div>
         </div>

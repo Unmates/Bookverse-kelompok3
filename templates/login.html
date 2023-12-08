@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" href="{{ url_for('static', filename='icon.png') }}" type="image/x-icon" />
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+
+    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" />
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}" />
+    <script src="{{ url_for('static', filename='myjs.js') }}"></script>
+
+    <title>BookVerse - Login</title>
+</head>
+
+<body class="bg-login">
+    <div class="container">
+        <section class="logo-login">
+            <img src="{{ url_for('static', filename='logo.png') }}" alt="Logo" height="100" width="380">
+        </section>
+        <section class="form-login">
+            <h2 class="bold">LOGIN</h2>
+            <hr>
+            <div class="in-group">
+                <div class="row g-5 justify-content-center mb-4">
+                    <div class="col-auto">
+                        <label for="inputUsername" class="col-form-label">Username</label>
+                    </div>
+                    <div class="col-auto">
+                        <input type="username" id="inputUsername" class="form-control">
+                    </div>
+                </div>
+                <div class="row g-5 justify-content-center mb-4">
+                    <div class="col-auto">
+                        <label for="inputPassword6" class="col-form-label">Password</label>
+                    </div>
+                    <div class="col-auto">
+                        <input type="password" id="inputPassword6" class="form-control"
+                            aria-describedby="passwordHelpInline">
+                    </div>
+                </div>
+            </div>
+            <button type="button" onclick="login()" class="btn btn-login me-3"><span class="semibold">Login</span></button>
+            <a type="button" href="/" class="btn btn-back"><span class="semibold">Kembali</span></a>
+        </section>
+        <div style="text-align: center;">
+            <a href="/ruser" class="link-regis" style="margin-right: 200px;"><i class="fa fa-arrow-left me-2" aria-hidden="true"></i>Register User</a>
+            <a href="/radmin" class="link-regis">Register Admin<i class="fa fa-arrow-right ms-2" aria-hidden="true"></i></a>
+        </div>
+    </div>
+</body>
+
+</html>
