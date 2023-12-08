@@ -1,11 +1,115 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" href="{{ url_for('static', filename='icon.png') }}" type="image/x-icon" />
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+
+    <title>BookVerse</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800&display=swap');
+        * {
+            font-family: 'Poppins', sans-serif;
+        }
+
+        .regular {
+            font-weight: 400;
+        }
+        .semibold {
+            font-weight: 600;
+        }
+        .bold {
+            font-weight: 700;
+        }
+        .extrabold {
+            font-weight: 800;
+        }
+
+        body {
+            background-color: #f5f8ff;
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-position: center;
+            background-attachment: fixed;
+            height: 100%;
+        }
+
+        .bgnav {
+            background-color: #D9D9D9;
+        }
+
+        .btnhome {
+            padding: 7px 40px 7px 40px;
+            border-radius: 10px;
+        }
+
+        .btnadmin {
+            margin-right: 20px;
+        }
+
+        .btnregis {
+            color: #ffff;
+            background-color: #0A868C;
+            margin-right: 25px;
+        }
+
+        .btnlogin {
+            color: #0A868C;
+            border: solid 1.5px;
+            border-color: #0A868C;
+        }
+    </style>
 </head>
+
 <body>
-    <h1>TESTING</h1>
+    <nav class="navbar navbar-expand navbar-light bgnav">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="index.html" style="padding: 0 0 0 0;">
+                <img src="{{ url_for('static', filename='logo.png') }}" alt="Logo" height="55" width="200">
+            </a>
+            <div class="collapse navbar-collapse justify-content-end" id="navbarNavAltMarkup">
+                <div class="navbar-nav">
+                    <a class="btn btn-dark btnhome btnadmin bold" href="#">Admin</a>
+                    <!-- <a class="nav-link active" aria-current="page" href="#">Home</a> -->
+                    <!-- <a class="nav-link" href="#">Features</a> -->
+                    <!-- <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a> -->
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container">
+        <div class="row">
+            <div class="col" style="padding-top: 100px;">
+                <p class="semibold">Hallo, Selamat Datang</p>
+                <h1 class="extrabold">Temukan buku pilihanmu disini</h1>
+                <p class="regular" style="margin: 20px auto 0 0;">Pilihlah buku yang kamu sukai dan kamu inginkan.</p>
+                <p class="regular">Silahkan daftar atau login terlebih dahulu...</p>
+                <a class="btn btnhome btnregis bold" href="register.html">Register</a>
+                <a class="btn btnhome btnlogin bold" href="login.html">Login</a>
+            </div>
+            <div class="col" style="padding: 50px 0 0 250px;">
+                <img src="{{ url_for('static', filename='book.png') }}" alt="Gambar">
+            </div>
+        </div>
+    </div>
+
+    <!-- Option 1: Bootstrap Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+        crossorigin="anonymous"></script>
+
+    <!-- Option 2: Separate Popper and Bootstrap JS -->
+    <!--
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script>
+    -->
 </body>
+
 </html>
