@@ -183,6 +183,11 @@ body {
   margin: 30px auto 40px auto;
 }
 
+.in-group-col {
+  margin-left: 30px;
+  text-align: left;
+}
+
 .btn-login {
   width: 150px;
   border-radius: 15px;

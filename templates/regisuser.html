@@ -16,7 +16,7 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}" />
     <script src="{{ url_for('static', filename='myjs.js') }}"></script>
 
-    <title>BookVerse - Login</title>
+    <title>BookVerse - Registrasi</title>
 </head>
 
 <body class="bg-login">
@@ -25,9 +25,17 @@
             <a href="/"><img src="{{ url_for('static', filename='logo.png') }}" alt="Logo" height="100" width="380"></a>
         </section>
         <section class="form-login">
-            <h2 class="bold">LOGIN</h2>
+            <h2 class="bold">REGISTER USER</h2>
             <hr>
             <div class="in-group">
+                <div class="row me-3 mb-4">
+                    <div class="col in-group-col">
+                        <label for="inputEmail" class="col-form-label semibold">Email</label>
+                    </div>
+                    <div class="col-auto">
+                        <input type="email" id="inputEmail" class="form-control">
+                    </div>
+                </div>
                 <div class="row me-3 mb-4">
                     <div class="col in-group-col">
                         <label for="inputUsername" class="col-form-label semibold">Username</label>
@@ -46,16 +54,9 @@
                     </div>
                 </div>
             </div>
-            <button type="button" onclick="login()" class="btn btn-login me-3"><span
-                    class="semibold">Login</span></button>
-            <a type="button" href="/" class="btn btn-back"><span class="semibold">Kembali</span></a>
+            <button type="button" onclick="register()" class="btn btn-login me-3"><span class="semibold">Register</span></button>
+            <a type="button" href="/login" class="btn btn-back"><span class="semibold">Kembali</span></a>
         </section>
-        <div style="text-align: center;">
-            <a href="/ruser" class="link-regis semibold" style="margin-right: 200px;"><i class="fa fa-arrow-left me-2"
-                    aria-hidden="true"></i>Register User</a>
-            <a href="/radmin" class="link-regis semibold">Register Admin<i class="fa fa-arrow-right ms-2"
-                    aria-hidden="true"></i></a>
-        </div>
     </div>
 </body>
 

@@ -14,6 +14,14 @@ def admin():
 def login():
     return render_template('login.html')
 
+@app.route('/ruser')
+def ruser():
+    return render_template('regisuser.html')
+
+@app.route('/radmin')
+def radmin():
+    return render_template('regisadmin.html')
+
 @app.route('/tambah')
 def tambah():
     return render_template('tambahbuku.html')
