@@ -206,3 +206,57 @@ body {
   color: #0A868C;
   text-decoration: none;
 }
+
+
+
+
+.black {
+  color: black;
+}
+
+.photo {
+  background-color: white;
+  max-width: 450px;
+  max-height: 750px;
+  padding: 30px 40px;
+  border-radius: 10px;
+  filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+}
+
+.gambar {
+  height: 424px;
+  left: 12.15%;
+  right: 64.1%;
+  top: calc(50% - 424px/2 - 189.5px);
+  border-radius: 12px;
+  filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+}
+
+.btn-cfile {
+  padding: 10px 20px;
+  border-radius: 10px;
+  color: white;
+  background-color: #000000;
+}
+
+.info {
+  width: 650px;
+  background-color: white;
+  padding: 30px 50px;
+  border-radius: 10px;
+  filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+}
+
+.btn-info-save {
+  padding: 6px 50px;
+  border-radius: 5px;
+  color: white;
+  background-color: #0A868C;
+}
+
+.btn-logout {
+  padding: 10px 50px;
+  border-radius: 10px;
+  color: white;
+  background-color: #FF0000;
+}
