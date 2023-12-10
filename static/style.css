@@ -289,3 +289,14 @@ body {
   color: white;
   border-radius: 78px;
 }
+
+.m-top-100 {
+  margin-top: 100px;
+}
+
+.btn-checkout {
+  padding: 10px 50px;
+  border-radius: 78px;
+  color: white;
+  background-color: #FF0000;
+}
