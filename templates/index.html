@@ -41,17 +41,67 @@
     </nav>
 
     <div class="container m-top">
-        <div class="row">
-            <div class="col">
+        <div class="row justify-content-center">
+            <div class="col-auto" style="max-width: 500px; margin-right: 200px;">
                 <p class="semibold" style="color: #0A868C;">Hallo, Selamat Datang</p>
                 <h1 class="extrabold">Beli Buku Jadi Mudah Dengan BookVerse</h1>
-                <p class="regular" style="margin-top: 20px;">Temukan buku pilihanmu disini</p>
+                <p class="regular mt-3">Temukan buku pilihanmu disini</p>
             </div>
-            <div class="col" style="padding-left: 250px;">
+            <div class="col-auto ps-5">
                 <img src="{{ url_for('static', filename='book.png') }}" alt="Gambar">
             </div>
         </div>
     </div>
+
+    <div class="container my-5">
+        <div class="row justify-content-center">
+            <div class="col-auto">
+                <div class="card card-book">
+                    <a href="/detail"><img src="{{ url_for('static', filename='book1.png') }}"
+                        class="card-img-top card-book-img" alt="Book"></a>
+                    <div class="card-body">
+                        <h4 class="regular">Five Nights At Freddy`S Graphic Novel #1: The Silver Eyes</h4>
+                        <h5 class="regular py-2" style="color: #004AD8;">RP.200.000</h5>
+                        <a href="/detail" class="btn semibold card-body-btn">Detail</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-auto mx-3">
+                <div class="card card-book">
+                    <a href="/detail"><img src="{{ url_for('static', filename='book1.png') }}"
+                        class="card-img-top card-book-img" alt="Book"></a>
+                    <div class="card-body">
+                        <h4 class="regular">Five Nights At Freddy`S Graphic Novel #1: The Silver Eyes</h4>
+                        <h5 class="regular py-2" style="color: #004AD8;">RP.200.000</h5>
+                        <a href="/detail" class="btn semibold card-body-btn">Detail</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-auto">
+                <div class="card card-book">
+                    <a href="/detail"><img src="{{ url_for('static', filename='book1.png') }}"
+                        class="card-img-top card-book-img" alt="Book"></a>
+                    <div class="card-body">
+                        <h4 class="regular">Five Nights At Freddy`S Graphic Novel #1: The Silver Eyes</h4>
+                        <h5 class="regular py-2" style="color: #004AD8;">RP.200.000</h5>
+                        <a href="/detail" class="btn semibold card-body-btn">Detail</a>
+                    </div>
+                </div>
+            </div>
+
+            <a href="/login" class="other-book text-center"><h1 class="bold">LOGIN TO OTHER BOOK</h1></a>
+
+            <!-- <div class="container">
+        <div class="card" style="width: 18rem;">
+            <img src="..." class="card-img-top" alt="...">
+            <div class="card-body">
+                <h5 class="card-title">Card title</h5>
+                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the
+                    card's content.</p>
+                <a href="#" class="btn btn-primary">Go somewhere</a>
+            </div>
+        </div>
+    </div> -->
 </body>
 
 </html>

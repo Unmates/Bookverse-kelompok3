@@ -30,7 +30,7 @@ body {
 }
 
 .m-top {
-  margin-top: 180px;
+  margin-top: 150px;
 }
 
 .navbar-brand {
@@ -253,4 +253,39 @@ body {
   border-radius: 10px;
   color: white;
   background-color: #FF0000;
+}
+
+
+
+
+.card-book {
+  box-shadow: 0px 4px 23.8px 5px rgba(0, 0, 0, 0.75);
+  width: 25rem;
+  padding: 40px;
+  text-align: center;
+  border-radius: 20px;
+}
+
+.card-book-img {
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  border-radius: 15px;
+}
+
+.card-body-btn {
+  background-color: #FF0000;
+  color: white;
+  border-radius: 78px;
+  padding: 10px 30px;
+}
+
+.other-book {
+  margin: 100px auto 50px auto;
+  color: black;
+  text-decoration: none;
+}
+
+.card-admin-btn {
+  width: 100px;
+  color: white;
+  border-radius: 78px;
 }
