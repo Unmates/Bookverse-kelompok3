@@ -59,20 +59,25 @@ body {
 
 
 .box {
-  width: 604px;
+  max-width: 604px;
   height: 173px;
-  border: 3px solid rgba(0, 74, 216, 0.50);
-  border-radius: 5px;
-  align-items: center;
-  margin: 15px;
-  padding: 20px;
+  padding: 40px;
   display: flex;
-  justify-content: space-between;
-  box-shadow: 0 10px 10px rgba(0, 0, 0, 0.1);
+  background-color: white;
+}
+
+.box-bg1 {
+  border: 1px solid rgba(0, 74, 216, 0.5);
+  filter: drop-shadow(0px 4px 4px rgba(0, 74, 216, 0.5));
+}
+
+.box-bg2 {
+  border: 1px solid rgba(216, 65, 0, 0.5);
+  filter: drop-shadow(0px 4px 4px rgba(216, 65, 0, 0.5));
 }
 
 .dash {
-  margin-top: 20px;
+  margin-top: 100px;
 }
 
 .box i {
@@ -94,24 +99,17 @@ body {
   border: 3px solid rgba(0, 0, 0, 0.5);
   border-radius: 10px;
   box-shadow: 0 10px 10px rgba(0, 0, 0, 0.1);
-  padding: 20px;
   box-sizing: border-box;
 }
 
-.garis {
-  width: 100%;
-  border-bottom: 1px solid black;
-  margin: 20px 0;
-}
-
 .form-group {
-  margin-bottom: 15px;
+  margin-bottom: 20px;
 }
 
 .form-group label {
   display: block;
-  font-weight: bold;
-  margin-bottom: 5px;
+  font-weight: 600;
+  padding-right: 50px;
 }
 
 .form-group input,
@@ -124,11 +122,7 @@ body {
   border-radius: 5px;
 }
 
-.form-group input[type="file"] {
-  cursor: pointer;
-}
-
-.buttons {
+/* .buttons {
   display: flex;
   justify-content: space-between;
   margin-top: 20px;
@@ -149,13 +143,13 @@ body {
 .buttons .tambah {
   background-color: #4CAF50;
   color: #fff;
-}
+} */
 
 .add {
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-top: 20px;
+  margin-top: 100px;
   margin-bottom: 20px;
 }
 
@@ -239,7 +233,7 @@ body {
   background-color: #000000;
 }
 
-.info {
+.info-akun {
   width: 650px;
   background-color: white;
   padding: 30px 50px;

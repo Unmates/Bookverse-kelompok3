@@ -20,20 +20,20 @@
 </head>
 
 <body>
-    <nav class="navbar navbar-expand navbar-light bg-nav">
+    <nav class="navbar fixed-top navbar-expand bg-nav">
         <div class="container-fluid">
-            <a class="navbar-brand" href="index.html">
+            <a class="navbar-brand" href="/admin">
                 <img src="{{ url_for('static', filename='logo.png') }}" alt="Logo" height="55" width="200">
             </a>
             <div class="collapse navbar-collapse justify-content-end" id="navbarNavAltMarkup">
                 <div class="navbar-nav">
                     <form class="d-flex">
                         <div class="form-control me-4 form-nav">
-                            <input class="inp-nav" placeholder="Cari Buku" aria-label="Search">
+                            <input class="inp-nav" placeholder="Cari Buku" aria-label="Search" disabled>
                             <a href="#"><i class="fa fa-search fa-lg icon-src-nav" aria-hidden="true"></i></a>
                         </div>
                     </form>
-                    <a class="nav-link active semibold" style="color: black;" aria-current="page" href="#">Input
+                    <a class="nav-link active semibold" style="color: black;" aria-current="page" href="/tambah">Input
                         Buku</a>
                     <a class="nav-link semibold" style="color: #D60000;" href="#">Keluar</a>
                 </div>
@@ -42,26 +42,33 @@
     </nav>
 
     <div class="container add">
-        <div class="card">
-            <h1 class="garis" style="text-align: center;">TAMBAH BUKU BARU</h1>
-            <div class="form-group">
+        <div class="card px-5 py-3">
+            <h1 class="bold mt-2" style="text-align: center;">TAMBAH BUKU BARU</h1>
+            <hr>
+            <div class="form-group d-flex ms-4">
+                <label for="judul">Judul Buku: &emsp; &emsp; &emsp;</label>
+                <input class="me-4" type="text" id="judul" name="judul">
+            </div>
+            <!-- <div class="form-group">
                 <label for="judul">Judul Buku:</label>
                 <input type="text" id="judul" name="judul">
+            </div> -->
+            <div class="form-group d-flex ms-4">
+                <label for="deskripsi">Deskripsi Buku: &emsp; &ensp;</label>
+                <textarea class="me-4" id="deskripsi" name="deskripsi" rows="4"></textarea>
             </div>
-
-            <div class="form-group">
+            <!-- <div class="form-group">
                 <label for="deskripsi">Deskripsi Buku:</label>
                 <textarea id="deskripsi" name="deskripsi" rows="4"></textarea>
+            </div> -->
+            <div class="form-group d-flex ms-4">
+                <label for="harga">Harga Buku: &emsp; &emsp; &emsp;</label>
+                <input class="me-4" type="text" id="harga" name="harga">
             </div>
 
-            <div class="form-group">
-                <label for="harga">Harga Buku:</label>
-                <input type="text" id="harga" name="harga">
-            </div>
-
-            <div class="form-group">
-                <label for="kategori">Kategori Buku:</label>
-                <select id="kategori" name="kategori">
+            <div class="form-group d-flex ms-4">
+                <label for="kategori">Kategori Buku: &emsp; &emsp;</label>
+                <select class="me-4" id="kategori" name="kategori">
                     <option value="Fiksi">Fiksi</option>
                     <option value="Non-Fiksi">Non-Fiksi</option>
                     <option value="Non-Fiksi">Gore</option>
@@ -69,19 +76,18 @@
                 </select>
             </div>
 
-            <div class="form-group">
-                <label for="bahasa">Bahasa Buku:</label>
-                <input type="text" id="bahasa" name="bahasa">
+            <div class="form-group d-flex ms-4">
+                <label for="bahasa">Bahasa Buku: &emsp; &emsp; &ensp;</label>
+                <input class="me-4" type="text" id="bahasa" name="bahasa">
             </div>
 
-            <div class="form-group">
-                <label for="gambar">Gambar Buku:</label>
-                <input type="file" id="gambar" name="gambar">
+            <div class="form-group d-flex ms-4">
+                <label for="gambar">Cover Buku:&ensp;</label>
+                <button type="button" class="btn semibold" style="background-color: black; color: white; padding: 5px 15px;">Choose File</button>
             </div>
-
-            <div class="buttons">
-                <button class="cancel">Cancel</button>
-                <button class="tambah">Tambah</button>
+            <div class="d-flex justify-content-center my-4">
+                <button class="btn semibold btn-login py-2 me-5">Tambah</button>
+                <button class="btn semibold btn-back">Batal</button>
             </div>
         </div>
     </div>
