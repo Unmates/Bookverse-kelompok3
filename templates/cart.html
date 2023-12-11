@@ -16,7 +16,7 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}" />
     <script src="{{ url_for('static', filename='myjs.js') }}"></script>
 
-    <title>BookVerse - Home</title>
+    <title>BookVerse - Favorite</title>
 </head>
 
 <body>
@@ -29,30 +29,20 @@
                 <div class="navbar-nav">
                     <form class="d-flex">
                         <div class="form-control me-4 form-nav">
-                            <input class="inp-nav" placeholder="Cari Buku" aria-label="Search">
+                            <input class="inp-nav" placeholder="Cari Buku" aria-label="Search" disabled>
                             <a href="#"><i class="fa fa-search fa-lg icon-src-nav" aria-hidden="true"></i></a>
                         </div>
                     </form>
                 </div>
                 <!-- <a class="login" style="margin-top: 3px;" href="/login"><img src="{{ url_for('static', filename='login.png') }}" alt="Icon" height="35"></a> -->
-                <a href="/login"><i class="fa fa-sign-in fa-3x me-2" style="color: #0A868C;" aria-hidden="true"></i></a>
+                <a href="/favorite"><i class="fa fa-heart fa-2x me-4 black" aria-hidden="true"></i></a>
+                <a href="/cart"><i class="fa fa-shopping-cart fa-2x me-4 black" aria-hidden="true"></i></a>
+                <a href="/profile"><i class="fa fa-user fa-2x me-2 black" aria-hidden="true"></i></a>
             </div>
         </div>
     </nav>
 
-    <div class="container m-top">
-        <div class="row justify-content-center">
-            <div class="col-auto" style="max-width: 500px; margin-right: 200px;">
-                <p class="semibold" style="color: #0A868C;">Hallo, Selamat Datang</p>
-                <h1 class="extrabold">Beli Buku Jadi Mudah Dengan BookVerse</h1>
-                <p class="regular mt-3">Temukan buku pilihanmu disini</p>
-            </div>
-            <div class="col-auto ps-5">
-                <img src="{{ url_for('static', filename='book.png') }}" alt="Gambar">
-            </div>
-        </div>
-    </div>
-    <div class="container my-5">
+    <div class="container m-top mb-5">
         <div class="row justify-content-center">
             <div class="col-auto">
                 <div class="card card-book">
@@ -87,10 +77,9 @@
                     </div>
                 </div>
             </div>
-
-            <a href="/login" class="other-book text-center">
-                <h1 class="bold">LOGIN TO OTHER BOOK</h1>
-            </a>
+        </div>
+        <div class="text-center mt-5">
+            <button type="button" class="btn btn-lg text-center bold btn-checkout">Check Out</button>
         </div>
     </div>
 </body>

@@ -20,9 +20,9 @@
 </head>
 
 <body>
-    <nav class="navbar navbar-expand navbar-light bg-nav">
+    <nav class="navbar fixed-top navbar-expand bg-nav">
         <div class="container-fluid">
-            <a class="navbar-brand" href="index.html">
+            <a class="navbar-brand" href="/admin">
                 <img src="{{ url_for('static', filename='logo.png') }}" alt="Logo" height="55" width="200">
             </a>
             <div class="collapse navbar-collapse justify-content-end" id="navbarNavAltMarkup">
@@ -33,7 +33,7 @@
                             <a href="#"><i class="fa fa-search fa-lg icon-src-nav" aria-hidden="true"></i></a>
                         </div>
                     </form>
-                    <a class="nav-link active semibold" style="color: black;" aria-current="page" href="#">Input
+                    <a class="nav-link active semibold" style="color: black;" aria-current="page" href="/tambah">Input
                         Buku</a>
                     <a class="nav-link semibold" style="color: #D60000;" href="#">Keluar</a>
                 </div>
@@ -43,21 +43,64 @@
 
     <div class="container dash">
         <!-- setelah navbar -->
-        <div class="row">
-            <h1>Dashboard</h1>
-            <div class="box">
+        <div class="row justify-content-center">
+            <h1 class="bold ms-5">Dashboard</h1>
+            <div class="box box-bg1 mt-3 me-5">
                 <div class="info">
-                    <h3>User</h3>
-                    <p class="count">133 User</p>
+                    <h3 class="semibold">User</h3>
+                    <p class="count regular">133 User</p>
                 </div>
                 <i class="fa fa-user"></i>
             </div>
-            <div class="box">
+            <div class="box box-bg2 mt-3">
                 <div class="info">
-                    <h3>Book</h3>
-                    <p class="count">133 Book</p>
+                    <h3 class="semibold">Book</h3>
+                    <p class="count regular">133 Book</p>
                 </div>
                 <i class="fa fa-book"></i>
+            </div>
+        </div>
+    </div>
+    <div class="container my-5">
+        <div class="row justify-content-center">
+            <div class="col-auto">
+                <div class="card card-book">
+                    <a href="/edit"><img src="{{ url_for('static', filename='book1.png') }}"
+                            class="card-img-top card-book-img" alt="Book"></a>
+                    <div class="card-body">
+                        <h4 class="regular">Five Nights At Freddy`S Graphic Novel #1: The Silver Eyes</h4>
+                        <h5 class="regular py-2" style="color: #004AD8;">RP.200.000</h5>
+                        <a href="/edit" class="btn semibold card-admin-btn" style="background-color: #0A868C;">Edit</a>
+                        <button class="btn semibold card-admin-btn ms-3" style="background-color: #D60000;"
+                            id="delete">Delete</button>
+                    </div>
+                </div>
+            </div>
+            <div class="col-auto mx-3">
+                <div class="card card-book">
+                    <a href="/edit"><img src="{{ url_for('static', filename='book1.png') }}"
+                            class="card-img-top card-book-img" alt="Book"></a>
+                    <div class="card-body">
+                        <h4 class="regular">Five Nights At Freddy`S Graphic Novel #1: The Silver Eyes</h4>
+                        <h5 class="regular py-2" style="color: #004AD8;">RP.200.000</h5>
+                        <a href="/edit" class="btn semibold card-admin-btn" style="background-color: #0A868C;">Edit</a>
+                        <button class="btn semibold card-admin-btn ms-3" style="background-color: #D60000;"
+                            id="delete">Delete</button>
+                    </div>
+                </div>
+            </div>
+            <div class="col-auto">
+                <div class="card card-book">
+                    <a href="/edit"><img src="{{ url_for('static', filename='book1.png') }}"
+                            class="card-img-top card-book-img" alt="Book"></a>
+                    <div class="card-body">
+                        <h4 class="regular">Five Nights At Freddy`S Graphic Novel #1: The Silver Eyes</h4>
+                        <h5 class="regular py-2" style="color: #004AD8;">RP.200.000</h5>
+                        <a href="/edit" class="btn semibold card-admin-btn" style="background-color: #0A868C;">Edit</a>
+                        <button class="btn semibold card-admin-btn ms-3" style="background-color: #D60000;"
+                            id="delete">Delete</button>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
