@@ -30,7 +30,7 @@ body {
 }
 
 .m-top {
-  margin-top: 180px;
+  margin-top: 150px;
 }
 
 .navbar-brand {
@@ -149,7 +149,7 @@ body {
 }
 
 .buku-baru {
-  padding: 18px;
+  /* padding: 15px; */
   background-color: #0A868C;
 }
 
