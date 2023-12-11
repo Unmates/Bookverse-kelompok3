@@ -43,16 +43,16 @@
 
     <div class="container dash">
         <!-- setelah navbar -->
-        <div class="row justify-content-center">
-            <h1 class="bold ms-5">Dashboard</h1>
-            <div class="box box-bg1 mt-3 me-5">
+        <h1 class="bold ms-5">Dashboard</h1>
+        <div class="row justify-content-evenly">
+            <div class="box box-bg1 my-1 mx-2">
                 <div class="info">
                     <h3 class="semibold">User</h3>
                     <p class="count regular">133 User</p>
                 </div>
                 <i class="fa fa-user"></i>
             </div>
-            <div class="box box-bg2 mt-3">
+            <div class="box box-bg2 my-1 mx-2">
                 <div class="info">
                     <h3 class="semibold">Book</h3>
                     <p class="count regular">133 Book</p>
@@ -61,44 +61,62 @@
             </div>
         </div>
     </div>
+
     <div class="container my-5">
-        <div class="row justify-content-center">
-            <div class="col-auto">
+        <div class="row row-cols-1 row-cols-md-4">
+            <div class="col">
                 <div class="card card-book">
-                    <a href="/edit"><img src="{{ url_for('static', filename='book1.png') }}"
+                    <a href="/detail"><img src="{{ url_for('static', filename='book1.png') }}"
                             class="card-img-top card-book-img" alt="Book"></a>
                     <div class="card-body">
                         <h4 class="regular">Five Nights At Freddy`S Graphic Novel #1: The Silver Eyes</h4>
                         <h5 class="regular py-2" style="color: #004AD8;">RP.200.000</h5>
-                        <a href="/edit" class="btn semibold card-admin-btn" style="background-color: #0A868C;">Edit</a>
-                        <button class="btn semibold card-admin-btn ms-3" style="background-color: #D60000;"
-                            id="delete">Delete</button>
+                        <div class="d-flex justify-content-evenly">
+                            <a href="/edit" class="btn semibold card-admin-btn" style="background-color: #0A868C;">Edit</a>
+                            <button class="btn semibold card-admin-btn ms-3" style="background-color: #D60000;"id="delete">Delete</button>
+                        </div>
                     </div>
                 </div>
             </div>
-            <div class="col-auto mx-3">
+            <div class="col">
                 <div class="card card-book">
-                    <a href="/edit"><img src="{{ url_for('static', filename='book1.png') }}"
+                    <a href="/detail"><img src="{{ url_for('static', filename='book1.png') }}"
                             class="card-img-top card-book-img" alt="Book"></a>
                     <div class="card-body">
                         <h4 class="regular">Five Nights At Freddy`S Graphic Novel #1: The Silver Eyes</h4>
                         <h5 class="regular py-2" style="color: #004AD8;">RP.200.000</h5>
-                        <a href="/edit" class="btn semibold card-admin-btn" style="background-color: #0A868C;">Edit</a>
-                        <button class="btn semibold card-admin-btn ms-3" style="background-color: #D60000;"
-                            id="delete">Delete</button>
+                        <div class="d-flex justify-content-evenly">
+                            <a href="/edit" class="btn semibold card-admin-btn" style="background-color: #0A868C;">Edit</a>
+                            <button class="btn semibold card-admin-btn ms-3" style="background-color: #D60000;"id="delete">Delete</button>
+                        </div>
                     </div>
                 </div>
             </div>
-            <div class="col-auto">
+            <div class="col">
                 <div class="card card-book">
-                    <a href="/edit"><img src="{{ url_for('static', filename='book1.png') }}"
+                    <a href="/detail"><img src="{{ url_for('static', filename='book1.png') }}"
                             class="card-img-top card-book-img" alt="Book"></a>
                     <div class="card-body">
                         <h4 class="regular">Five Nights At Freddy`S Graphic Novel #1: The Silver Eyes</h4>
                         <h5 class="regular py-2" style="color: #004AD8;">RP.200.000</h5>
-                        <a href="/edit" class="btn semibold card-admin-btn" style="background-color: #0A868C;">Edit</a>
-                        <button class="btn semibold card-admin-btn ms-3" style="background-color: #D60000;"
-                            id="delete">Delete</button>
+                        <div class="d-flex justify-content-evenly">
+                            <a href="/edit" class="btn semibold card-admin-btn" style="background-color: #0A868C;">Edit</a>
+                            <button class="btn semibold card-admin-btn ms-3" style="background-color: #D60000;"id="delete">Delete</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="card card-book">
+                    <a href="/detail"><img src="{{ url_for('static', filename='book1.png') }}"
+                            class="card-img-top card-book-img" alt="Book"></a>
+                    <div class="card-body">
+                        <h4 class="regular">Five Nights At Freddy`S Graphic Novel #1: The Silver Eyes</h4>
+                        <h5 class="regular py-2" style="color: #004AD8;">RP.200.000</h5>
+                        <div class="d-flex justify-content-evenly">
+                            <a href="/edit" class="btn semibold card-admin-btn" style="background-color: #0A868C;">Edit</a>
+                            <button class="btn semibold card-admin-btn ms-3" style="background-color: #D60000;"id="delete">Delete</button>
+                        </div>
                     </div>
                 </div>
             </div>

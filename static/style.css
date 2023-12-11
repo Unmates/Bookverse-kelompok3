@@ -57,7 +57,7 @@ body {
 }
 
 .box {
-  max-width: 604px;
+  max-width: 400px;
   height: 173px;
   padding: 40px;
   display: flex;
