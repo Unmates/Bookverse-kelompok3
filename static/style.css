@@ -57,25 +57,20 @@ body {
 }
 
 .box {
-  max-width: 604px;
+  width: 604px;
   height: 173px;
-  padding: 40px;
+  border: 3px solid rgba(0, 74, 216, 0.50);
+  border-radius: 5px;
+  align-items: center;
+  margin: 15px;
+  padding: 20px;
   display: flex;
-  background-color: white;
-}
-
-.box-bg1 {
-  border: 1px solid rgba(0, 74, 216, 0.5);
-  filter: drop-shadow(0px 4px 4px rgba(0, 74, 216, 0.5));
-}
-
-.box-bg2 {
-  border: 1px solid rgba(216, 65, 0, 0.5);
-  filter: drop-shadow(0px 4px 4px rgba(216, 65, 0, 0.5));
+  justify-content: space-between;
+  box-shadow: 0 10px 10px rgba(0, 0, 0, 0.1);
 }
 
 .dash {
-  margin-top: 100px;
+  margin-top: 20px;
 }
 
 .box i {
@@ -96,17 +91,24 @@ body {
   background-color: #fff;
   border-radius: 20px;
   box-shadow: 0 10px 10px rgba(0, 0, 0, 0.1);
+  padding: 20px;
   box-sizing: border-box;
 }
 
+.garis {
+  width: 100%;
+  border-bottom: 1px solid black;
+  margin: 20px 0;
+}
+
 .form-group {
-  margin-bottom: 20px;
+  margin-bottom: 15px;
 }
 
 .form-group label {
   display: block;
-  font-weight: 600;
-  padding-right: 50px;
+  font-weight: bold;
+  margin-bottom: 5px;
 }
 
 .form-group input,
@@ -119,7 +121,11 @@ body {
   border-radius: 5px;
 }
 
-/* .buttons {
+.form-group input[type="file"] {
+  cursor: pointer;
+}
+
+.buttons {
   display: flex;
   justify-content: space-between;
   margin-top: 20px;
@@ -140,7 +146,7 @@ body {
 .buttons .tambah {
   background-color: #4CAF50;
   color: #fff;
-} */
+}
 
 .buku-baru {
   /* padding: 15px; */
@@ -151,8 +157,8 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-top: 100px;
-  margin-bottom: 20px;
+  padding-top: 15px;
+  padding-bottom: 15px;
 }
 
 .bg-login {
@@ -200,3 +206,8 @@ body {
   color: #0A868C;
   text-decoration: none;
 }
+
+/* .form-group {
+  display: grid;
+  grid-template-columns: 200px 1fr;
+} */
