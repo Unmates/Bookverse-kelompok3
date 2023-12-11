@@ -123,31 +123,8 @@ body {
   cursor: pointer;
 }
 
-/* .buttons {
-  display: flex;
-  justify-content: space-between;
-  margin-top: 20px;
-}
-
-.buttons button {
-  padding: 10px 20px;
-  border: none;
-  border-radius: 15px;
-  cursor: pointer;
-}
-
-.buttons .cancel {
-  background-color: #ddd;
-  color: #333;
-}
-
-.buttons .tambah {
-  background-color: #4CAF50;
-  color: #fff;
-} */
-
 .buku-baru {
-  /* padding: 15px; */
+  padding: 15px;
   background-color: #0A868C;
 }
 
