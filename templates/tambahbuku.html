@@ -41,47 +41,44 @@
         </div>
     </nav>
 
-    <div class="container add">
-        <div class="card">
-            <h1 class="garis" style="text-align: center;">TAMBAH BUKU BARU</h1>
-            <div class="form-group">
-                <label for="judul">Judul Buku:</label>
-                <input type="text" id="judul" name="judul">
-            </div>
+    <div class="buku-baru">
+        <div class="container add">
+            <div class="card">
+                <h1 class="garis bold" style="text-align: center;">TAMBAH BUKU BARU</h1>
+                <div class="form-group">
+                    <label for="judul">Judul Buku:</label>
+                    <input type="text" id="judul" name="judul" placeholder="Masukkan Judul Buku">
+                </div>
+                <div class="form-group">
+                    <label for="deskripsi">Deskripsi Buku:</label>
+                    <textarea id="deskripsi" name="deskripsi" rows="4" placeholder="Masukkan Deskripsi Buku"></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="harga">Harga Buku:</label>
+                    <input type="text" id="harga" name="harga" placeholder="Masukkan Harga Buku">
+                </div>
+                <div class="form-group">
+                    <label for="kategori">Kategori Buku:</label>
+                    <select id="kategori" name="kategori">
+                        <option value="Fiksi">Fiksi</option>
+                        <option value="Non-Fiksi">Non-Fiksi</option>
+                        <option value="Non-Fiksi">Gore</option>
+                        <option value="Non-Fiksi">Romance</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="bahasa">Bahasa Buku:</label>
+                    <input type="text" id="bahasa" name="bahasa" placeholder="Masukkan Bahasa Buku">
+                </div>
+                <div class="form-group">
+                    <label for="gambar">Gambar Buku:</label>
+                    <input type="file" id="gambar" name="gambar">
+                </div>
 
-            <div class="form-group">
-                <label for="deskripsi">Deskripsi Buku:</label>
-                <textarea id="deskripsi" name="deskripsi" rows="4"></textarea>
-            </div>
-
-            <div class="form-group">
-                <label for="harga">Harga Buku:</label>
-                <input type="text" id="harga" name="harga">
-            </div>
-
-            <div class="form-group">
-                <label for="kategori">Kategori Buku:</label>
-                <select id="kategori" name="kategori">
-                    <option value="Fiksi">Fiksi</option>
-                    <option value="Non-Fiksi">Non-Fiksi</option>
-                    <option value="Non-Fiksi">Gore</option>
-                    <option value="Non-Fiksi">Romance</option>
-                </select>
-            </div>
-
-            <div class="form-group">
-                <label for="bahasa">Bahasa Buku:</label>
-                <input type="text" id="bahasa" name="bahasa">
-            </div>
-
-            <div class="form-group">
-                <label for="gambar">Gambar Buku:</label>
-                <input type="file" id="gambar" name="gambar">
-            </div>
-
-            <div class="buttons">
-                <button class="cancel">Cancel</button>
-                <button class="tambah">Tambah</button>
+                <div class="buttons">
+                    <a type="button" href="/" class="btn btn-login"><span class="semibold">Tambah</span></a>
+                    <a type="button" href="/" class="btn btn-back"><span class="semibold">Cancel</span></a>
+                </div>
             </div>
         </div>
     </div>
