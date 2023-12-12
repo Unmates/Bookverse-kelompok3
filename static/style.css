@@ -93,7 +93,6 @@ body {
 }
 
 .card {
-  /* width: 650px; */
   background-color: #fff;
   border-radius: 20px;
   box-shadow: 0 10px 10px rgba(0, 0, 0, 0.1);
@@ -312,3 +311,7 @@ body {
   color: #000000;
 }
 /* END TOMBOL PILIH FILE CUSTOM */
+
+.kiri{
+  margin-right: 120px;
+}
