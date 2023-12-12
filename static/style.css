@@ -254,6 +254,11 @@ body {
   padding: 10px 30px;
 }
 
+.btnred {
+  background-color: #FF0000;
+  color: white;
+}
+
 .other-book {
   margin: 100px auto 50px auto;
   color: black;
