@@ -57,11 +57,12 @@ body {
 }
 
 .box {
-  max-width: 400px;
+  max-width: 620px;
   height: 173px;
   padding: 40px;
   display: flex;
   background-color: white;
+  border-radius: 10px;
 }
 
 .box-bg1 {
