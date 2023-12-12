@@ -22,20 +22,21 @@
 <body>
     <nav class="navbar fixed-top navbar-expand bg-nav">
         <div class="container-fluid">
-            <a class="navbar-brand" href="/">
+            <a class="navbar-brand" href="/admin">
                 <img src="{{ url_for('static', filename='logo.png') }}" alt="Logo" height="55" width="200">
             </a>
             <div class="collapse navbar-collapse justify-content-end" id="navbarNavAltMarkup">
                 <div class="navbar-nav">
                     <form class="d-flex">
                         <div class="form-control me-4 form-nav">
-                            <input class="inp-nav" placeholder="Cari Buku" aria-label="Search">
+                            <input class="inp-nav" placeholder="Cari Buku" aria-label="Search" disabled>
                             <a href="#"><i class="fa fa-search fa-lg icon-src-nav" aria-hidden="true"></i></a>
                         </div>
                     </form>
+                    <a class="nav-link active semibold" style="color: black;" aria-current="page" href="/tambah">Input
+                        Buku</a>
+                    <a class="nav-link semibold" style="color: #D60000;" href="#">Keluar</a>
                 </div>
-                <!-- <a class="login" style="margin-top: 3px;" href="/login"><img src="{{ url_for('static', filename='login.png') }}" alt="Icon" height="35"></a> -->
-                <a href="/login"><i class="fa fa-sign-in fa-3x me-2" style="color: #0A868C;" aria-hidden="true"></i></a>
             </div>
         </div>
     </nav>
