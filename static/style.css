@@ -276,3 +276,34 @@ body {
   color: white;
   background-color: #FF0000;
 }
+
+/* TOMBOL PILIH FILE CUSTOM */
+.custom-file-input {
+  position: relative;
+  overflow: hidden;
+  display: inline-block;
+  border-radius: 10px;
+}
+
+.custom-file-input input {
+  position: absolute;
+  font-size: 100px;
+  right: 0;
+  top: 0;
+  opacity: 0;
+  background-color: #000000;
+}
+
+.custom-file-input label {
+  display: inline-block;
+  padding: 8px 16px;
+  background-color: #000000;
+  color: #fff;
+  cursor: pointer;
+}
+
+.custom-file-input:hover label {
+  background-color: #c3c3c3;
+  color: #000000;
+}
+/* END TOMBOL PILIH FILE CUSTOM */
