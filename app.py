@@ -41,6 +41,10 @@ def cart():
 def detail():
     return render_template('detail.html')
 
+@app.route('/edit')
+def editbook():
+    return render_template('editbook.html')
+
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=5000, debug=True)
  

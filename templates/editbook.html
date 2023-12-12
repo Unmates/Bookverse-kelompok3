@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" href="{{ url_for('static', filename='icon.png') }}" type="image/x-icon" />
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+
+    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" />
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}" />
+    <script src="{{ url_for('static', filename='myjs.js') }}"></script>
+
+    <title>BookVerse</title>
+</head>
+
+<body>
+    <nav class="navbar fixed-top navbar-expand bg-nav">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="/">
+                <img src="{{ url_for('static', filename='logo.png') }}" alt="Logo" height="55" width="200">
+            </a>
+            <div class="collapse navbar-collapse justify-content-end" id="navbarNavAltMarkup">
+                <div class="navbar-nav">
+                    <form class="d-flex">
+                        <div class="form-control me-4 form-nav">
+                            <input class="inp-nav" placeholder="Cari Buku" aria-label="Search">
+                            <a href="#"><i class="fa fa-search fa-lg icon-src-nav" aria-hidden="true"></i></a>
+                        </div>
+                    </form>
+                </div>
+                <!-- <a class="login" style="margin-top: 3px;" href="/login"><img src="{{ url_for('static', filename='login.png') }}" alt="Icon" height="35"></a> -->
+                <a href="/login"><i class="fa fa-sign-in fa-3x me-2" style="color: #0A868C;" aria-hidden="true"></i></a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container dash">
+        <div class="row">
+            <div class="col">
+                <div style="max-width: 300px; margin-bottom: 10px;">
+                    <img src="{{ url_for('static', filename='book1.png') }}" class="card-img-top card-book-img"
+                        alt="Book">
+                </div>
+                <button type="button" class="btn semibold"
+                    style="background-color: black; color: white; padding: 5px 15px;">Choose File</button>
+            </div>
+
+            <div class="col-7 card px-5 py-3">
+                <div class="form-group d-flex ms-4">
+                    <label for="judul">Judul Buku: &emsp; &emsp; &emsp;</label>
+                    <input class="me-4" type="text" id="judul" name="judul">
+                </div>
+                <div class="form-group d-flex ms-4">
+                    <label for="deskripsi">Deskripsi Buku: &emsp; &emsp;</label>
+                    <textarea class="me-4" id="deskripsi" name="deskripsi" rows="4"></textarea>
+                </div>
+
+                <div class="form-group d-flex ms-4">
+                    <label for="harga">Harga Buku: &emsp; &emsp; &emsp;</label>
+                    <input class="me-4" type="text" id="harga" name="harga">
+                </div>
+
+                <div class="form-group d-flex ms-4">
+                    <label for="kategori">Kategori Buku: &emsp; &emsp;</label>
+                    <select class="me-4" id="kategori" name="kategori">
+                        <option value="Fiksi">Novel</option>
+                        <option value="Non-Fiksi">Biografi</option>
+                        <option value="Non-Fiksi">Ensiklopedia</option>
+                        <option value="Non-Fiksi">Komik</option>
+                        <option value="Non-Fiksi">Buku Pelajaran</option>
+                        <option value="Non-Fiksi">Buku masak</option>
+                    </select>
+                </div>
+
+                <div class="form-group d-flex ms-4">
+                    <label for="bahasa">Bahasa Buku: &emsp; &emsp; &ensp;</label>
+                    <input class="me-4" type="text" id="bahasa" name="bahasa">
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+</body>
+
+</html>
