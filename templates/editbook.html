@@ -43,49 +43,51 @@
     <div class="container dash">
         <div class="row">
             <div class="col">
-                <div style="max-width: 300px; margin-bottom: 10px;">
+                <div style="max-width: 350px; margin-bottom: 10px;">
                     <img src="{{ url_for('static', filename='book1.png') }}" class="card-img-top card-book-img"
                         alt="Book">
                 </div>
-                <button type="button" class="btn semibold"
-                    style="background-color: black; color: white; padding: 5px 15px;">Choose File</button>
+                <div class="custom-file-input">
+                    <label for="fileInput">Choose File</label>
+                    <input type="file" id="fileInput" name="fileInput">
+                </div>
             </div>
 
-            <div class="col-7 card px-5 py-3">
-                <div class="form-group d-flex ms-4">
-                    <label for="judul">Judul Buku: &emsp; &emsp; &emsp;</label>
-                    <input class="me-4" type="text" id="judul" name="judul">
-                </div>
-                <div class="form-group d-flex ms-4">
-                    <label for="deskripsi">Deskripsi Buku: &emsp; &emsp;</label>
-                    <textarea class="me-4" id="deskripsi" name="deskripsi" rows="4"></textarea>
-                </div>
-
-                <div class="form-group d-flex ms-4">
-                    <label for="harga">Harga Buku: &emsp; &emsp; &emsp;</label>
-                    <input class="me-4" type="text" id="harga" name="harga">
-                </div>
-
-                <div class="form-group d-flex ms-4">
-                    <label for="kategori">Kategori Buku: &emsp; &emsp;</label>
-                    <select class="me-4" id="kategori" name="kategori">
-                        <option value="Fiksi">Novel</option>
-                        <option value="Non-Fiksi">Biografi</option>
-                        <option value="Non-Fiksi">Ensiklopedia</option>
-                        <option value="Non-Fiksi">Komik</option>
-                        <option value="Non-Fiksi">Buku Pelajaran</option>
-                        <option value="Non-Fiksi">Buku masak</option>
-                    </select>
-                </div>
-
-                <div class="form-group d-flex ms-4">
-                    <label for="bahasa">Bahasa Buku: &emsp; &emsp; &ensp;</label>
-                    <input class="me-4" type="text" id="bahasa" name="bahasa">
+            <div class="col-7">
+                <div class="card px-5 py-3">
+                    <div class="form-group">
+                        <label for="kategori">Judul Buku: &emsp; &emsp;</label>
+                        <input type="text" id="judul" name="judul"
+                            placeholder="Five Nights At Freddy`S Graphic Novel #1: The Silver Eyes">
+                    </div>
+                    <div class="form-group">
+                        <label for="deskripsi">Deskripsi Buku: &emsp; &emsp;</label>
+                        <textarea class="me-4" id="deskripsi" name="deskripsi" rows="4"
+                            placeholder="Lorem ipsum dolor sit amet consectetur adipisicing elit. Autem ex excepturi ipsum minima a fugit nesciunt qui quis repellat soluta! Quae quo quibusdam eaque nostrum, illo culpa voluptatem minima doloremque."></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="harga">Harga Buku: &emsp; &emsp; &emsp;</label>
+                        <input class="me-4" type="text" id="harga" name="harga" placeholder="Rp. 200.000">
+                    </div>
+                    <div class="form-group">
+                        <label for="kategori">Kategori Buku: &emsp; &emsp;</label>
+                        <select class="me-4" id="kategori" name="kategori">
+                            <option value="Fiksi">Novel</option>
+                            <option value="Non-Fiksi">Biografi</option>
+                            <option value="Non-Fiksi">Ensiklopedia</option>
+                            <option value="Non-Fiksi">Komik</option>
+                            <option value="Non-Fiksi">Buku Pelajaran</option>
+                            <option value="Non-Fiksi">Buku masak</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="bahasa">Bahasa Buku: &emsp; &emsp; &ensp;</label>
+                        <input class="me-4" type="text" id="bahasa" name="bahasa" placeholder="Indonesia">
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-
 
 </body>
 
