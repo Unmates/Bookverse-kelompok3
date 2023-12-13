@@ -57,7 +57,7 @@ body {
 }
 
 .box {
-  max-width: 550px;
+  max-width: 48%;
   height: 173px;
   padding: 40px;
   display: flex;
@@ -142,7 +142,7 @@ body {
 
 .logo-login {
   text-align: center;
-  margin-top: 100px;
+  margin-top: 70px;
 }
 
 .form-login {
@@ -258,6 +258,11 @@ body {
   color: white;
 }
 
+.btngreen {
+  background-color: #028106;
+  color: white;
+}
+
 .other-book {
   margin: 100px auto 50px auto;
   color: black;
@@ -278,7 +283,7 @@ body {
   padding: 10px 50px;
   border-radius: 78px;
   color: white;
-  background-color: #FF0000;
+  background-color: #8C0A0A;
 }
 
 /* TOMBOL PILIH FILE CUSTOM */
@@ -314,4 +319,8 @@ body {
 
 .kiri{
   margin-right: 120px;
+}
+
+.harga {
+  color: #004AD8;
 }

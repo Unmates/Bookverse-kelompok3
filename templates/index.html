@@ -40,20 +40,20 @@
         </div>
     </nav>
 
-    <div class="container m-top">
-        <div class="row justify-content-center">
-            <div class="col-auto mx-2" style="max-width: 500px">
+    <div class="container dash">
+        <div class="row align-items-center justify-content-between row-cols-md-2">
+            <div class="col" style="width: 45%;">
                 <p class="semibold" style="color: #0A868C;">Hallo, Selamat Datang</p>
                 <h1 class="extrabold">Beli Buku Jadi Mudah Dengan BookVerse</h1>
                 <p class="regular mt-3">Temukan buku pilihanmu disini</p>
             </div>
-            <div class="col-auto">
+            <div class="col" style="width: 45%; text-align: end;">
                 <img src="{{ url_for('static', filename='book.png') }}" alt="Gambar">
             </div>
         </div>
     </div>
-    <div class="container my-5">
-        <div class="row row-cols-1 row-cols-md-4">
+    <div class="container">
+        <div class="row row-cols-1 row-cols-md-4 my-5">
             <div class="col">
                 <div class="card card-book">
                     <a href="/detail"><img src="{{ url_for('static', filename='book1.png') }}"
@@ -62,7 +62,7 @@
                         <p>Five Nights At Freddy`S Graphic Novel #1: The Silver Eyes</p>
                         <h5 class="regular py-2" style="color: #004AD8;">RP.200.000</h5>
                         <div class="d-flex justify-content-between">
-                            <a onclick=""><i class="fa fa-heart fa-2x" aria-hidden="true"></i></a>
+                            <a onclick=""><i class="fa fa-heart-o fa-2x" aria-hidden="true"></i></a>
                             <a href="/detail" class="btn semibold card-body-btn">Detail</a>
                             <a onclick=""><i class="fa fa-cart-plus fa-2x" aria-hidden="true"></i></a>
                         </div>
@@ -77,7 +77,7 @@
                         <p>Five Nights At Freddy`S Graphic Novel #1: The Silver Eyes</p>
                         <h5 class="regular py-2" style="color: #004AD8;">RP.200.000</h5>
                         <div class="d-flex justify-content-between">
-                            <a onclick=""><i class="fa fa-heart fa-2x" aria-hidden="true"></i></a>
+                            <a onclick=""><i class="fa fa-heart-o fa-2x" aria-hidden="true"></i></a>
                             <a href="/detail" class="btn semibold card-body-btn">Detail</a>
                             <a onclick=""><i class="fa fa-cart-plus fa-2x" aria-hidden="true"></i></a>
                         </div>
@@ -92,7 +92,7 @@
                         <p>Five Nights At Freddy`S Graphic Novel #1: The Silver Eyes</p>
                         <h5 class="regular py-2" style="color: #004AD8;">RP.200.000</h5>
                         <div class="d-flex justify-content-between">
-                            <a onclick=""><i class="fa fa-heart fa-2x" aria-hidden="true"></i></a>
+                            <a onclick=""><i class="fa fa-heart-o fa-2x" aria-hidden="true"></i></a>
                             <a href="/detail" class="btn semibold card-body-btn">Detail</a>
                             <a onclick=""><i class="fa fa-cart-plus fa-2x" aria-hidden="true"></i></a>
                         </div>
@@ -107,7 +107,7 @@
                         <p>Five Nights At Freddy`S Graphic Novel #1: The Silver Eyes</p>
                         <h5 class="regular py-2" style="color: #004AD8;">RP.200.000</h5>
                         <div class="d-flex justify-content-between">
-                            <a onclick=""><i class="fa fa-heart fa-2x" aria-hidden="true"></i></a>
+                            <a onclick=""><i class="fa fa-heart-o fa-2x" aria-hidden="true"></i></a>
                             <a href="/detail" class="btn semibold card-body-btn">Detail</a>
                             <a onclick=""><i class="fa fa-cart-plus fa-2x" aria-hidden="true"></i></a>
                         </div>
@@ -117,7 +117,7 @@
         </div>
     </div>
     <a href="/login" class="other-book text-center">
-        <h1 class="bold">LOGIN TO OTHER BOOK</h1>
+        <h1 class="bold my-5">LOGIN TO OTHER BOOK</h1>
     </a>
 </body>
 
