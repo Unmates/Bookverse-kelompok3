@@ -10,17 +10,65 @@
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
     <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" />
 
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}" />
     <script src="{{ url_for('static', filename='myjs.js') }}"></script>
 
     <title>BookVerse</title>
+    <script>
+        function postbook() {
+            let judul = $('#judul').val();
+            if (!judul) {
+                return alert('Silahkan isi judul bukunya');
+            }
+            let deskripsi = $('#deskripsi').val();
+            if (!deskripsi) {
+                return alert('Silahkan isi deskripsinya');
+            }
+            let harga = $('#harga').val();
+            if (!harga) {
+                return alert('Silahkan isi harga bukunya');
+            }
+            let kategori = $('#kategori').val();
+            if (!kategori) {
+                return alert('Silahkan isi kategori bukunya');
+            }
+            let bahasa = $('#bahasa').val();
+            if (!bahasa) {
+                return alert('Silahkan isi bahasa bukunya');
+            }
+            let gambar = $("#gambar-buku").prop("files")[0];
+            // let gambar = $("#gambar-buku")[0].files[0];
+
+            let form_data = new FormData();
+
+            form_data.append("gambar_give", gambar);
+            form_data.append("judul_give", judul);
+            form_data.append("deskripsi_give", deskripsi);
+            form_data.append("harga_give", harga);
+            form_data.append("kategori_give", kategori);
+            form_data.append("bahasa_give", bahasa);
+
+            $.ajax({
+                type: 'POST',
+                url: '/tambahbuku',
+                data: form_data,
+                cache: false,
+                contentType: false,
+                processData: false,
+                success: function (response) {
+                    alert(response['msg']);
+                    window.location.reload();
+                }
+            });
+        }
+    </script>
 </head>
 
 <body>
-    <nav class="navbar fixed-top navbar-expand bg-nav">
+    <nav class="navbar navbar-expand bg-nav">
         <div class="container-fluid">
             <a class="navbar-brand" href="/admin">
                 <img src="{{ url_for('static', filename='logo.png') }}" alt="Logo" height="55" width="200">
@@ -78,14 +126,14 @@
                 </div>
 
                 <div class="form-group d-flex ms-4">
-                    <label for="gambar">Cover Buku:&ensp;</label>
+                    <label for="gambar-buku">Cover Buku:&ensp;</label>
                     <div class="custom-file-input">
-                        <label for="fileInput">Choose File</label>
-                        <input type="file" id="fileInput" name="fileInput">
+                        <label for="gambar-buku">Choose File</label>
+                        <input type="file" id="gambar-buku" name="gambar-buku">
                     </div>
                 </div>
                 <div class="d-flex justify-content-center my-4">
-                    <button class="btn semibold btn-login py-2 me-5">Tambah</button>
+                    <button onclick="postbook()" class="btn semibold btn-login py-2 me-5">Tambah</button>
                     <button class="btn semibold btn-back">Batal</button>
                 </div>
             </div>
