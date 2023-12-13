@@ -12,11 +12,38 @@
         integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 
     <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" />
-
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}" />
     <script src="{{ url_for('static', filename='myjs.js') }}"></script>
 
     <title>BookVerse - Registrasi</title>
+
+    <script>
+        function masukadmin() {
+            let email = $('#inputEmail').val();
+            let nomor = $('#inputNomor').val();
+            let username = $('#inputUsername').val();
+            let password = $('#inputPassword').val();
+
+            $.ajax({
+                type: "POST",
+                url: "/radmin",
+                data:{
+                    email: email,
+                    nomor_give: nomor,
+                    username_give: username,
+                    password_give: password
+                },
+                success: function (response) {
+                    alert("You are signed up as Admin! Nice!");
+                    window.location.replace("/login");
+                }
+            });
+        }
+
+
+    </script>
+
 </head>
 
 <body class="bg-login">
@@ -38,10 +65,10 @@
                 </div>
                 <div class="row me-3 mb-4">
                     <div class="col in-group-col">
-                        <label for="inputPhone" class="col-form-label semibold">No HP</label>
+                        <label for="inputNomor" class="col-form-label semibold">No HP</label>
                     </div>
                     <div class="col-auto">
-                        <input type="text" id="inputPhone" class="form-control">
+                        <input type="text" id="inputNomor" class="form-control">
                     </div>
                 </div>
                 <div class="row me-3 mb-4">
@@ -54,15 +81,15 @@
                 </div>
                 <div class="row me-3 mb-4">
                     <div class="col in-group-col">
-                        <label for="inputPassword6" class="col-form-label semibold">Password</label>
+                        <label for="inputPassword" class="col-form-label semibold">Password</label>
                     </div>
                     <div class="col-auto">
-                        <input type="password" id="inputPassword6" class="form-control"
+                        <input type="password" id="inputPassword" class="form-control"
                             aria-describedby="passwordHelpInline">
                     </div>
                 </div>
             </div>
-            <button type="button" onclick="register()" class="btn btn-login me-3"><span class="semibold">Register</span></button>
+            <button type="button" onclick="masukadmin()" class="btn btn-login me-3"><span class="semibold">Register</span></button>
             <a type="button" href="/login" class="btn btn-back"><span class="semibold">Kembali</span></a>
         </section>
     </div>

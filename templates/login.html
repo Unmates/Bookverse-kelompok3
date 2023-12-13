@@ -12,11 +12,35 @@
         integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 
     <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" />
-
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}" />
     <script src="{{ url_for('static', filename='myjs.js') }}"></script>
 
     <title>BookVerse - Login</title>
+
+    <script>
+        function sign_in() {
+            let username = $('#inputUsername').val();
+            let password = $('#inputPassword').val();
+
+            $.ajax({
+                type: "POST",
+                url: "/sign_in",
+                data: {
+                    username_give: username,
+                    password_give: password,
+                },
+                success: function (response) {
+                    if (response["result"] === "success") {
+                        window.location.replace("/");
+                    } else {
+                        alert(response["msg"]);
+                    }
+                },
+            });
+        }
+    </script>
+
 </head>
 
 <body class="bg-login">
@@ -38,22 +62,22 @@
                 </div>
                 <div class="row me-3 mb-4">
                     <div class="col in-group-col">
-                        <label for="inputPassword6" class="col-form-label semibold">Password</label>
+                        <label for="inputPassword" class="col-form-label semibold">Password</label>
                     </div>
                     <div class="col-auto">
-                        <input type="password" id="inputPassword6" class="form-control"
+                        <input type="password" id="inputPassword" class="form-control"
                             aria-describedby="passwordHelpInline">
                     </div>
                 </div>
             </div>
-            <button type="button" onclick="login()" class="btn btn-login me-3"><span
+            <button type="button" onclick="sign_in()" class="btn btn-login me-3"><span
                     class="semibold">Login</span></button>
             <a type="button" href="/" class="btn btn-back"><span class="semibold">Kembali</span></a>
         </section>
         <div style="text-align: center;">
-            <a href="/ruser" class="link-regis semibold" style="margin-right: 200px;"><i class="fa fa-arrow-left me-2"
-                    aria-hidden="true"></i>Register User</a>
-            <a href="/radmin" class="link-regis semibold">Register Admin<i class="fa fa-arrow-right ms-2"
+            <a href="/registuser" class="link-regis semibold" style="margin-right: 200px;"><i
+                    class="fa fa-arrow-left me-2" aria-hidden="true"></i>Register User</a>
+            <a href="/admin" class="link-regis semibold">Register Admin<i class="fa fa-arrow-right ms-2"
                     aria-hidden="true"></i></a>
         </div>
     </div>

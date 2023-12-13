@@ -1,33 +1,97 @@
 from flask import Flask, render_template, request, jsonify
 from pymongo import MongoClient
 from datetime import datetime
+import jwt
 from werkzeug.utils import secure_filename
 
 app = Flask(__name__)
 
 MONGODB_CONNECTION_STRING = "mongodb+srv://farelli:shakti@bookdb.nftj3pv.mongodb.net/?retryWrites=true&w=majority"
 client = MongoClient(MONGODB_CONNECTION_STRING)
-db = client.testinput
+db = client.test123
+
+SECRET_KEY = "Gramed"
+TOKEN_KEY = 'mytoken'
 
 @app.route('/')
 def index():
     return render_template('index.html')
 
-@app.route('/admin')
-def admin():
-    return render_template('admin.html')
-
 @app.route('/login')
 def login():
     return render_template('login.html')
 
-@app.route('/ruser')
-def ruser():
+@app.route('/sign_in', methods=["POST"])
+def sign_in():
+    username_receive = request.form.get('username_give')
+    password_receive = request.form.get('password_give')
+    result = db.cumatest.find_one({
+        "username": username_receive,
+        "password": password_receive
+    })
+    if result:
+        payload = {
+            "id": username_receive,
+        }
+        token = jwt.encode(payload, SECRET_KEY, algorithm="HS256")
+
+        return jsonify(
+            {
+                "result": "success",
+                "token": token,
+            }
+        )
+    # Let's also handle the case where the id and
+    # password combination cannot be found
+    else:
+        return jsonify(
+            {
+                "result": "fail",
+                "msg": "We could not find a user with that id/password combination",
+            }
+        )
+
+@app.route('/registuser')
+def registuser():
     return render_template('regisuser.html')
 
-@app.route('/radmin')
-def radmin():
+@app.route('/ruser', methods=["POST"])
+def ruser():
+    email_receive = request.form.get('email')
+    username_receive = request.form.get('username_give')
+    password_receive = request.form.get('password_give')
+
+    doc = {
+        'email': email_receive,
+        'username': username_receive,
+        'password': password_receive
+    }
+    db.cumatest.insert_one(doc)
+    return jsonify({'result': 'success'})
+
+@app.route('/adminpage')
+def adminpage():
+    return render_template('admin.html')
+
+@app.route('/admin')
+def admin():
     return render_template('regisadmin.html')
+
+@app.route('/radmin', methods=["POST"])
+def radmin():
+    email_receive = request.form.get('email')
+    nomor_receive = request.form.get('nomor_give')
+    username_receive = request.form.get('username_give')
+    password_receive = request.form.get('password_give')
+
+    doc = {
+        'email': email_receive,
+        'nomor':nomor_receive,
+        'username': username_receive,
+        'password': password_receive
+    }
+    db.admin.insert_one(doc)
+    return jsonify({'result': 'success'})
 
 @app.route('/tambah')
 def tambah():
