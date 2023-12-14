@@ -7,13 +7,13 @@ from werkzeug.utils import secure_filename
 
 app = Flask(__name__)
 
-# MONGODB_CONNECTION_STRING = "mongodb+srv://farelli:shakti@bookdb.nftj3pv.mongodb.net/?retryWrites=true&w=majority"
-# client = MongoClient(MONGODB_CONNECTION_STRING)
-# db = client.test123
-
-MONGODB_CONNECTION_STRING = "mongodb://farelli:shakti@ac-heg7ipj-shard-00-00.nftj3pv.mongodb.net:27017,ac-heg7ipj-shard-00-01.nftj3pv.mongodb.net:27017,ac-heg7ipj-shard-00-02.nftj3pv.mongodb.net:27017/?ssl=true&replicaSet=atlas-lc8727-shard-0&authSource=admin&retryWrites=true&w=majority"
+MONGODB_CONNECTION_STRING = "mongodb+srv://farelli:shakti@bookdb.nftj3pv.mongodb.net/?retryWrites=true&w=majority"
 client = MongoClient(MONGODB_CONNECTION_STRING)
-db = client.bookverse
+db = client.test123
+
+# MONGODB_CONNECTION_STRING = "mongodb://farelli:shakti@ac-heg7ipj-shard-00-00.nftj3pv.mongodb.net:27017,ac-heg7ipj-shard-00-01.nftj3pv.mongodb.net:27017,ac-heg7ipj-shard-00-02.nftj3pv.mongodb.net:27017/?ssl=true&replicaSet=atlas-lc8727-shard-0&authSource=admin&retryWrites=true&w=majority"
+# client = MongoClient(MONGODB_CONNECTION_STRING)
+# db = client.bookverse
 
 SECRET_KEY = "Gramed"
 TOKEN_KEY = 'mytoken'
@@ -31,7 +31,7 @@ def sign_in():
     username_receive = request.form.get('username_give')
     password_receive = request.form.get('password_give')
     pw_hash = hashlib.sha256(password_receive.encode("utf-8")).hexdigest()
-    result = db.cobalogin.find_one({
+    result = db.cumatest.find_one({
         "username": username_receive,
         "password": pw_hash,
     })
@@ -77,7 +77,7 @@ def ruser():
         'profile_default': 'profile/profil_default.jpg',
         'role': 'user'
     }
-    db.cobalogin.insert_one(doc)
+    db.cumatest.insert_one(doc)
     return jsonify({'result': 'success'})
 
 @app.route('/adminpage')
@@ -103,7 +103,7 @@ def radmin():
         'password': password_hash,
         'role': 'admin'
     }
-    db.cobalogin.insert_one(doc)
+    db.cumatest.insert_one(doc)
     return jsonify({'result': 'success'})
 
 @app.route('/buku')
