@@ -32,7 +32,8 @@
                 },
                 success: function (response) {
                     if (response["result"] === "success") {
-                        window.location.replace("/");
+                        // $.cookie("mytoken", response["token"], { path: "/admin" });
+                        window.location.replace("/adminpage");
                     } else {
                         alert(response["msg"]);
                     }

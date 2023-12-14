@@ -1,7 +1,8 @@
-from flask import Flask, render_template, request, jsonify
+from flask import Flask, render_template, request, jsonify, request, redirect, url_for
 from pymongo import MongoClient
-from datetime import datetime
+from datetime import datetime, timedelta
 import jwt
+import hashlib
 from werkzeug.utils import secure_filename
 
 app = Flask(__name__)
@@ -29,13 +30,14 @@ def login():
 def sign_in():
     username_receive = request.form.get('username_give')
     password_receive = request.form.get('password_give')
-    result = db.cumatest.find_one({
+    pw_hash = hashlib.sha256(password_receive.encode("utf-8")).hexdigest()
+    result = db.cobalogin.find_one({
         "username": username_receive,
-        "password": password_receive
+        "password": pw_hash,
     })
     if result:
         payload = {
-            "id": username_receive,
+            'id': username_receive,
         }
         token = jwt.encode(payload, SECRET_KEY, algorithm="HS256")
 
@@ -45,8 +47,7 @@ def sign_in():
                 "token": token,
             }
         )
-    # Let's also handle the case where the id and
-    # password combination cannot be found
+
     else:
         return jsonify(
             {
@@ -64,13 +65,18 @@ def ruser():
     email_receive = request.form.get('email')
     username_receive = request.form.get('username_give')
     password_receive = request.form.get('password_give')
+    password_hash = hashlib.sha256(password_receive.encode('utf-8')).hexdigest()
 
     doc = {
         'email': email_receive,
         'username': username_receive,
-        'password': password_receive
+        'password': password_hash,
+        'nohp': '',
+        'alamat':'',
+        'profile_default': 'profile/profil_default.jpg',
+        'role': 'user'
     }
-    db.cumatest.insert_one(doc)
+    db.cobalogin.insert_one(doc)
     return jsonify({'result': 'success'})
 
 @app.route('/adminpage')
@@ -87,14 +93,16 @@ def radmin():
     nomor_receive = request.form.get('nomor_give')
     username_receive = request.form.get('username_give')
     password_receive = request.form.get('password_give')
+    password_hash = hashlib.sha256(password_receive.encode('utf-8')).hexdigest()
 
     doc = {
         'email': email_receive,
         'nomor':nomor_receive,
         'username': username_receive,
-        'password': password_receive
+        'password': password_hash,
+        'role': 'admin'
     }
-    db.admin.insert_one(doc)
+    db.cobalogin.insert_one(doc)
     return jsonify({'result': 'success'})
 
 @app.route('/buku', methods=['GET'])
