@@ -14,13 +14,14 @@
     <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" />
 
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}" />
-    <script src="{{ url_for('static', filename='myjs.js') }}"></script>
+    <!-- <script src="{{ url_for('static', filename='myjs.js') }}"></script> -->
 
     <title>BookVerse</title>
     <script>
         $(document).ready(function () {
             tampil();
         });
+        
 
         function tampil() {
             $.ajax({
@@ -29,6 +30,28 @@
                 data: {},
                 success: function (response) {
                     let rows = response['daftarbuku'];
+                    let rows1 = response['daftaruser'];
+
+                    let count = rows.length
+                    let count1 = rows1.length
+                    let dashboard = `
+                        <div class="box box-bg1 my-2 mx-2">
+                            <div class="info">
+                                <h3 class="semibold">User</h3>
+                                <p class="count regular"><b style="color: #004ad880;">${count1}</b> User</p>
+                            </div>
+                            <i class="fa fa-user"></i>
+                        </div>
+                        <div class="box box-bg2 my-2 mx-2">
+                            <div class="info">
+                                <h3 class="semibold">Book</h3>
+                                <p class="count regular"><b style="color: #d8410080;">${count}</b> Book</p>
+                            </div>
+                            <i class="fa fa-book"></i>
+                        </div>
+                        `;
+                        $('#dashboard').append(dashboard);
+
                     for (let i = 0; i < rows.length; i++) {
                         let judul = rows[i]['JudulBuku'];
                         let deskripsi = rows[i]['Deskripsi'];
@@ -36,8 +59,8 @@
                         let kategori = rows[i]['Kategori'];
                         let bahasa = rows[i]['Bahasa'];
                         let cover = rows[i]['Cover'];
-
-                        console.log(judul)
+                        // let cover1 = cover.split('/')[1]
+                        // let cover2 = cover1.split('.')[0]
 
                         let temp_html = `
                         <div class="col">
@@ -46,27 +69,28 @@
                                         class="card-img-top card-book-img" alt="Book"></a>
                                 <div class="card-body">
                                     <h5 class="semibold">${judul}</h5>
-                                    <!-- <h5 class="regular py-2" style="color: #004AD8;">${harga}</h5>
-                                    <div class="d-flex justify-content-between">
-                                        <a href="/edit" class="btn semibold card-admin-btn"
-                                            style="background-color: #0A868C;">Edit</a>
-                                        <button class="btn semibold card-admin-btn ms-3" style="background-color: #D60000;"
-                                            id="delete">Delete</button>
-                                    </div> -->
                                 </div>
                                 <h5 class="regular py-2" style="color: #004AD8;">${harga}</h5>
-                                    <div class="d-flex justify-content-between">
-                                        <a href="/edit" class="btn semibold card-admin-btn"
-                                            style="background-color: #0A868C;">Edit</a>
-                                        <button class="btn semibold card-admin-btn ms-3" style="background-color: #D60000;"
-                                            id="delete">Delete</button>
-                                    </div>
+                                <div class="d-flex justify-content-between">
+                                    <button onclick="editadm()" class="btn semibold card-admin-btn"
+                                        style="background-color: #0A868C;">Edit</button>
+                                    <button onclick="deleteadm()" class="btn semibold card-admin-btn ms-3" style="background-color: #D60000;"
+                                        id="delete">Delete</button>
+                                </div>
                             </div>
                         </div>`;
                         $('#card-book').append(temp_html);
                     }
                 }
             })
+        }
+
+        function editadm() {
+            alert('edit')
+        }
+
+        function deleteadm() {
+            alert('delete')
         }
     </script>
 </head>
@@ -96,42 +120,12 @@
     <div class="container dash">
         <!-- setelah navbar -->
         <h1 class="bold">Dashboard</h1>
-        <div class="row justify-content-between row-cols-md-2">
-            <div class="box box-bg1 my-2 mx-2">
-                <div class="info">
-                    <h3 class="semibold">User</h3>
-                    <p class="count regular">133 User</p>
-                </div>
-                <i class="fa fa-user"></i>
-            </div>
-            <div class="box box-bg2 my-2 mx-2">
-                <div class="info">
-                    <h3 class="semibold">Book</h3>
-                    <p class="count regular">133 Book</p>
-                </div>
-                <i class="fa fa-book"></i>
-            </div>
+        <div class="row justify-content-between row-cols-md-2" id="dashboard">
         </div>
     </div>
 
     <div class="container my-5">
         <div class="row row-cols-1 row-cols-sm-2 row-cols-md-4 g-4" id="card-book">
-            <!-- <div class="col">
-                <div class="card card-book">
-                    <a href="/detail"><img src="{{ url_for('static', filename='book1.png') }}"
-                            class="card-img-top card-book-img" alt="Book"></a>
-                    <div class="card-body">
-                        <p>Five Nights At Freddy`S Graphic Novel #1: The Silver Eyes</p>
-                        <h5 class="regular py-2" style="color: #004AD8;">RP.200.000</h5>
-                        <div class="d-flex justify-content-between">
-                            <a href="/edit" class="btn semibold card-admin-btn"
-                                style="background-color: #0A868C;">Edit</a>
-                            <button class="btn semibold card-admin-btn ms-3" style="background-color: #D60000;"
-                                id="delete">Delete</button>
-                        </div>
-                    </div>
-                </div>
-            </div> -->
         </div>
     </div>
 </body>

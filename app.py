@@ -106,10 +106,11 @@ def radmin():
     db.cobalogin.insert_one(doc)
     return jsonify({'result': 'success'})
 
-@app.route('/buku', methods=['GET'])
+@app.route('/buku')
 def buku():
     book_list = list(db.book.find({}, {'_id': False}))
-    return jsonify({'daftarbuku': book_list})
+    user_list = list(db.cobalogin.find({}, {'_id': False}))
+    return jsonify({'daftarbuku': book_list, 'daftaruser': user_list})
 
 @app.route('/tambah')
 def tambah():
