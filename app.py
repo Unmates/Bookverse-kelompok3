@@ -45,6 +45,7 @@ def sign_in():
             {
                 "result": "success",
                 "token": token,
+                "role": result["role"]
             }
         )
 
