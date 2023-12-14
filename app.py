@@ -6,9 +6,13 @@ from werkzeug.utils import secure_filename
 
 app = Flask(__name__)
 
-MONGODB_CONNECTION_STRING = "mongodb+srv://farelli:shakti@bookdb.nftj3pv.mongodb.net/?retryWrites=true&w=majority"
+# MONGODB_CONNECTION_STRING = "mongodb+srv://farelli:shakti@bookdb.nftj3pv.mongodb.net/?retryWrites=true&w=majority"
+# client = MongoClient(MONGODB_CONNECTION_STRING)
+# db = client.test123
+
+MONGODB_CONNECTION_STRING = "mongodb://farelli:shakti@ac-heg7ipj-shard-00-00.nftj3pv.mongodb.net:27017,ac-heg7ipj-shard-00-01.nftj3pv.mongodb.net:27017,ac-heg7ipj-shard-00-02.nftj3pv.mongodb.net:27017/?ssl=true&replicaSet=atlas-lc8727-shard-0&authSource=admin&retryWrites=true&w=majority"
 client = MongoClient(MONGODB_CONNECTION_STRING)
-db = client.test123
+db = client.bookverse
 
 SECRET_KEY = "Gramed"
 TOKEN_KEY = 'mytoken'
@@ -93,6 +97,11 @@ def radmin():
     db.admin.insert_one(doc)
     return jsonify({'result': 'success'})
 
+@app.route('/buku', methods=['GET'])
+def buku():
+    book_list = list(db.book.find({}, {'_id': False}))
+    return jsonify({'daftarbuku': book_list})
+
 @app.route('/tambah')
 def tambah():
     return render_template('tambahbuku.html')
@@ -108,10 +117,11 @@ def tambahbuku():
     today = datetime.now()
     mytime = today.strftime('%Y-%m-%d-%H-%M-%S')
 
-    file = request.files['gambar_give']
-    extension = file.filename.split('.')[-1]
-    filename = f'static/cover-{mytime}.{extension}'
-    file.save(filename)
+    file = request.files["gambar_give"]
+    filename = secure_filename(file.filename)
+    extension = filename.split(".")[-1]
+    cover = f"cover/{mytime}.{extension}"
+    file.save("./static/" + cover)
 
     doc = {
         'Date': mytime,
@@ -120,10 +130,10 @@ def tambahbuku():
         'Harga': harga_receive,
         'Kategori': kategori_receive,
         'Bahasa': bahasa_receive,
-        'Cover': filename
+        'Cover': cover
     }
 
-    db.bukutest.insert_one(doc)
+    db.book.insert_one(doc)
     return jsonify({'msg':'Input Buku Berhasil!'})
 
 @app.route('/profile')
