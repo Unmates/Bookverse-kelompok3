@@ -29,12 +29,15 @@
                 <div class="navbar-nav">
                     <form class="d-flex">
                         <div class="form-control me-4 form-nav">
-                            <input class="inp-nav" placeholder="Cari Buku" aria-label="Search">
+                            <input class="inp-nav" placeholder="Cari Buku" aria-label="Search" disabled>
                             <a href="#"><i class="fa fa-search fa-lg icon-src-nav" aria-hidden="true"></i></a>
                         </div>
                     </form>
                 </div>
-                <a href="/login"><i class="fa fa-sign-in fa-3x me-2" style="color: #0A868C;" aria-hidden="true"></i></a>
+                <!-- <a class="login" style="margin-top: 3px;" href="/login"><img src="{{ url_for('static', filename='login.png') }}" alt="Icon" height="35"></a> -->
+                <a href="/favorite"><i class="fa fa-heart fa-2x me-4 black" aria-hidden="true"></i></a>
+                <a href="/cart"><i class="fa fa-shopping-cart fa-2x me-4 black" aria-hidden="true"></i></a>
+                <a href="/profile"><i class="fa fa-user fa-2x me-2 black" aria-hidden="true"></i></a>
             </div>
         </div>
     </nav>
@@ -43,7 +46,7 @@
         <div class="row">
             <div class="col">
                 <div style="max-width: 350px;">
-                    <img src="{{ url_for('static', filename='book1.png') }}"class="card-img-top card-book-img" alt="Book">
+                    <img src="{{ url_for('static', filename='book1.png') }}"class="detail-img" alt="Book">
                 </div>
                 <div class="d-flex my-2">
                     <a onclick=""><i class="fa fa-heart-o fa-2x mx-1" aria-hidden="true"></i></a>
