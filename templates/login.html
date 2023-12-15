@@ -39,10 +39,12 @@
                     if (response["result"] === "success") {
                         if (response["role"] === "admin"){
                             $.cookie("mytoken", response["token"], { path: "/adminpage" });
+                            $.cookie("role", response["role"], { path: "/adminpage" });
                             window.location.replace("/adminpage");
                         }
                         else {
                             $.cookie("mytoken", response["token"], { path: "/" });
+                            $.cookie("role", response["role"], { path: "/" });
                             window.location.replace("/")
                         }
                     } else {
