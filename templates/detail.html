@@ -18,7 +18,63 @@
 
     <title>BookVerse - Home</title>
     <script>
-        
+        let detail_book = {{ book_detail | tojson }};
+
+        $(document).ready(function () {
+            detail();
+        });
+
+        function detail() {
+            let judul = detail_book['JudulBuku'];
+            let deskripsi = detail_book['Deskripsi'];
+            let harga = detail_book['Harga'];
+            let kategori = detail_book['Kategori'];
+            let bahasa = detail_book['Bahasa'];
+            let cover = detail_book['Cover'];
+
+            let temp_html = `
+            <div class="col mb-5">
+                <div style="max-width: 350px;">
+                    <img src="/static/${cover}" class="detail-img" alt="Book" width="350">
+                </div>
+                <div class="d-flex my-2">
+                    <a onclick=""><i class="fa fa-heart-o fa-2x mx-1" aria-hidden="true"></i></a>
+                    <a onclick=""><i class="fa fa-cart-plus fa-2x mx-3" aria-hidden="true"></i></a>
+                </div>
+            </div>
+            <div class="col-7">
+                <h1 class="fw-bolder">${judul}</h1>
+                <h6 class="fw-bold mt-3">Deskripsi Buku</h6>
+                <p>${deskripsi}</p>
+                <div class="row">
+                    <div class="col">
+                        <h6 class="fw-bold">Harga</h6>
+                    </div>
+                    <div class="col-10 harga">
+                        <p>: ${harga}</p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col">
+                        <h6 class="fw-bold">Kategori</h6>
+                    </div>
+                    <div class="col-10">
+                        <p>: ${kategori}</p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col">
+                        <h6 class="fw-bold">Bahasa</h6>
+                    </div>
+                    <div class="col-10">
+                        <p>: ${bahasa}</p>
+                    </div>
+                </div>
+            </div>
+            `;
+            $('#detailbuku').append(temp_html);
+        }
+
     </script>
 </head>
 
@@ -37,7 +93,6 @@
                         </div>
                     </form>
                 </div>
-                <!-- <a class="login" style="margin-top: 3px;" href="/login"><img src="{{ url_for('static', filename='login.png') }}" alt="Icon" height="35"></a> -->
                 <a href="/favorite"><i class="fa fa-heart fa-2x me-4 black" aria-hidden="true"></i></a>
                 <a href="/cart"><i class="fa fa-shopping-cart fa-2x me-4 black" aria-hidden="true"></i></a>
                 <a href="/profile"><i class="fa fa-user fa-2x me-2 black" aria-hidden="true"></i></a>
@@ -46,47 +101,8 @@
     </nav>
 
     <div class="container m-top">
-        <div class="row">
-            <div class="col">
-                <div style="max-width: 350px;">
-                    <img src="{{ url_for('static', filename='book1.png') }}"class="detail-img" alt="Book">
-                </div>
-                <div class="d-flex my-2">
-                    <a onclick=""><i class="fa fa-heart-o fa-2x mx-1" aria-hidden="true"></i></a>
-                    <a onclick=""><i class="fa fa-cart-plus fa-2x mx-3" aria-hidden="true"></i></a>
-                </div>
-            </div>
-            <div class="col-7">
-                <h3 class="fw-bold">Penulis</h3>
-                <h1 class="fw-bolder">Judul Buku</h1>
-                <h6 class="fw-bold mt-3">Deskripsi Buku</h6>
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Autem ex excepturi ipsum minima a fugit nesciunt qui quis repellat soluta! Quae quo quibusdam eaque nostrum, illo culpa voluptatem minima doloremque.</p>
-                <div class="row">
-                    <div class="col">
-                        <h6 class="fw-bold">Harga</h6>
-                    </div>
-                    <div class="col-10 harga">
-                        <p>: RP.200.000</p>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col">
-                        <h6 class="fw-bold">Kategori</h6>
-                    </div>
-                    <div class="col-10">
-                        <p>: Novel</p>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col">
-                        <h6 class="fw-bold">Bahasa</h6>
-                    </div>
-                    <div class="col-10">
-                        <p>: Indonesia</p>
-                    </div>
-                </div>
-            </div>
-          </div>
+        <div class="row" id="detailbuku">
+        </div>
     </div>
 </body>
 

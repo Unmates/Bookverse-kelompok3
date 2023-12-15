@@ -41,13 +41,12 @@
                         let kategori = rows[i]['Kategori'];
                         let bahasa = rows[i]['Bahasa'];
                         let cover = rows[i]['Cover'];
-
-                        console.log(judul)
+                        let url = rows[i]['URL'];
 
                         let temp_html = `
                         <div class="col">
                             <div class="card card-book h-100">
-                                <a href="/detail"><img src="/static/${cover}"
+                                <a href="/detail/${url}"><img src="/static/${cover}"
                                         class="card-img-top card-book-img" alt="Book"></a>
                                 <div class="card-body">
                                     <h5 class="semibold">${judul}</h5>
@@ -55,7 +54,7 @@
                                 <h5 class="regular py-2" style="color: #004AD8;">${harga}</h5>
                                 <div class="d-flex justify-content-between">
                                     <a onclick=""><i class="fa fa-heart-o fa-2x" aria-hidden="true"></i></a>
-                                    <a href="/detail" class="btn semibold card-body-btn">Detail</a>
+                                    <a href="/detail/${url}" class="btn semibold card-body-btn">Detail</a>
                                     <a onclick=""><i class="fa fa-cart-plus fa-2x" aria-hidden="true"></i></a>
                                 </div>
                             </div>
@@ -83,7 +82,6 @@
                         </div>
                     </form>
                 </div>
-                <!-- <a class="login" style="margin-top: 3px;" href="/login"><img src="{{ url_for('static', filename='login.png') }}" alt="Icon" height="35"></a> -->
                 <a href="/login"><i class="fa fa-sign-in fa-3x me-2" style="color: #0A868C;" aria-hidden="true"></i></a>
             </div>
         </div>
@@ -104,21 +102,6 @@
 
     <div class="container">
         <div class="row row-cols-1 row-cols-sm-2 row-cols-md-4 g-4 my-5" id="card-book">
-            <!-- <div class="col">
-                <div class="card card-book">
-                    <a href="/detail"><img src="{{ url_for('static', filename='book1.png') }}"
-                            class="card-img-top card-book-img" alt="Book"></a>
-                    <div class="card-body">
-                        <p>Five Nights At Freddy`S Graphic Novel #1: The Silver Eyes</p>
-                        <h5 class="regular py-2" style="color: #004AD8;">RP.200.000</h5>
-                        <div class="d-flex justify-content-between">
-                            <a onclick=""><i class="fa fa-heart-o fa-2x" aria-hidden="true"></i></a>
-                            <a href="/detail" class="btn semibold card-body-btn">Detail</a>
-                            <a onclick=""><i class="fa fa-cart-plus fa-2x" aria-hidden="true"></i></a>
-                        </div>
-                    </div>
-                </div>
-            </div> -->
         </div>
     </div>
     <a href="/login" class="other-book text-center">
