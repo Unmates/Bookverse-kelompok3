@@ -6,3 +6,12 @@ function check_admin(){
         window.location.replace("/login")
     }
 }
+
+function no_login(){
+    let role= $.cookie('role');
+    console.log(role)
+    if (role === undefined) {
+        alert("You need to sign in first!");
+        window.location.replace("/login")
+    }
+}
