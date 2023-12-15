@@ -179,13 +179,8 @@ def editbook(book):
     book_edit = db.book.find_one({"URL": book}, {"_id": False})
     return render_template('editbook.html', book_edit=book_edit)
 
-@app.route("/editbuku", methods=["POST"])
-def editbuku():
-    update_judul = request.form.get('judul_update')
-    update_deskripsi = request.form.get('deskripsi_update')
-    update_harga = request.form.get('harga_update')
-    update_kategori = request.form.get('kategori_update')
-    update_bahasa = request.form.get('bahasa_update')
+@app.route("/editcover", methods=["POST"])
+def editcover():
     waktu = request.form.get('waktu_give')
 
     today = datetime.now()
@@ -198,15 +193,29 @@ def editbuku():
     file.save("./static/" + cover)
 
     new_doc = {
+        'Cover': cover
+    }
+    db.book.update_one({"Date": waktu}, {"$set": new_doc})
+    return jsonify({'msg':'Update Cover Berhasil!'})
+
+@app.route("/editbuku", methods=["POST"])
+def editbuku():
+    update_judul = request.form.get('judul_update')
+    update_deskripsi = request.form.get('deskripsi_update')
+    update_harga = request.form.get('harga_update')
+    update_kategori = request.form.get('kategori_update')
+    update_bahasa = request.form.get('bahasa_update')
+    waktu = request.form.get('waktu_give')
+
+    new_doc = {
         'JudulBuku': update_judul,
         'Deskripsi': update_deskripsi,
         'Harga': update_harga,
         'Kategori': update_kategori,
         'Bahasa': update_bahasa,
-        'Cover': cover
     }
     db.book.update_one({"Date": waktu}, {"$set": new_doc})
-    return jsonify({'msg':'Update Buku Berhasil!'})
+    return jsonify({'msg':'Update Detail Berhasil!'})
 
 @app.route('/search')
 def search():

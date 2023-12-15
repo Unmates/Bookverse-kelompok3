@@ -45,14 +45,17 @@
                     <img src="/static/${cover}" class="card-img-top detail-img"
                         alt="Book">
                 </div>
-                <div class="custom-file-input">
-                    <label for="gambar-buku">Choose File</label>
-                    <input type="file" id="gambar-buku" name="gambar-buku">
+                <div class="d-flex">
+                    <div class="custom-file-input">
+                        <label for="gambar-buku">Choose File</label>
+                        <input type="file" id="gambar-buku" name="gambar-buku">
+                    </div>
+                    <button onclick="editgambar()" class="btn btn-login ms-3" style="max-width: 90px;">Update</button>
                 </div>
             </div>
 
             <div class="col-7">
-                <div class="card px-5 py-3" style="border: 3px solid rgb(112, 112, 112);" >
+                <div class="card px-5 py-3" style="border: 1px solid rgb(112, 112, 112);" >
                     <div class="form-group">
                         <label for="kategori">Judul Buku:</label>
                         <input type="text" id="judul" name="judul"
@@ -97,6 +100,30 @@
             $('#editbuku').append(temp_html);
         }
 
+        function editgambar() {
+            let waktu = book_info['Date'];
+            let gambar = $("#gambar-buku").prop("files")[0];
+            if (!gambar) {
+                return alert('Silahkan input gambar');
+            }
+
+            let form_data = new FormData();
+            form_data.append("gambar_update", gambar);
+            form_data.append("waktu_give", waktu);
+            $.ajax({
+                type: 'POST',
+                url: '/editcover',
+                data: form_data,
+                cache: false,
+                contentType: false,
+                processData: false,
+                success: function (response) {
+                    alert(response['msg']);
+                    window.location.reload();
+                }
+            });
+        }
+
         function editing() {
             let waktu = book_info['Date'];
             let judul = $('#judul').val();
@@ -104,14 +131,9 @@
             let harga = $('#harga').val();
             let kategori = $('#kategori').val();
             let bahasa = $('#bahasa').val();
-            let gambar = $("#gambar-buku").prop("files")[0];
-            if (!gambar) {
-                return alert('Silahkan input gambar');
-            }
-            
+
             let form_data = new FormData();
 
-            form_data.append("gambar_update", gambar);
             form_data.append("judul_update", judul);
             form_data.append("deskripsi_update", deskripsi);
             form_data.append("harga_update", harga);
@@ -128,7 +150,7 @@
                 processData: false,
                 success: function (response) {
                     alert(response['msg']);
-                    window.location.href = '/adminpage';
+                    window.location.reload();
                 }
             });
         }

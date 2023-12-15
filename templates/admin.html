@@ -64,8 +64,7 @@
                         let kategori = rows[i]['Kategori'];
                         let bahasa = rows[i]['Bahasa'];
                         let cover = rows[i]['Cover'];
-                        // let cover1 = cover.split('/')[1]
-                        // let cover2 = cover1.split('.')[0]
+                        let url = rows[i]['URL'];
 
                         let temp_html = `
                         <div class="col">
@@ -76,8 +75,8 @@
                                 </div>
                                 <h5 class="regular py-2" style="color: #004AD8;">${harga}</h5>
                                 <div class="d-flex justify-content-between">
-                                    <button onclick="editadm('#judulbuku${i}')" class="btn semibold card-admin-btn"
-                                        style="background-color: #0A868C;">Edit</button>
+                                    <a href="/edit/${url}" class="btn semibold card-admin-btn"
+                                        style="background-color: #0A868C;">Edit</a>
                                     <button onclick="deleteadm('#judulbuku${i}')" class="btn semibold card-admin-btn ms-3" style="background-color: #D60000;"
                                         id="delete">Delete</button>
                                 </div>
@@ -87,14 +86,6 @@
                     }
                 }
             })
-        }
-
-        function editadm(para) {
-            let judul = $(para).text();
-            let judul1 = judul.replaceAll(/[^0-9a-zA-Z -]/g, '').toLowerCase();
-            let judul2 = judul1.replaceAll(' ', '-');
-            // alert(judul2)
-            window.location.href = `/edit/${judul2}`;
         }
 
         function deleteadm(para) {
