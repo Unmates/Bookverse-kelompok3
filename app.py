@@ -169,9 +169,10 @@ def favorite():
 def cart():
     return render_template('cart.html')
 
-@app.route('/detail')
-def detail():
-    return render_template('detail.html')
+@app.route('/detail/<book>')
+def detail(book):
+    book_detail = db.book.find_one({"URL": book}, {"_id": False})
+    return render_template('detail.html', book_detail=book_detail)
 
 @app.route('/edit/<book>')
 def editbook(book):
