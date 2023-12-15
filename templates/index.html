@@ -45,24 +45,54 @@
                         let bahasa = rows[i]['Bahasa'];
                         let cover = rows[i]['Cover'];
                         let url = rows[i]['URL'];
+                        let role= $.cookie('role');
 
-                        let temp_html = `
-                        <div class="col">
-                            <div class="card card-book h-100">
-                                <a href="/detail/${url}"><img src="/static/${cover}"
-                                        class="card-img-top card-book-img" alt="Book"></a>
-                                <div class="card-body">
-                                    <h5 class="semibold">${judul}</h5>
+                        console.log(judul)
+                        if (role === 'user'){
+                            $("#right-nav").empty()
+                            let temp_nav = `
+                                <a href="/favorite"><i class="fa fa-heart fa-2x me-4 black" aria-hidden="true"></i></a>
+                                <a href="/cart"><i class="fa fa-shopping-cart fa-2x me-4 black" aria-hidden="true"></i></a>
+                                <a href="/profile"><i class="fa fa-user fa-2x me-2 black" aria-hidden="true"></i></a>
+                            `;
+                            let temp_html = `
+                            <div class="col">
+                                <div class="card card-book h-100">
+                                    <a href="/detail/${url}"><img src="/static/${cover}"
+                                            class="card-img-top card-book-img" alt="Book"></a>
+                                    <div class="card-body">
+                                        <h5 class="semibold">${judul}</h5>
+                                    </div>
+                                    <h5 class="regular py-2" style="color: #004AD8;">${harga}</h5>
+                                    <div class="d-flex justify-content-between">
+                                        <a onclick=""><i class="fa fa-heart-o fa-2x" aria-hidden="true"></i></a>
+                                        <a href="/detail/${url}" class="btn semibold card-body-btn">Detail</a>
+                                        <a onclick=""><i class="fa fa-cart-plus fa-2x" aria-hidden="true"></i></a>
+                                    </div>
                                 </div>
-                                <h5 class="regular py-2" style="color: #004AD8;">${harga}</h5>
-                                <div class="d-flex justify-content-between">
-                                    <a onclick=""><i class="fa fa-heart-o fa-2x" aria-hidden="true"></i></a>
-                                    <a href="/detail/${url}" class="btn semibold card-body-btn">Detail</a>
-                                    <a onclick=""><i class="fa fa-cart-plus fa-2x" aria-hidden="true"></i></a>
+                            </div>`;
+                            $('#card-book').append(temp_html);
+                            $("#right-nav").append(temp_nav);
+                        }
+                        else{
+                            let temp_html = `
+                            <div class="col">
+                                <div class="card card-book h-100">
+                                    <a href="/login"><img src="/static/${cover}"
+                                            class="card-img-top card-book-img" alt="Book"></a>
+                                    <div class="card-body">
+                                        <h5 class="semibold">${judul}</h5>
+                                    </div>
+                                    <h5 class="regular py-2" style="color: #004AD8;">${harga}</h5>
+                                    <div class="d-flex justify-content-between">
+                                        <a onclick=""><i class="fa fa-heart-o fa-2x" aria-hidden="true"></i></a>
+                                        <a href="/login" class="btn semibold card-body-btn">Detail</a>
+                                        <a onclick=""><i class="fa fa-cart-plus fa-2x" aria-hidden="true"></i></a>
+                                    </div>
                                 </div>
-                            </div>
-                        </div>`;
-                        $('#card-book').append(temp_html);
+                            </div>`;
+                            $('#card-book').append(temp_html);
+                        }
                     }
                 }
             })
