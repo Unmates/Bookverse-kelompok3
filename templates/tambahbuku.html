@@ -40,7 +40,12 @@
                 return alert('Silahkan isi bahasa bukunya');
             }
             let gambar = $("#gambar-buku").prop("files")[0];
-            // let gambar = $("#gambar-buku")[0].files[0];
+            if (!gambar) {
+                return alert('Silahkan input gambar');
+            }
+
+            let url = judul.replaceAll(/[^0-9a-zA-Z -]/g, '').toLowerCase();
+            let url1 = url.replaceAll(' ', '-');
 
             let form_data = new FormData();
 
@@ -50,6 +55,7 @@
             form_data.append("harga_give", harga);
             form_data.append("kategori_give", kategori);
             form_data.append("bahasa_give", bahasa);
+            form_data.append("url_give", url1);
 
             $.ajax({
                 type: 'POST',
@@ -60,7 +66,7 @@
                 processData: false,
                 success: function (response) {
                     alert(response['msg']);
-                    window.location.reload();
+                    window.location.href = '/adminpage';
                 }
             });
         }
@@ -111,18 +117,24 @@
                 <div class="form-group d-flex ms-4">
                     <label for="kategori">Kategori Buku: &emsp; &emsp;</label>
                     <select class="me-4" id="kategori" name="kategori">
-                        <option value="Fiksi">Novel</option>
-                        <option value="Non-Fiksi">Biografi</option>
-                        <option value="Non-Fiksi">Ensiklopedia</option>
-                        <option value="Fiksi">Komik</option>
-                        <option value="Non-Fiksi">Buku Pelajaran</option>
-                        <option value="Non-Fiksi">Buku masak</option>
+                        <option value="Novel">Novel</option>
+                        <option value="Biografi">Biografi</option>
+                        <option value="Ensiklopedia">Ensiklopedia</option>
+                        <option value="Komik">Komik</option>
+                        <option value="Buku Pelajaran">Buku Pelajaran</option>
+                        <option value="Buku masak">Buku masak</option>
                     </select>
                 </div>
 
                 <div class="form-group d-flex ms-4">
                     <label for="bahasa">Bahasa Buku: &emsp; &emsp; &ensp;</label>
-                    <input class="me-4" type="text" id="bahasa" name="bahasa">
+                    <!-- <input class="me-4" type="text" id="bahasa" name="bahasa"> -->
+                    <select class="me-4" id="bahasa" name="bahasa">
+                        <option value="Indonesia">Indonesia</option>
+                        <option value="Inggris">Inggris</option>
+                        <option value="Jepang">Jepang</option>
+                        <option value="Korea">Korea</option>
+                    </select>
                 </div>
 
                 <div class="form-group d-flex ms-4">

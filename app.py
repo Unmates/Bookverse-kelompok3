@@ -84,6 +84,15 @@ def ruser():
 def adminpage():
     return render_template('admin.html')
 
+@app.route('/deletebook', methods=['POST'])
+def deletebook():
+    judul = request.form.get('judul_give')
+    db.book.delete_one({'JudulBuku': judul})
+    return jsonify({
+        'result': 'success',
+        'msg': f'the book, {judul}, was deleted',
+    })
+
 @app.route('/admin')
 def admin():
     return render_template('regisadmin.html')
@@ -123,6 +132,7 @@ def tambahbuku():
     harga_receive = request.form.get('harga_give')
     kategori_receive = request.form.get('kategori_give')
     bahasa_receive = request.form.get('bahasa_give')
+    url_receive = request.form.get('url_give')
 
     today = datetime.now()
     mytime = today.strftime('%Y-%m-%d-%H-%M-%S')
@@ -140,6 +150,7 @@ def tambahbuku():
         'Harga': harga_receive,
         'Kategori': kategori_receive,
         'Bahasa': bahasa_receive,
+        'URL': url_receive,
         'Cover': cover
     }
 
@@ -162,9 +173,39 @@ def cart():
 def detail():
     return render_template('detail.html')
 
-@app.route('/edit')
-def editbook():
-    return render_template('editbook.html')
+@app.route('/edit/<book>')
+def editbook(book):
+    book_edit = db.book.find_one({"URL": book}, {"_id": False})
+    return render_template('editbook.html', book_edit=book_edit)
+
+@app.route("/editbuku", methods=["POST"])
+def editbuku():
+    update_judul = request.form.get('judul_update')
+    update_deskripsi = request.form.get('deskripsi_update')
+    update_harga = request.form.get('harga_update')
+    update_kategori = request.form.get('kategori_update')
+    update_bahasa = request.form.get('bahasa_update')
+    waktu = request.form.get('waktu_give')
+
+    today = datetime.now()
+    mytime = today.strftime('%Y-%m-%d-%H-%M-%S')
+
+    file = request.files["gambar_update"]
+    filename = secure_filename(file.filename)
+    extension = filename.split(".")[-1]
+    cover = f"cover/{mytime}.{extension}"
+    file.save("./static/" + cover)
+
+    new_doc = {
+        'JudulBuku': update_judul,
+        'Deskripsi': update_deskripsi,
+        'Harga': update_harga,
+        'Kategori': update_kategori,
+        'Bahasa': update_bahasa,
+        'Cover': cover
+    }
+    db.book.update_one({"Date": waktu}, {"$set": new_doc})
+    return jsonify({'msg':'Update Buku Berhasil!'})
 
 @app.route('/search')
 def search():

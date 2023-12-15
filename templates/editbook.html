@@ -10,19 +10,129 @@
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
     <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" />
 
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}" />
-    <script src="{{ url_for('static', filename='myjs.js') }}"></script>
+    <!-- <script src="{{ url_for('static', filename='myjs.js') }}"></script> -->
 
     <title>BookVerse</title>
+    <script>
+        let book_info = {{ book_edit | tojson }};
+        // console.log(book_info)
+
+        $(document).ready(function () {
+            edit();
+        });
+
+        function edit() {
+            let judul = book_info['JudulBuku'];
+            let deskripsi = book_info['Deskripsi'];
+            let harga = book_info['Harga'];
+            let kategori = book_info['Kategori'];
+            let bahasa = book_info['Bahasa'];
+            let cover = book_info['Cover'];
+
+            let temp_html = `
+            <div class="col">
+                <div style="max-width: 350px; margin-bottom: 10px;">
+                    <img src="/static/${cover}" class="card-img-top card-book-img"
+                        alt="Book">
+                </div>
+                <div class="custom-file-input">
+                    <label for="gambar-buku">Choose File</label>
+                    <input type="file" id="gambar-buku" name="gambar-buku">
+                </div>
+            </div>
+
+            <div class="col-7 kiri">
+                <div class="card px-5 py-3" style="border: 3px solid rgb(112, 112, 112);" >
+                    <div class="form-group">
+                        <label for="kategori">Judul Buku:</label>
+                        <input type="text" id="judul" name="judul"
+                            value="${judul}">
+                    </div>
+                    <div class="form-group">
+                        <label for="deskripsi">Deskripsi Buku:</label>
+                        <textarea class="me-4" id="deskripsi" name="deskripsi" rows="4">${deskripsi}</textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="harga">Harga Buku:</label>
+                        <input class="me-4" type="text" id="harga" name="harga" value="${harga}">
+                    </div>
+                    <div class="form-group">
+                        <label for="kategori">Kategori Buku:</label>
+                        <select class="me-4" id="kategori" name="kategori">
+                            <option value="${kategori}">${kategori}</option>
+                            <option value="..." disabled>...</option>
+                            <option value="Novel">Novel</option>
+                            <option value="Biografi">Biografi</option>
+                            <option value="Ensiklopedia">Ensiklopedia</option>
+                            <option value="Komik">Komik</option>
+                            <option value="Buku Pelajaran">Buku Pelajaran</option>
+                            <option value="Buku masak">Buku masak</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="bahasa">Bahasa Buku:</label>
+                        <select class="me-4" id="bahasa" name="bahasa">
+                            <option value="${bahasa}">${bahasa}</option>
+                            <option value="..." disabled>...</option>
+                            <option value="Indonesia">Indonesia</option>
+                            <option value="Inggris">Inggris</option>
+                            <option value="Jepang">Jepang</option>
+                            <option value="Korea">Korea</option>
+                        </select>
+                    </div>
+                    <button onclick="editing()" class="btn semibold btn-login py-2 me-5">Update</button>
+                </div>
+            </div>
+            `;
+            $('#editbuku').append(temp_html);
+        }
+
+        function editing() {
+            let waktu = book_info['Date'];
+            let judul = $('#judul').val();
+            let deskripsi = $('#deskripsi').val();
+            let harga = $('#harga').val();
+            let kategori = $('#kategori').val();
+            let bahasa = $('#bahasa').val();
+            let gambar = $("#gambar-buku").prop("files")[0];
+            if (!gambar) {
+                return alert('Silahkan input gambar');
+            }
+            
+            let form_data = new FormData();
+
+            form_data.append("gambar_update", gambar);
+            form_data.append("judul_update", judul);
+            form_data.append("deskripsi_update", deskripsi);
+            form_data.append("harga_update", harga);
+            form_data.append("kategori_update", kategori);
+            form_data.append("bahasa_update", bahasa);
+            form_data.append("waktu_give", waktu);
+
+            $.ajax({
+                type: 'POST',
+                url: '/editbuku',
+                data: form_data,
+                cache: false,
+                contentType: false,
+                processData: false,
+                success: function (response) {
+                    alert(response['msg']);
+                    window.location.href = '/adminpage';
+                }
+            });
+        }
+    </script>
 </head>
 
 <body>
-    <nav class="navbar fixed-top navbar-expand bg-nav">
+    <nav class="navbar navbar-expand bg-nav">
         <div class="container-fluid">
-            <a class="navbar-brand" href="/admin">
+            <a class="navbar-brand" href="/adminpage">
                 <img src="{{ url_for('static', filename='logo.png') }}" alt="Logo" height="55" width="200">
             </a>
             <div class="collapse navbar-collapse justify-content-end" id="navbarNavAltMarkup">
@@ -41,12 +151,12 @@
         </div>
     </nav>
 
-    <div class="container dash">
+    <div class="container mt-5">
         <h1 class="bold mt-2">EDIT BUKU</h1>
-        <div class="row">
-            <div class="col">
+        <div class="row" id="editbuku" style="margin-bottom: 100px;">
+            <!-- <div class="col">
                 <div style="max-width: 350px; margin-bottom: 10px;">
-                    <img src="{{ url_for('static', filename='book1.png') }}" class="card-img-top card-book-img"
+                    <img src="{{ url_for('static', filename='/book1.png') }}" class="card-img-top card-book-img"
                         alt="Book">
                 </div>
                 <div class="custom-file-input">
@@ -87,7 +197,7 @@
                         <input class="me-4" type="text" id="bahasa" name="bahasa" placeholder="Indonesia">
                     </div>
                 </div>
-            </div>
+            </div> -->
         </div>
     </div>
 
