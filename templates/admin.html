@@ -27,7 +27,6 @@
             tampil();
         });
 
-
         function tampil() {
             $.ajax({
                 type: 'GET',
@@ -73,7 +72,7 @@
                                 <a href="/detail"><img src="/static/${cover}"
                                         class="card-img-top card-book-img" alt="Book"></a>
                                 <div class="card-body">
-                                    <h5 class="semibold">${judul}</h5>
+                                    <h5 class="semibold" id="judulbuku">${judul}</h5>
                                 </div>
                                 <h5 class="regular py-2" style="color: #004AD8;">${harga}</h5>
                                 <div class="d-flex justify-content-between">
@@ -95,7 +94,8 @@
         }
 
         function deleteadm() {
-            alert('delete')
+            let judul = $('#judulbuku').text();
+            console.log(judul);
         }
 
         function sign_out() {
@@ -122,7 +122,8 @@
                     </form>
                     <a class="nav-link active semibold" style="color: black;" aria-current="page" href="/tambah">Input
                         Buku</a>
-                    <a class="nav-link semibold" style="color: #D60000; cursor: pointer;" onclick="sign_out()">Keluar</a>
+                    <a class="nav-link semibold" style="color: #D60000; cursor: pointer;"
+                        onclick="sign_out()">Keluar</a>
                 </div>
             </div>
         </div>
