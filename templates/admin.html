@@ -19,11 +19,12 @@
         crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}" />
-    <!-- <script src="{{ url_for('static', filename='myjs.js') }}"></script> -->
+    <script src="{{ url_for('static', filename='myjs.js') }}"></script>
 
     <title>BookVerse</title>
     <script>
         $(document).ready(function () {
+            check_admin();
             tampil();
         });
 
@@ -119,6 +120,7 @@
 
         function sign_out() {
             $.removeCookie('mytoken', { path: '/' });
+            $.removeCookie('role', { path: '/' });
             alert('Signed out!');
             window.location.href = "/login";
         }
