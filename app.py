@@ -241,9 +241,13 @@ def editbuku():
     db.book.update_one({"Date": waktu}, {"$set": new_doc})
     return jsonify({'msg':'Update Detail Berhasil!'})
 
-@app.route('/search')
-def search():
-    return render_template('search.html')
+@app.route('/search/<kata>')
+def search(kata):
+    try:
+        hasil= db.book.find_one({"URL": kata}, {"_id": False})
+    except:
+        hasil={"result" : "nothing"}
+    return render_template('search.html', hasil=hasil, kata=kata)
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=5000, debug=True)

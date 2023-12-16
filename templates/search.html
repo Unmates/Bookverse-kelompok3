@@ -22,6 +22,42 @@
     <script src="{{ url_for('static', filename='myjs.js') }}"></script>
 
     <title>BookVerse - Favorite</title>
+    <script>
+        let hasil = {{ hasil | tojson }};
+        $(document).ready(function () {
+            if (hasil !== undefined){
+                find();
+            } 
+        });
+
+        function find() {
+            let judul = hasil['JudulBuku'];
+            let harga = hasil['Harga'];
+            let kategori = hasil['Kategori'];
+            let bahasa = hasil['Bahasa'];
+            let cover = hasil['Cover'];
+            let url = hasil['URL'];
+            let temp_html = `
+                <div class="col">
+                    <div class="card card-book h-100">
+                        <a href="/detail/${url}"><img src="/static/${cover}"
+                                class="card-img-top card-book-img" alt="Book"></a>
+                        <div class="card-body">
+                            <h5 class="semibold">${judul}</h5>
+                        </div>
+                        <h5 class="regular py-2" style="color: #004AD8;">${harga}</h5>
+                        <div class="d-flex justify-content-between">
+                            <a onclick=""><i class="fa fa-heart-o fa-2x" aria-hidden="true"></i></a>
+                            <a href="/detail/${url}" class="btn semibold card-body-btn">Detail</a>
+                            <a onclick=""><i class="fa fa-cart-plus fa-2x" aria-hidden="true"></i></a>
+                        </div>
+                    </div>
+                </div>`;
+            $('#nothing').addClass('none')
+            $('#card-book').append(temp_html);
+            $('#card-book').removeClass('none')
+        }
+    </script>
 </head>
 
 <body>
@@ -48,75 +84,18 @@
     </nav>
 
     <div class="container dash">
-        <h3 class="extrabold">Hasil pencarian: "cari buku"</h3>
+        <h3 class="extrabold">Hasil pencarian: "{{ kata }}"</h3>
         <hr>
     </div>
 
     <div class="container">
-        <div class="">
+        <div class="" id="nothing">
             <h1 class="text-center">Judul buku tidak ditemukan</h1>
         </div>
         
-        <div class="row row-cols-1 row-cols-sm-2 row-cols-md-4">
-            <div class="col">
-                <div class="card card-book">
-                    <a href="/detail"><img src="{{ url_for('static', filename='book1.png') }}"
-                            class="card-img-top card-book-img" alt="Book"></a>
-                    <div class="card-body">
-                        <p>Five Nights At Freddy`S Graphic Novel #1: The Silver Eyes</p>
-                        <h5 class="regular py-2" style="color: #004AD8;">RP.200.000</h5>
-                        <div class="d-flex justify-content-between">
-                            <a onclick=""><i class="fa fa-heart fa-2x" aria-hidden="true"></i></a>
-                            <a href="/detail" class="btn semibold card-body-btn">Detail</a>
-                            <a onclick=""><i class="fa fa-cart-plus fa-2x" aria-hidden="true"></i></a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col">
-                <div class="card card-book">
-                    <a href="/detail"><img src="{{ url_for('static', filename='book1.png') }}"
-                            class="card-img-top card-book-img" alt="Book"></a>
-                    <div class="card-body">
-                        <p>Five Nights At Freddy`S Graphic Novel #1: The Silver Eyes</p>
-                        <h5 class="regular py-2" style="color: #004AD8;">RP.200.000</h5>
-                        <div class="d-flex justify-content-between">
-                            <a onclick=""><i class="fa fa-heart fa-2x" aria-hidden="true"></i></a>
-                            <a href="/detail" class="btn semibold card-body-btn">Detail</a>
-                            <a onclick=""><i class="fa fa-cart-plus fa-2x" aria-hidden="true"></i></a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col">
-                <div class="card card-book">
-                    <a href="/detail"><img src="{{ url_for('static', filename='book1.png') }}"
-                            class="card-img-top card-book-img" alt="Book"></a>
-                    <div class="card-body">
-                        <p>Five Nights At Freddy`S Graphic Novel #1: The Silver Eyes</p>
-                        <h5 class="regular py-2" style="color: #004AD8;">RP.200.000</h5>
-                        <div class="d-flex justify-content-between">
-                            <a onclick=""><i class="fa fa-heart fa-2x" aria-hidden="true"></i></a>
-                            <a href="/detail" class="btn semibold card-body-btn">Detail</a>
-                            <a onclick=""><i class="fa fa-cart-plus fa-2x" aria-hidden="true"></i></a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col">
-                <div class="card card-book">
-                    <a href="/detail"><img src="{{ url_for('static', filename='book1.png') }}"
-                            class="card-img-top card-book-img" alt="Book"></a>
-                    <div class="card-body">
-                        <p>Five Nights At Freddy`S Graphic Novel #1: The Silver Eyes</p>
-                        <h5 class="regular py-2" style="color: #004AD8;">RP.200.000</h5>
-                        <div class="d-flex justify-content-between">
-                            <a onclick=""><i class="fa fa-heart fa-2x" aria-hidden="true"></i></a>
-                            <a href="/detail" class="btn semibold card-body-btn">Detail</a>
-                            <a onclick=""><i class="fa fa-cart-plus fa-2x" aria-hidden="true"></i></a>
-                        </div>
-                    </div>
-                </div>
+        <div class="container">
+            <div class="row row-cols-1 row-cols-sm-2 row-cols-md-4 g-4 my-5 none" id="card-book">
+
             </div>
         </div>
     </div>

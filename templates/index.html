@@ -103,6 +103,14 @@
                 window.location.replace("/login");
             }
         }
+
+        function cari(){
+            let kata= $("#cari").val()
+            let url = kata.replaceAll(/[^0-9a-zA-Z -]/g, '').toLowerCase();
+            let url1 = url.replaceAll(' ', '-');
+            console.log(url1)
+            window.location.href= `/search/${url1}`
+        }
     </script>
 </head>
 
@@ -116,8 +124,8 @@
                 <div class="navbar-nav">
                     <form class="d-flex">
                         <div class="form-control me-4 form-nav">
-                            <input class="inp-nav" placeholder="Cari Buku" aria-label="Search">
-                            <a href="#"><i class="fa fa-search fa-lg icon-src-nav" aria-hidden="true"></i></a>
+                            <input class="inp-nav" placeholder="Cari Buku" aria-label="Search" id="cari">
+                            <a onclick="cari()"><i class="fa fa-search fa-lg icon-src-nav" aria-hidden="true"></i></a>
                         </div>
                     </form>
                 </div>
