@@ -15,3 +15,10 @@ function no_login(){
         window.location.replace("/login")
     }
 }
+
+function sign_out() {
+    $.removeCookie('mytoken', { path: '/' });
+    $.removeCookie('role', { path: '/' });
+    alert('Signed out!');
+    window.location.href = "/login";
+}
