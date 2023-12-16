@@ -23,22 +23,77 @@
 
     <title>BookVerse - Profile</title>
     <script>
+        let user_list = {{ user_info | tojson }};
+        // console.log(user_list)
+
+        $(document).ready(function () {
+            no_login();
+            profile();
+        });
+
+        function profile() {
+            let username = user_list['username'];
+            let email = user_list['email'];
+            let nohp = user_list['nohp'];
+            let alamat = user_list['alamat'];
+            let profile = user_list['profile_default'];
+
+            let temp_html = `
+            <div class="col-4 photo">
+                <h2 class="bold mt-3 ms-1">FOTO PROFIL</h2>
+                <img src="/static/${profile}" class="img-thumbnail gambar mt-3"
+                    alt="Profile">
+                <div class="custom-file-input ms-1 mt-4 mb-4 bold">
+                    <label for="profile-user">Choose File</label>
+                    <input type="file" id="profile-user" name="profile-user">
+                </div>
+            </div>
+            <div class="col-4 ms-4 info-akun">
+                <h3 class="bold mt-3">Informasi Akun</h3>
+                <hr>
+                <div class="mb-2">
+                    <label for="inputUsername" class="form-label ps-1">Username</label>
+                    <input type="email" class="form-control" id="inputUsername" value="${username}" disabled>
+                </div>
+                <div class="mb-2">
+                    <label for="inputEmail" class="form-label ps-1">Email*</label>
+                    <input type="email" class="form-control" id="inputEmail" value="${email}">
+                </div>
+                <div class="mb-2">
+                    <label for="inputNomor" class="form-label ps-1">No HP*</label>
+                    <input type="email" class="form-control" id="inputNomor" value="${nohp}">
+                </div>
+                <div class="mb-2">
+                    <label for="inputAlamat" class="form-label ps-1">Alamat (opsional)</label>
+                    <textarea class="form-control" id="inputAlamat" rows="2">${alamat}</textarea>
+                </div>
+                <div class="text-center">
+                    <button type="button" onclick="update_profile()" class="btn mt-3 bold btn-info-save">SAVE</button>
+                </div>
+            </div>
+            <div class="text-center mt-5">
+                <button type="button" class="btn btn-lg text-center bold btn-logout" onclick="sign_out()">Log Out</button>
+            </div>
+            `;
+            $('#editprofile').append(temp_html);
+        }
 
         function update_profile() {
-            let name = $("#inputName").val();
-            let username = $("#inputUsername").val();
-            // let file = $("#input-pic")[0].files[0];
+            let file = $("#profile-user")[0].files[0];
+            if (!file) {
+                return alert('Silahkan input photo profil');
+            }
             let email = $("#inputEmail").val();
             let nomor = $('#inputNomor').val();
             let alamat = $("#inputAlamat").val();
-            // form_data.append("file_give", file);
+            if (!alamat) {
+                return alert('Silahkan isi alamat');
+            }
             let form_data = new FormData();
-            form_data.append("name_give", name);
-            form_data.append("username_give", username);
+            form_data.append("file_give", file);
             form_data.append("email_give", email);
             form_data.append("nomor_give", nomor);
             form_data.append("alamat_give", alamat);
-            console.log(name, username, email, nomor, alamat);
 
             $.ajax({
                 type: "POST",
@@ -68,7 +123,7 @@
                 <div class="navbar-nav">
                     <form class="d-flex">
                         <div class="form-control me-4 form-nav">
-                            <input class="inp-nav" placeholder="Cari Buku" aria-label="Search" disabled>
+                            <input class="inp-nav" placeholder="Cari Buku" aria-label="Search" id="cari-buku" disabled>
                             <a href="#"><i class="fa fa-search fa-lg icon-src-nav" aria-hidden="true"></i></a>
                         </div>
                     </form>
@@ -82,47 +137,7 @@
     </nav>
 
     <div class="container">
-        <div class="row justify-content-center mt-5 mb-5">
-            <div class="col-4 photo">
-                <h2 class="bold mt-3 ms-1">FOTO PROFIL</h2>
-                <img src="{{ url_for('static', filename='profil_default.jpg') }}" class="img-thumbnail gambar mt-3"
-                    alt="Profile">
-                <!-- <button type="button" class="btn btn-lg ms-1 mt-4 mb-4 bold btn-cfile">Choose File</button> -->
-                <div class="custom-file-input ms-1 mt-4 mb-4 bold">
-                    <label for="gambar-buku">Choose File</label>
-                    <input type="file" id="gambar-buku" name="gambar-buku">
-                </div>
-            </div>
-            <div class="col-4 ms-4 info-akun">
-                <h3 class="bold mt-3">Informasi Akun</h3>
-                <hr>
-                <div class="mb-2">
-                    <label for="exampleFormControlInput1" class="form-label ps-1">Username</label>
-                    <input type="email" class="form-control" id="inputUsername" placeholder="">
-                </div>
-                <div class="mb-2">
-                    <label for="exampleFormControlInput1" class="form-label ps-1">Nama*</label>
-                    <input type="email" class="form-control" id="inputName" placeholder="">
-                </div>
-                <div class="mb-2">
-                    <label for="exampleFormControlInput1" class="form-label ps-1">Email*</label>
-                    <input type="email" class="form-control" id="inputEmail" placeholder="">
-                </div>
-                <div class="mb-2">
-                    <label for="exampleFormControlInput1" class="form-label ps-1">No HP*</label>
-                    <input type="email" class="form-control" id="inputNomor" placeholder="">
-                </div>
-                <div class="mb-2">
-                    <label for="exampleFormControlTextarea1" class="form-label ps-1">Alamat (opsional)</label>
-                    <textarea class="form-control" id="inputAlamat" rows="2"></textarea>
-                </div>
-                <div class="text-center">
-                    <button type="button" onclick="update_profile()" class="btn mt-3 bold btn-info-save">SAVE</button>
-                </div>
-            </div>
-            <div class="text-center mt-5">
-                <button type="button" class="btn btn-lg text-center bold btn-logout" onclick="sign_out()">Log Out</button>
-            </div>
+        <div class="row justify-content-center mt-5 mb-5" id="editprofile">
         </div>
     </div>
 </body>

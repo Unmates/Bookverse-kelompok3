@@ -155,9 +155,16 @@ def tambahbuku():
     db.book.insert_one(doc)
     return jsonify({'msg':'Input Buku Berhasil!'})
 
-@app.route('/profile')
+@app.route("/profile")
 def profile():
-    return render_template('profile.html')
+    token_receive = request.cookies.get(TOKEN_KEY)
+    try:
+        payload = jwt.decode(token_receive, SECRET_KEY, algorithms=["HS256"])
+        username = payload.get('id')
+        user_info = db.login.find_one({"username": username}, {"_id": False})
+        return render_template("profile.html", user_info=user_info)
+    except (jwt.ExpiredSignatureError, jwt.exceptions.DecodeError):
+        return redirect(url_for("login"))
 
 @app.route('/update_profile', methods=["POST"])
 def update_profile():
