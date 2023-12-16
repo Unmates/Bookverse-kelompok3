@@ -86,9 +86,6 @@
             let email = $("#inputEmail").val();
             let nomor = $('#inputNomor').val();
             let alamat = $("#inputAlamat").val();
-            if (!alamat) {
-                return alert('Silahkan isi alamat');
-            }
             let form_data = new FormData();
             form_data.append("file_give", file);
             form_data.append("email_give", email);

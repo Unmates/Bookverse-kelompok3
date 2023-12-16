@@ -174,13 +174,13 @@ def update_profile():
         username = payload.get("id")
         email_receive = request.form.get("email_give")
         nomor_receive = request.form.get("nomor_give")
-        alamat_receive = request.form.get("alamat_receive")
+        alamat_receive = request.form.get("alamat_give")
         today = datetime.now()
         mytime = today.strftime('%Y-%m-%d-%H-%M-%S')
         new_doc = {
             'email': email_receive,
             'nohp': nomor_receive,
-            'alamat':alamat_receive,
+            'alamat': alamat_receive
         }
         if "file_give" in request.files:
             file = request.files.get("file_give")
