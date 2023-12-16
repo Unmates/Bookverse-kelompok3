@@ -32,16 +32,19 @@
 
         function update_profile() {
             let name = $("#inputName").val();
-            let file = $("#input-pic")[0].files[0];
+            let username = $("#inputUsername").val();
+            // let file = $("#input-pic")[0].files[0];
             let email = $("#inputEmail").val();
             let nomor = $('#inputNomor').val();
             let alamat = $("#inputAlamat").val();
-            form_data.append("file_give", file);
+            // form_data.append("file_give", file);
+            let form_data = new FormData();
             form_data.append("name_give", name);
+            form_data.append("username_give", username);
             form_data.append("email_give", email);
             form_data.append("nomor_give", nomor);
             form_data.append("alamat_give", alamat);
-            console.log(file, name, email, nomor, alamat);
+            console.log(name, username, email, nomor, alamat);
 
             $.ajax({
                 type: "POST",
@@ -90,15 +93,18 @@
                 <h2 class="bold mt-3 ms-1">FOTO PROFIL</h2>
                 <img src="{{ url_for('static', filename='profil_default.jpg') }}" class="img-thumbnail gambar mt-3"
                     alt="Profile">
-                <button type="button" class="btn btn-lg ms-1 mt-4 mb-4 bold btn-cfile">Choose File</button>
+                <!-- <button type="button" class="btn btn-lg ms-1 mt-4 mb-4 bold btn-cfile">Choose File</button> -->
+                <div class="custom-file-input ms-1 mt-4 mb-4 bold">
+                    <label for="gambar-buku">Choose File</label>
+                    <input type="file" id="gambar-buku" name="gambar-buku">
+                </div>
             </div>
             <div class="col-4 ms-4 info-akun">
                 <h3 class="bold mt-3">Informasi Akun</h3>
                 <hr>
                 <div class="mb-2">
                     <label for="exampleFormControlInput1" class="form-label ps-1">Username</label>
-                    <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="Username"
-                        disabled readonly>
+                    <input type="email" class="form-control" id="inputUsername" placeholder="">
                 </div>
                 <div class="mb-2">
                     <label for="exampleFormControlInput1" class="form-label ps-1">Nama*</label>
@@ -117,7 +123,7 @@
                     <textarea class="form-control" id="inputAlamat" rows="2"></textarea>
                 </div>
                 <div class="text-center">
-                    <button type="button" class="btn mt-3 bold btn-info-save">SAVE</button>
+                    <button type="button" onclick="update_profile()" class="btn mt-3 bold btn-info-save">SAVE</button>
                 </div>
             </div>
             <div class="text-center mt-5">
