@@ -29,6 +29,35 @@
             alert('Signed out!');
             window.location.href = "/login";
         }
+
+        function update_profile() {
+            let name = $("#inputName").val();
+            let file = $("#input-pic")[0].files[0];
+            let email = $("#inputEmail").val();
+            let nomor = $('#inputNomor').val();
+            let alamat = $("#inputAlamat").val();
+            form_data.append("file_give", file);
+            form_data.append("name_give", name);
+            form_data.append("email_give", email);
+            form_data.append("nomor_give", nomor);
+            form_data.append("alamat_give", alamat);
+            console.log(file, name, email, nomor, alamat);
+
+            $.ajax({
+                type: "POST",
+                url: "/update_profile",
+                data: form_data,
+                cache: false,
+                contentType: false,
+                processData: false,
+                success: function (response) {
+                    if (response["result"] === "success") {
+                        alert(response["msg"]);
+                        window.location.reload();
+                    }
+                },
+            });
+        }
     </script>
 </head>
 
@@ -73,19 +102,19 @@
                 </div>
                 <div class="mb-2">
                     <label for="exampleFormControlInput1" class="form-label ps-1">Nama*</label>
-                    <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="">
+                    <input type="email" class="form-control" id="inputName" placeholder="">
                 </div>
                 <div class="mb-2">
                     <label for="exampleFormControlInput1" class="form-label ps-1">Email*</label>
-                    <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="">
+                    <input type="email" class="form-control" id="inputEmail" placeholder="">
                 </div>
                 <div class="mb-2">
                     <label for="exampleFormControlInput1" class="form-label ps-1">No HP*</label>
-                    <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="">
+                    <input type="email" class="form-control" id="inputNomor" placeholder="">
                 </div>
                 <div class="mb-2">
                     <label for="exampleFormControlTextarea1" class="form-label ps-1">Alamat (opsional)</label>
-                    <textarea class="form-control" id="exampleFormControlTextarea1" rows="2"></textarea>
+                    <textarea class="form-control" id="inputAlamat" rows="2"></textarea>
                 </div>
                 <div class="text-center">
                     <button type="button" class="btn mt-3 bold btn-info-save">SAVE</button>

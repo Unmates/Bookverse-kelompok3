@@ -7,10 +7,6 @@ from werkzeug.utils import secure_filename
 
 app = Flask(__name__)
 
-# MONGODB_CONNECTION_STRING = "mongodb+srv://farelli:shakti@bookdb.nftj3pv.mongodb.net/?retryWrites=true&w=majority"
-# client = MongoClient(MONGODB_CONNECTION_STRING)
-# db = client.test123
-
 MONGODB_CONNECTION_STRING = "mongodb://farelli:shakti@ac-heg7ipj-shard-00-00.nftj3pv.mongodb.net:27017,ac-heg7ipj-shard-00-01.nftj3pv.mongodb.net:27017,ac-heg7ipj-shard-00-02.nftj3pv.mongodb.net:27017/?ssl=true&replicaSet=atlas-lc8727-shard-0&authSource=admin&retryWrites=true&w=majority"
 client = MongoClient(MONGODB_CONNECTION_STRING)
 db = client.bookverse
@@ -162,6 +158,31 @@ def tambahbuku():
 @app.route('/profile')
 def profile():
     return render_template('profile.html')
+
+@app.route('/update_profile', methods=["POST"])
+def update_profile():
+    token_receive = request.cookies.get(TOKEN_KEY)
+    try:
+        payload = jwt.decode(token_receive, SECRET_KEY, algorithms=["HS256"])
+        username = payload.get("id")
+        username_receive = request.form.get("username_give")
+        name_receive = request.form.get("name_give")
+        email_receive = request.form.get("email_give")
+        nomor_receive = request.form.get("nomor_give")
+        alamat_receive = request.form.get("alamat_receive")
+        new_doc = {"username": username_receive, "profile_name": name_receive, "email":email_receive, "nomor":nomor_receive, "alamat":alamat_receive}
+        if "file_give" in request.files:
+            file = request.files.get("file_give")
+            filename = secure_filename(file.filename)
+            extension = filename.split(".")[-1]
+            file_path = f"profile/{username}.{extension}"
+            file.save("./static/profile/" + file_path)
+            new_doc["profile_pic"] = filename
+            new_doc["profile_pic_real"] = file_path
+        db.login.update_one({"username": payload["id"]}, {"$set": new_doc})
+        return jsonify({"result": "success", "msg": "Profile updated!"})
+    except (jwt.ExpiredSignatureError, jwt.exceptions.DecodeError):
+        return redirect(url_for("/"))
 
 @app.route('/favorite')
 def favorite():
