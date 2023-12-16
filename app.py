@@ -175,6 +175,8 @@ def update_profile():
         email_receive = request.form.get("email_give")
         nomor_receive = request.form.get("nomor_give")
         alamat_receive = request.form.get("alamat_receive")
+        today = datetime.now()
+        mytime = today.strftime('%Y-%m-%d-%H-%M-%S')
         new_doc = {
             'email': email_receive,
             'nohp': nomor_receive,
@@ -184,7 +186,7 @@ def update_profile():
             file = request.files.get("file_give")
             filename = secure_filename(file.filename)
             extension = filename.split(".")[-1]
-            file_path = f"profile/{username}.{extension}"
+            file_path = f"profile/{username}-{mytime}.{extension}"
             file.save("./static/" + file_path)
             new_doc['profile_default'] = file_path
         db.login.update_one({"username": payload["id"]}, {"$set": new_doc})
