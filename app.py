@@ -31,7 +31,7 @@ def sign_in():
     username_receive = request.form.get('username_give')
     password_receive = request.form.get('password_give')
     pw_hash = hashlib.sha256(password_receive.encode("utf-8")).hexdigest()
-    result = db.cumatest.find_one({
+    result = db.login.find_one({
         "username": username_receive,
         "password": pw_hash,
     })
@@ -77,7 +77,7 @@ def ruser():
         'profile_default': 'profile/profil_default.jpg',
         'role': 'user'
     }
-    db.cumatest.insert_one(doc)
+    db.login.insert_one(doc)
     return jsonify({'result': 'success'})
 
 @app.route('/adminpage')
@@ -107,18 +107,20 @@ def radmin():
 
     doc = {
         'email': email_receive,
-        'nomor':nomor_receive,
         'username': username_receive,
         'password': password_hash,
+        'nohp': nomor_receive,
+        'alamat':'',
+        'profile_default': 'profile/profil_default.jpg',
         'role': 'admin'
     }
-    db.cumatest.insert_one(doc)
+    db.login.insert_one(doc)
     return jsonify({'result': 'success'})
 
 @app.route('/buku')
 def buku():
     book_list = list(db.book.find({}, {'_id': False}))
-    user_list = list(db.cobalogin.find({}, {'_id': False}))
+    user_list = list(db.login.find({'role': 'user'}, {'_id': False}))
     return jsonify({'daftarbuku': book_list, 'daftaruser': user_list})
 
 @app.route('/tambah')
