@@ -165,20 +165,21 @@ def update_profile():
     try:
         payload = jwt.decode(token_receive, SECRET_KEY, algorithms=["HS256"])
         username = payload.get("id")
-        username_receive = request.form.get("username_give")
-        name_receive = request.form.get("name_give")
         email_receive = request.form.get("email_give")
         nomor_receive = request.form.get("nomor_give")
         alamat_receive = request.form.get("alamat_receive")
-        new_doc = {"username": username_receive, "profile_name": name_receive, "email":email_receive, "nomor":nomor_receive, "alamat":alamat_receive}
+        new_doc = {
+            'email': email_receive,
+            'nohp': nomor_receive,
+            'alamat':alamat_receive,
+        }
         if "file_give" in request.files:
             file = request.files.get("file_give")
             filename = secure_filename(file.filename)
             extension = filename.split(".")[-1]
             file_path = f"profile/{username}.{extension}"
-            file.save("./static/profile/" + file_path)
-            new_doc["profile_pic"] = filename
-            new_doc["profile_pic_real"] = file_path
+            file.save("./static/" + file_path)
+            new_doc['profile_default'] = file_path
         db.login.update_one({"username": payload["id"]}, {"$set": new_doc})
         return jsonify({"result": "success", "msg": "Profile updated!"})
     except (jwt.ExpiredSignatureError, jwt.exceptions.DecodeError):
