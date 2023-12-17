@@ -162,7 +162,7 @@ def tambahbuku():
     file = request.files["gambar_give"]
     filename = secure_filename(file.filename)
     extension = filename.split(".")[-1]
-    cover = f"cover/{mytime}.{extension}"
+    cover = f"cover/{url_receive}.{extension}"
     file.save("./static/" + cover)
 
     doc = {
@@ -304,14 +304,15 @@ def editbook(book):
 @app.route("/editcover", methods=["POST"])
 def editcover():
     waktu = request.form.get('waktu_give')
-
-    today = datetime.now()
-    mytime = today.strftime('%Y-%m-%d-%H-%M-%S')
+    date = db.book.find_one({"Date": waktu}, {"_id": False})
+    coverold = date["Cover"]
+    namafile = date["URL"]
+    os.remove(f"static/{coverold}")
 
     file = request.files["gambar_update"]
     filename = secure_filename(file.filename)
     extension = filename.split(".")[-1]
-    cover = f"cover/{mytime}.{extension}"
+    cover = f"cover/{namafile}.{extension}"
     file.save("./static/" + cover)
 
     new_doc = {
