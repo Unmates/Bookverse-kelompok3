@@ -48,6 +48,9 @@
                         let url = rows[i]['URL'];
 
                         console.log(judul)
+                        if (role === 'admin'){
+                            window.location.href = '/adminpage';
+                        }
                         if (role === 'user'){
                             $("#right-nav").empty()
                             let temp_nav = `
@@ -118,14 +121,6 @@
             if (role !== "user") {
                 window.location.replace("/login");
             }
-        }
-
-        function cari(){
-            let kata= $("#cari").val()
-            let url = kata.replaceAll(/[^0-9a-zA-Z -]/g, '').toLowerCase();
-            let url1 = url.replaceAll(' ', '-');
-            console.log(url1)
-            window.location.href= `/search/${url1}`
         }
     </script>
 </head>

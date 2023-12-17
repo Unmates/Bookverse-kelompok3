@@ -33,14 +33,14 @@ function check_id() {
             if (response["exists"]) {
                 alert('Username sudah digunakan!');
                 helpId.removeClass("fa-user")
-                .removeClass("fa-check")
-                .addClass("fa-times");
+                    .removeClass("fa-check")
+                    .addClass("fa-times");
                 inputUsername.focus();
             } else {
                 // alert('Username bisa digunakan');
                 helpId.removeClass("fa-user")
-                .removeClass("fa-times")
-                .addClass("fa-check");
+                    .removeClass("fa-times")
+                    .addClass("fa-check");
                 helpUS.attr("disabled", true)
             }
         },
@@ -149,4 +149,12 @@ function keranjang(para) {
             }
         });
     }
+}
+
+function cari() {
+    let kata = $("#cari").val()
+    let url = kata.replaceAll(/[^0-9a-zA-Z -]/g, '').toLowerCase();
+    let url1 = url.replaceAll(' ', '-');
+    console.log(url1)
+    window.location.href = `/search/${url1}`
 }
