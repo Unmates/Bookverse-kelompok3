@@ -1,3 +1,4 @@
+import os
 from flask import Flask, render_template, request, jsonify, request, redirect, url_for
 from pymongo import MongoClient
 from datetime import datetime, timedelta
@@ -90,7 +91,13 @@ def adminpage():
 @app.route('/deletebook', methods=['POST'])
 def deletebook():
     judul = request.form.get('judul_give')
+    buku = db.book.find_one({"JudulBuku": judul}, {"_id": False})
+    url = buku["URL"]
+    cover = buku["Cover"]
+    os.remove(f"static/{cover}")
     db.book.delete_one({'JudulBuku': judul})
+    db.favorite.delete_many({'JudulBuku': url})
+    db.cart.delete_many({'JudulBuku': url})
     return jsonify({
         'result': 'success',
         'msg': f'the book, {judul}, was deleted',
