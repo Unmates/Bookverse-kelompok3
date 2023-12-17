@@ -1,6 +1,5 @@
 function role_log() {
     let role = $.cookie('role');
-    console.log(role)
     if (role === "admin") {
         window.location.replace("/adminpage")
     } else if (role === "user") {
@@ -10,7 +9,6 @@ function role_log() {
 
 function check_admin() {
     let role = $.cookie('role');
-    console.log(role)
     if (role !== "admin") {
         alert("You're not signed in as admin!");
         window.location.replace("/")
@@ -19,7 +17,6 @@ function check_admin() {
 
 function check_user() {
     let role = $.cookie('role');
-    console.log(role)
     if (role !== "user") {
         alert("You're not signed in as user!");
         window.location.replace("/")
@@ -28,7 +25,6 @@ function check_user() {
 
 function no_login() {
     let role = $.cookie('role');
-    console.log(role)
     if (role === undefined) {
         alert("You need to sign in first!");
         window.location.replace("/")

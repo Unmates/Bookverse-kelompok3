@@ -42,7 +42,6 @@
                         let harga = rows[i]['Harga'];
                         let cover = rows[i]['Cover'];
                         let url = rows[i]['URL'];
-                        console.log("judul")
                         let temp_html = `
                         <div class="col">
                             <div class="card card-book h-100">
@@ -51,24 +50,16 @@
                                 <div class="card-body">
                                     <h5 class="semibold">${judul}</h5>
                                 </div>
-                                <h5 class="regular py-2" style="color: #004AD8;">${harga}</h5>
+                                <p class="none" id="ori-${i}">${harga}</p>
+                                <h5 class="regular py-2" style="color: #004AD8;" id="harga-${i}">${harga}</h5>
                                 <div class="d-flex justify-content-around">
-                                    <button type="button" class="btn rounded-circle btnred">-</button>
-                                    <h5 class="mt-1">1</h5>
-                                    <button type="button" class="btn rounded-circle btngreen">+</button>
+                                    <button type="button" class="btn rounded-circle btnred" onclick="minus('#jumlah-${i}', '#harga-${i}', '#ori-${i}', '${url}')">-</button>
+                                    <h5 class="mt-1" id="jumlah-${i}">1</h5>
+                                    <button type="button" class="btn rounded-circle btngreen" onclick="plus('#jumlah-${i}', '#harga-${i}', '#ori-${i}')">+</button>
                                 </div>
                             </div>
                         </div>`;
                         $('#card-book').append(temp_html);
-                    }
-                    if (role === "user"){
-                        let fav_rows = response['daftarfavorite']
-                        for (let i = 0; i < fav_rows.length; i++) {
-                            let favurl= fav_rows[i]["JudulBuku"]
-                            let fav_id = $(`#fav-${favurl}`)
-                            fav_id.removeClass("fa-heart-o")
-                            fav_id.addClass("fa-heart")
-                        }
                     }
                 }
             })
@@ -91,6 +82,61 @@
                     }
                 }
             });
+        }
+
+        function plus(para1, para2, para3){
+            let angka = Number($(para1).text())
+            let jumlah = angka + 1
+            let harga = $(para2).text()
+            let spl1= harga.split("Rp.")
+            let spl2= spl1[1].split(".")
+            let int = Number(spl2.join(""))
+            let hargaori = $(para3).text()
+            let spl1ori= hargaori.split("Rp.")
+            let spl2ori= spl1ori[1].split(".")
+            let intori = Number(spl2ori.join(""))
+            let total = int + intori
+            $(para1).text(`${jumlah}`)
+            $(para2).text(`Rp.${total}`)
+        }
+
+        function minus(para1, para2, para3, para4){
+            let angka = Number($(para1).text())
+            if (angka === 1){
+                let judul = para4
+                let username = $.cookie("username")
+                $.ajax({
+                    type: 'POST',
+                    url: '/addcart',
+                    data: {
+                        judul_give: judul,
+                        username_give: username,
+                        action_give: "delete"
+                    },
+                    success: function (response) {
+                        if (response.result === 'success') {
+                            alert(response.msg);
+                            window.location.reload();
+                        } else {
+                            alert('Something went wrong...');
+                        }
+                    }
+                });
+            }
+            else {
+                let jumlah = angka - 1
+                let harga = $(para2).text()
+                let spl1= harga.split("Rp.")
+                let spl2= spl1[1].split(".")
+                let int = Number(spl2.join(""))
+                let hargaori = $(para3).text()
+                let spl1ori= hargaori.split("Rp.")
+                let spl2ori= spl1ori[1].split(".")
+                let intori = Number(spl2ori.join(""))
+                let total = int - intori
+                $(para1).text(`${jumlah}`)
+                $(para2).text(`Rp.${total}`)
+            }
         }
     </script>
 </head>
