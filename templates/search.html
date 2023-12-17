@@ -53,28 +53,25 @@
     </div>
 
     <div class="container">
-
-        {% if hasil %}
-        {% for search in hasil %}
-        {% set url = search.URL %}
-        {% set cover = search.Cover %}
-        {% set judul = search.JudulBuku %}
-        {% set harga = search.Harga %}
-        <div class="container">
-            <div class="row row-cols-1 row-cols-sm-2 row-cols-md-4 g-4 my-5" id="card-book">
-                <div class="col">
-                    <div class="card card-book h-100">
-                        <a href="/detail/{{search['URL']}}"><img src="/static/{{search['Cover']}}"
-                                class="card-img-top card-book-img" alt="Book"></a>
-                        <div class="card-body">
-                            <h5 class="semibold">{{search['JudulBuku']}}</h5>
-                        </div>
-                        <h5 class="regular py-2" style="color: #004AD8;">{{search['Harga']}}</h5>
-                        <div class="d-flex justify-content-between">
-                            <a onclick=""><i class="fa fa-heart-o fa-2x" aria-hidden="true"></i></a>
-                            <a href="/detail/{{search['URL']}}" class="btn semibold card-body-btn">Detail</a>
-                            <a onclick=""><i class="fa fa-cart-plus fa-2x" aria-hidden="true"></i></a>
-                        </div>
+        <div class="row row-cols-1 row-cols-sm-2 row-cols-md-4 g-4 my-5" id="card-book">
+            {% if hasil %}
+            {% for search in hasil %}
+            {% set url = search['URL'] %}
+            {% set cover = search['Cover'] %}
+            {% set judul = search['JudulBuku'] %}
+            {% set harga = search['Harga'] %}
+            <div class="col">
+                <div class="card card-book h-100">
+                    <a href="/detail/{{ url }}"><img src="/static/{{ cover }}" class="card-img-top card-book-img"
+                            alt="Book"></a>
+                    <div class="card-body">
+                        <h5 class="semibold">{{ judul }}</h5>
+                    </div>
+                    <h5 class="regular py-2" style="color: #004AD8;">{{ harga }}</h5>
+                    <div class="d-flex justify-content-between">
+                        <a onclick=""><i class="fa fa-heart-o fa-2x" aria-hidden="true"></i></a>
+                        <a href="/detail/{{ url }}" class="btn semibold card-body-btn">Detail</a>
+                        <a onclick=""><i class="fa fa-cart-plus fa-2x" aria-hidden="true"></i></a>
                     </div>
                 </div>
             </div>
@@ -82,10 +79,10 @@
             <div class="" id="nothing">
                 <h1 class="text-center">Judul buku tidak ditemukan</h1>
             </div>
-        </div>
 
-        {% endfor %}
-        {% endif %}
+            {% endfor %}
+            {% endif %}
+        </div>
     </div>
 
 </body>
