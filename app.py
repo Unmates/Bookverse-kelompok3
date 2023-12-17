@@ -4,6 +4,7 @@ from pymongo import MongoClient
 from datetime import datetime, timedelta
 import jwt
 import hashlib
+import re
 from werkzeug.utils import secure_filename
 
 app = Flask(__name__)
@@ -340,10 +341,12 @@ def editbuku():
 @app.route('/search/<kata>')
 def search(kata):
     try:
-        hasil= db.book.find_one({"URL": kata}, {"_id": False})
-    except:
-        hasil={"result" : "nothing"}
-    return render_template('search.html', hasil=hasil, kata=kata)
+        pola_regex = re.compile(f".*{kata}.*", re.IGNORECASE)
+        hasil = list(db.book.find({"JudulBuku": {"$regex": pola_regex}}, {"_id": False}))
+        print(hasil)
+        return render_template('search.html', hasil=hasil, kata=kata)
+    except (jwt.ExpiredSignatureError, jwt.exceptions.DecodeError):
+        return redirect(url_for("/"))
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=5000, debug=True)
