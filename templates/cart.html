@@ -25,7 +25,53 @@
     <script>
         $(document).ready(function () {
             no_login();
+            showcart();
         });
+
+        function showcart() {
+            $.ajax({
+                type: 'GET',
+                url: '/showcart',
+                data: {},
+                success: function (response) {
+                    let rows = response['daftarbuku'];
+                    let role= $.cookie('role');
+                    for (let i = 0; i < rows.length; i++) {
+                        let judul = rows[i]['JudulBuku'];
+                        let harga = rows[i]['Harga'];
+                        let cover = rows[i]['Cover'];
+                        let url = rows[i]['URL'];
+                        console.log("judul")
+                        let temp_html = `
+                        <div class="col">
+                            <div class="card card-book h-100">
+                                <a href="/detail/${url}"><img src="/static/${cover}"
+                                        class="card-img-top card-book-img" alt="Book"></a>
+                                <div class="card-body">
+                                    <h5 class="semibold">${judul}</h5>
+                                </div>
+                                <h5 class="regular py-2" style="color: #004AD8;">${harga}</h5>
+                                <div class="d-flex justify-content-around">
+                                    <button type="button" class="btn rounded-circle btnred">-</button>
+                                    <h5 class="mt-1">1</h5>
+                                    <button type="button" class="btn rounded-circle btngreen">+</button>
+                                </div>
+                            </div>
+                        </div>`;
+                        $('#card-book').append(temp_html);
+                    }
+                    if (role === "user"){
+                        let fav_rows = response['daftarfavorite']
+                        for (let i = 0; i < fav_rows.length; i++) {
+                            let favurl= fav_rows[i]["JudulBuku"]
+                            let fav_id = $(`#fav-${favurl}`)
+                            fav_id.removeClass("fa-heart-o")
+                            fav_id.addClass("fa-heart")
+                        }
+                    }
+                }
+            })
+        }
     </script>
 </head>
 
@@ -59,67 +105,8 @@
     </div>
 
     <div class="container my-5">
-        <div class="row row-cols-1 row-cols-sm-2 row-cols-md-4">
-            <div class="col">
-                <div class="card card-book">
-                    <a href="/detail"><img src="{{ url_for('static', filename='book1.png') }}"
-                            class="card-img-top card-book-img" alt="Book"></a>
-                    <div class="card-body">
-                        <p>Five Nights At Freddy`S Graphic Novel #1: The Silver Eyes</p>
-                    </div>
-                    <h5 class="regular py-2" style="color: #004AD8;">RP.200.000</h5>
-                    <div class="d-flex justify-content-around">
-                        <button type="button" class="btn rounded-circle btnred">-</button>
-                        <h5 class="mt-1">1</h5>
-                        <button type="button" class="btn rounded-circle btngreen">+</button>
-                    </div>
-                </div>
-            </div>
-            <div class="col">
-                <div class="card card-book">
-                    <a href="/detail"><img src="{{ url_for('static', filename='book1.png') }}"
-                            class="card-img-top card-book-img" alt="Book"></a>
-                    <div class="card-body">
-                        <p>Five Nights At Freddy`S Graphic Novel #1: The Silver Eyes</p>
-                    </div>
-                    <h5 class="regular py-2" style="color: #004AD8;">RP.200.000</h5>
-                    <div class="d-flex justify-content-around">
-                        <button type="button" class="btn rounded-circle btnred">-</button>
-                        <h5 class="mt-1">1</h5>
-                        <button type="button" class="btn rounded-circle btngreen">+</button>
-                    </div>
-                </div>
-            </div>
-            <div class="col">
-                <div class="card card-book">
-                    <a href="/detail"><img src="{{ url_for('static', filename='book1.png') }}"
-                            class="card-img-top card-book-img" alt="Book"></a>
-                    <div class="card-body">
-                        <p>Five Nights At Freddy`S Graphic Novel #1: The Silver Eyes</p>
-                    </div>
-                    <h5 class="regular py-2" style="color: #004AD8;">RP.200.000</h5>
-                    <div class="d-flex justify-content-around">
-                        <button type="button" class="btn rounded-circle btnred">-</button>
-                        <h5 class="mt-1">1</h5>
-                        <button type="button" class="btn rounded-circle btngreen">+</button>
-                    </div>
-                </div>
-            </div>
-            <div class="col">
-                <div class="card card-book">
-                    <a href="/detail"><img src="{{ url_for('static', filename='book1.png') }}"
-                            class="card-img-top card-book-img" alt="Book"></a>
-                    <div class="card-body">
-                        <p>Five Nights At Freddy`S Graphic Novel #1: The Silver Eyes</p>
-                    </div>
-                    <h5 class="regular py-2" style="color: #004AD8;">RP.200.000</h5>
-                    <div class="d-flex justify-content-around">
-                        <button type="button" class="btn rounded-circle btnred">-</button>
-                        <h5 class="mt-1">1</h5>
-                        <button type="button" class="btn rounded-circle btngreen">+</button>
-                    </div>
-                </div>
-            </div>
+        <div class="row row-cols-1 row-cols-sm-2 row-cols-md-4 g-4 my-5" id="card-book">
+
         </div>
         <div class="text-center mt-5">
             <button type="button" class="btn btn-lg text-center bold btn-checkout">Check Out</button>

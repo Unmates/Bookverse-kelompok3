@@ -120,7 +120,13 @@ def buku():
     book_list = list(db.book.find({}, {'_id': False}))
     user_list = list(db.login.find({'role': 'user'}, {'_id': False}))
     favorite_list = list(db.favorite.find({'username': user_receive}, {'_id': False}))
-    return jsonify({'daftarbuku': book_list, 'daftaruser': user_list, 'daftarfavorite':favorite_list})
+    cart_list = list(db.cart.find({'username': user_receive}, {'_id': False}))
+    return jsonify({
+        'daftarbuku': book_list, 
+        'daftaruser': user_list, 
+        'daftarfavorite':favorite_list, 
+        'daftarkeranjang': cart_list
+        })
 
 @app.route('/tambah')
 def tambah():
@@ -232,6 +238,34 @@ def fav():
 @app.route('/cart')
 def cart():
     return render_template('cart.html')
+
+@app.route('/showcart')
+def showcart():
+    user_receive=request.cookies.get("username")
+    cart_list = list(db.cart.find({'username': user_receive}, {'_id': False}))
+    book_list=[]
+    for i in cart_list:
+        judulfav= i["JudulBuku"]
+        book_find = db.book.find_one({"URL": judulfav}, {"_id": False})
+        book_list.append(book_find)
+    return jsonify({'daftarbuku': book_list, 'daftarkeranjang':cart_list})
+
+@app.route('/addcart', methods=["POST"])
+def addcart():
+    judul_receive = request.form.get('judul_give')
+    username_receive = request.form.get('username_give')
+    action_receive = request.form.get('action_give')
+    doc = {
+        'JudulBuku': judul_receive,
+        'username': username_receive,
+        'status': 'dalam keranjang'
+    }
+    if action_receive == "Added to cart":
+        db.cart.insert_one(doc)
+        return jsonify({'result': 'success', 'msg':action_receive})
+    else:
+        db.cart.delete_one(doc)
+        return jsonify({'result': 'success', 'msg':"Removed from cart"})
 
 @app.route('/detail/<book>')
 def detail(book):
