@@ -21,7 +21,8 @@ function check_id() {
     if (!username) {
         return alert('Silahkan input username');
     }
-    let helpId = $("#helpId")
+    let helpUS = $("#inputUsername");
+    let helpId = $("#helpId");
     $.ajax({
         type: "POST",
         url: "/check_id",
@@ -40,6 +41,7 @@ function check_id() {
                 helpId.removeClass("fa-user")
                 .removeClass("fa-times")
                 .addClass("fa-check");
+                helpUS.attr("disabled", true)
             }
         },
     });
