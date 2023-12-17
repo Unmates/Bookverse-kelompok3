@@ -37,6 +37,7 @@
                 data: {},
                 success: function (response) {
                     let rows = response['daftarbuku'];
+                    let role= $.cookie('role');
                     for (let i = 0; i < rows.length; i++) {
                         let judul = rows[i]['JudulBuku'];
                         let deskripsi = rows[i]['Deskripsi'];
@@ -45,7 +46,6 @@
                         let bahasa = rows[i]['Bahasa'];
                         let cover = rows[i]['Cover'];
                         let url = rows[i]['URL'];
-                        let role= $.cookie('role');
 
                         console.log(judul)
                         if (role === 'user'){
@@ -64,8 +64,8 @@
                                         <h5 class="semibold">${judul}</h5>
                                     </div>
                                     <h5 class="regular py-2" style="color: #004AD8;">${harga}</h5>
-                                    <div class="d-flex justify-content-between">
-                                        <a onclick=""><i class="fa fa-heart-o fa-2x" aria-hidden="true"></i></a>
+                                    <div class="d-flex justify-content-between" id="book-btn">
+                                        <a onclick="favorite('${url}')"><i class="fa fa-heart-o fa-2x" aria-hidden="true" id="fav-${url}"></i></a>
                                         <a href="/detail/${url}" class="btn semibold card-body-btn">Detail</a>
                                         <a onclick=""><i class="fa fa-cart-plus fa-2x" aria-hidden="true"></i></a>
                                     </div>
@@ -90,6 +90,16 @@
                                 </div>
                             </div>`;
                             $('#card-book').append(temp_html);
+                        }
+                    }
+                    if (role === "user"){
+                        let fav_rows = response['daftarfavorite']
+                        console.log (fav_rows)
+                        for (let i = 0; i < fav_rows.length; i++) {
+                            let favurl= fav_rows[i]["JudulBuku"]
+                            let fav_id = $(`#fav-${favurl}`)
+                            fav_id.removeClass("fa-heart-o")
+                            fav_id.addClass("fa-heart")
                         }
                     }
                 }

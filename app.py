@@ -41,7 +41,8 @@ def sign_in():
             {
                 "result": "success",
                 "token": token,
-                "role": result["role"]
+                "role": result["role"],
+                "username": result["username"]
             }
         )
 
@@ -115,9 +116,11 @@ def radmin():
 
 @app.route('/buku')
 def buku():
+    user_receive=request.cookies.get("username")
     book_list = list(db.book.find({}, {'_id': False}))
     user_list = list(db.login.find({'role': 'user'}, {'_id': False}))
-    return jsonify({'daftarbuku': book_list, 'daftaruser': user_list})
+    favorite_list = list(db.favorite.find({'username': user_receive}, {'_id': False}))
+    return jsonify({'daftarbuku': book_list, 'daftaruser': user_list, 'daftarfavorite':favorite_list})
 
 @app.route('/tambah')
 def tambah():
@@ -197,6 +200,34 @@ def update_profile():
 @app.route('/favorite')
 def favorite():
     return render_template('favorite.html')
+
+@app.route('/showfav')
+def showfav():
+    user_receive=request.cookies.get("username")
+    favorite_list = list(db.favorite.find({'username': user_receive}, {'_id': False}))
+    book_list=[]
+    for i in favorite_list:
+        judulfav= i["JudulBuku"]
+        book_find = db.book.find_one({"URL": judulfav}, {"_id": False})
+        book_list.append(book_find)
+    return jsonify({'daftarbuku': book_list, 'daftarfavorite':favorite_list})
+
+@app.route('/fav', methods=["POST"])
+def fav():
+    judul_receive = request.form.get('judul_give')
+    username_receive = request.form.get('username_give')
+    action_receive = request.form.get('action_give')
+    doc = {
+        'JudulBuku': judul_receive,
+        'username': username_receive,
+        'status': 'favorited'
+    }
+    if action_receive == "favorited":
+        db.favorite.insert_one(doc)
+        return jsonify({'result': 'success', 'msg':action_receive})
+    else:
+        db.favorite.delete_one(doc)
+        return jsonify({'result': 'success', 'msg':"Removed from favorite"})
 
 @app.route('/cart')
 def cart():
