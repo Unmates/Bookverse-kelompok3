@@ -2,10 +2,8 @@ function role_log() {
     let role = $.cookie('role');
     console.log(role)
     if (role === "admin") {
-        alert("Kamu sudah login");
         window.location.replace("/adminpage")
     } else if (role === "user") {
-        alert("Kamu sudah login");
         window.location.replace("/")
     }
 }
@@ -15,6 +13,15 @@ function check_admin() {
     console.log(role)
     if (role !== "admin") {
         alert("You're not signed in as admin!");
+        window.location.replace("/")
+    }
+}
+
+function check_user() {
+    let role = $.cookie('role');
+    console.log(role)
+    if (role !== "user") {
+        alert("You're not signed in as user!");
         window.location.replace("/")
     }
 }
