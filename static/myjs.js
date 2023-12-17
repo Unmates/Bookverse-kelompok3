@@ -1,9 +1,21 @@
+function role_log() {
+    let role = $.cookie('role');
+    console.log(role)
+    if (role === "admin") {
+        alert("Kamu sudah login");
+        window.location.replace("/adminpage")
+    } else if (role === "user") {
+        alert("Kamu sudah login");
+        window.location.replace("/")
+    }
+}
+
 function check_admin() {
     let role = $.cookie('role');
     console.log(role)
     if (role !== "admin") {
         alert("You're not signed in as admin!");
-        window.location.replace("/login")
+        window.location.replace("/")
     }
 }
 
@@ -12,7 +24,7 @@ function no_login() {
     console.log(role)
     if (role === undefined) {
         alert("You need to sign in first!");
-        window.location.replace("/login")
+        window.location.replace("/")
     }
 }
 
@@ -52,7 +64,7 @@ function sign_out() {
     $.removeCookie('role', { path: '/' });
     $.removeCookie("username", { path: "/" });
     alert('Signed out!');
-    window.location.href = "/login";
+    window.location.href = "/";
 }
 
 function favorite(para) {

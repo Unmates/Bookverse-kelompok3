@@ -24,6 +24,10 @@
     <title>BookVerse - Login</title>
 
     <script>
+        $(document).ready(function () {
+            role_log();
+        });
+
         function sign_in() {
             let username = $('#inputUsername').val();
             let password = $('#inputPassword').val();

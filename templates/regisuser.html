@@ -24,6 +24,10 @@
     <title>BookVerse - Registrasi</title>
 
     <script>
+        $(document).ready(function () {
+            role_log();
+        });
+
         function masuk() {
             let username = $('#inputUsername').val();
             if (!username) {
