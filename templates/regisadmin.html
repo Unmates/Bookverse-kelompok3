@@ -25,15 +25,36 @@
 
     <script>
         function masukadmin() {
-            let email = $('#inputEmail').val();
-            let nomor = $('#inputNomor').val();
             let username = $('#inputUsername').val();
+            if (!username) {
+                return alert('Silahkan isi username anda');
+            }
             let password = $('#inputPassword').val();
+            if (!password) {
+                return alert('Silahkan isi password anda');
+            }
+            let email = $('#inputEmail').val();
+            if (!email) {
+                return alert('Silahkan isi email');
+            }
+            let nomor = $('#inputNomor').val();
+            if (!nomor) {
+                return alert('Silahkan isi nomor handphone');
+            }
+
+            let helpId = $("#helpId");
+            if (helpId.hasClass("fa-user")) {
+                alert("anda belum check id!");
+                return;
+            } else if (helpId.hasClass("fa-times")) {
+                alert("id sepertinya sudah digunakan");
+                return;
+            }
 
             $.ajax({
                 type: "POST",
                 url: "/radmin",
-                data:{
+                data: {
                     email: email,
                     nomor_give: nomor,
                     username_give: username,
@@ -62,6 +83,26 @@
             <div class="in-group">
                 <div class="row me-3 mb-4">
                     <div class="col in-group-col">
+                        <label for="inputUsername" class="col-form-label semibold">Username</label>
+                    </div>
+                    <div class="col-auto">
+                        <div class="form-control">
+                            <input class="inp-nav" style="width: 180px;" type="text" id="inputUsername">
+                            <a onclick="check_id()"><i class="fa fa-user fa-lg" id="helpId" aria-hidden="true"></i></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="row me-3 mb-4">
+                    <div class="col in-group-col">
+                        <label for="inputPassword" class="col-form-label semibold">Password</label>
+                    </div>
+                    <div class="col-auto">
+                        <input type="password" id="inputPassword" class="form-control"
+                            aria-describedby="passwordHelpInline">
+                    </div>
+                </div>
+                <div class="row me-3 mb-4">
+                    <div class="col in-group-col">
                         <label for="inputEmail" class="col-form-label semibold">Email</label>
                     </div>
                     <div class="col-auto">
@@ -76,25 +117,9 @@
                         <input type="text" id="inputNomor" class="form-control">
                     </div>
                 </div>
-                <div class="row me-3 mb-4">
-                    <div class="col in-group-col">
-                        <label for="inputUsername" class="col-form-label semibold">Username</label>
-                    </div>
-                    <div class="col-auto">
-                        <input type="text" id="inputUsername" class="form-control">
-                    </div>
-                </div>
-                <div class="row me-3 mb-4">
-                    <div class="col in-group-col">
-                        <label for="inputPassword" class="col-form-label semibold">Password</label>
-                    </div>
-                    <div class="col-auto">
-                        <input type="password" id="inputPassword" class="form-control"
-                            aria-describedby="passwordHelpInline">
-                    </div>
-                </div>
             </div>
-            <button type="button" onclick="masukadmin()" class="btn btn-login me-3"><span class="semibold">Register</span></button>
+            <button type="button" onclick="masukadmin()" class="btn btn-login me-3"><span
+                    class="semibold">Register</span></button>
             <a type="button" href="/login" class="btn btn-back"><span class="semibold">Kembali</span></a>
         </section>
     </div>

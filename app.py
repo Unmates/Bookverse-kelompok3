@@ -54,6 +54,12 @@ def sign_in():
             }
         )
 
+@app.route('/check_id', methods=['POST'])
+def check_id():
+    username_receive = request.form['username_give']
+    exists = bool(db.login.find_one({'username': username_receive}))
+    return jsonify({'result': 'success', 'exists': exists})
+
 @app.route('/registuser')
 def registuser():
     return render_template('regisuser.html')

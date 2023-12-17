@@ -25,20 +25,38 @@
 
     <script>
         function masuk() {
-            let email = $('#inputEmail').val();
             let username = $('#inputUsername').val();
+            if (!username) {
+                return alert('Silahkan isi username anda');
+            }
             let password = $('#inputPassword').val();
+            if (!password) {
+                return alert('Silahkan isi password anda');
+            }
+            let email = $('#inputEmail').val();
+            if (!email) {
+                return alert('Silahkan isi email');
+            }
+
+            let helpId = $("#helpId");
+            if (helpId.hasClass("fa-user")) {
+                alert("anda belum check id!");
+                return;
+            } else if (helpId.hasClass("fa-times")) {
+                alert("id sepertinya sudah digunakan");
+                return;
+            }
 
             $.ajax({
                 type: "POST",
                 url: "/ruser",
-                data:{
+                data: {
                     email: email,
                     username_give: username,
-                    password_give:password
+                    password_give: password
                 },
                 success: function (response) {
-                    alert("You are signed up! Nice!");
+                    alert("You are signed up as User! Nice!");
                     window.location.replace("/login");
                 }
             });
@@ -59,18 +77,13 @@
             <div class="in-group">
                 <div class="row me-3 mb-4">
                     <div class="col in-group-col">
-                        <label for="inputEmail" class="col-form-label semibold">Email</label>
-                    </div>
-                    <div class="col-auto">
-                        <input type="email" id="inputEmail" class="form-control">
-                    </div>
-                </div>
-                <div class="row me-3 mb-4">
-                    <div class="col in-group-col">
                         <label for="inputUsername" class="col-form-label semibold">Username</label>
                     </div>
                     <div class="col-auto">
-                        <input type="text" id="inputUsername" class="form-control">
+                        <div class="form-control">
+                            <input class="inp-nav" style="width: 180px;" type="text" id="inputUsername">
+                            <a onclick="check_id()"><i class="fa fa-user fa-lg" id="helpId" aria-hidden="true"></i></a>
+                        </div>
                     </div>
                 </div>
                 <div class="row me-3 mb-4">
@@ -80,6 +93,14 @@
                     <div class="col-auto">
                         <input type="password" id="inputPassword" class="form-control"
                             aria-describedby="passwordHelpInline">
+                    </div>
+                </div>
+                <div class="row me-3 mb-4">
+                    <div class="col in-group-col">
+                        <label for="inputEmail" class="col-form-label semibold">Email</label>
+                    </div>
+                    <div class="col-auto">
+                        <input type="email" id="inputEmail" class="form-control">
                     </div>
                 </div>
             </div>
