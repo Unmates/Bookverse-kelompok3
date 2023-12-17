@@ -303,6 +303,9 @@ def editbook(book):
 @app.route("/editcover", methods=["POST"])
 def editcover():
     waktu = request.form.get('waktu_give')
+    date = db.book.find_one({"Date": waktu}, {"_id": False})
+    coverold = date["Cover"]
+    os.remove(f"static/{coverold}")
 
     today = datetime.now()
     mytime = today.strftime('%Y-%m-%d-%H-%M-%S')
