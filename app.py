@@ -6,6 +6,7 @@ import jwt
 import hashlib
 import re
 from werkzeug.utils import secure_filename
+from bson import json_util
 
 app = Flask(__name__)
 
@@ -343,8 +344,9 @@ def search(kata):
     try:
         pola_regex = re.compile(f".*{kata}.*", re.IGNORECASE)
         hasil = list(db.book.find({"JudulBuku": {"$regex": pola_regex}}, {"_id": False}))
+        aqua = json_util.loads(json_util.dumps(hasil))
         print(hasil)
-        return render_template('search.html', hasil=hasil, kata=kata)
+        return render_template('search.html', hasil=aqua, kata=kata)
     except (jwt.ExpiredSignatureError, jwt.exceptions.DecodeError):
         return redirect(url_for("/"))
 
