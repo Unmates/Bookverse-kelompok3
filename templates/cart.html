@@ -72,6 +72,25 @@
                 }
             })
         }
+
+        function check_out(){
+            let username= $.cookie('username');
+            $.ajax({
+                type: 'POST',
+                url: '/checkout',
+                data: {
+                    username_give : username
+                },
+                success: function(response) {
+                    if (response.result === 'success') {
+                        alert(response.msg);
+                        window.location.reload();
+                    } else {
+                        alert('Something went wrong...');
+                    }
+                }
+            });
+        }
     </script>
 </head>
 
@@ -109,7 +128,7 @@
 
         </div>
         <div class="text-center mt-5">
-            <button type="button" class="btn btn-lg text-center bold btn-checkout">Check Out</button>
+            <button type="button" class="btn btn-lg text-center bold btn-checkout" onclick="check_out()">Check Out</button>
         </div>
     </div>
     

@@ -266,6 +266,15 @@ def addcart():
     else:
         db.cart.delete_one(doc)
         return jsonify({'result': 'success', 'msg':"Removed from cart"})
+    
+@app.route('/checkout', methods=['POST'])
+def checkout():
+    username = request.form.get('username_give')
+    db.cart.delete_many({'username': username})
+    return jsonify({
+        'result': 'success',
+        'msg': 'Anda berhasil melakukan check out',
+    })
 
 @app.route('/detail/<book>')
 def detail(book):
