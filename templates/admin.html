@@ -25,10 +25,10 @@
     <script>
         $(document).ready(function () {
             check_admin();
-            tampil();
+            tampil_admin();
         });
 
-        function tampil() {
+        function tampil_admin() {
             $.ajax({
                 type: 'GET',
                 url: '/buku',
@@ -69,7 +69,7 @@
                         let temp_html = `
                         <div class="col">
                             <div class="card card-book h-100">
-                                <img src="/static/${cover}" class="card-img-top card-book-img" alt="Book">
+                                <a href="/detail/${url}"><img src="/static/${cover}" class="card-img-top card-book-img" alt="Book"></a>
                                 <div class="card-body">
                                     <h5 class="semibold" id="judulbuku${i}">${judul}</h5>
                                 </div>

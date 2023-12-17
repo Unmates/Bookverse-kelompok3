@@ -26,8 +26,22 @@
         let detail_book = {{ book_detail | tojson }};
 
         $(document).ready(function () {
+            no_login();
             detail();
+            roledetail();
         });
+
+        function roledetail() {
+            let role = $.cookie('role');
+            $('#navadmindetail').hide();
+            $('#navuserdetail').hide();
+            if (role === 'admin') {
+                $('#navadmindetail').show();
+            }
+            if (role === 'user') {
+                $('#navuserdetail').show();
+            }
+        }
 
         function detail() {
             let judul = detail_book['JudulBuku'];
@@ -80,7 +94,29 @@
 </head>
 
 <body>
-    <nav class="navbar navbar-expand bg-nav">
+    <nav class="navbar navbar-expand bg-nav" id="navadmindetail">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="/adminpage">
+                <img src="{{ url_for('static', filename='logo.png') }}" alt="Logo" height="55" width="200">
+            </a>
+            <div class="collapse navbar-collapse justify-content-end" id="navbarNavAltMarkup">
+                <div class="navbar-nav">
+                    <form class="d-flex">
+                        <div class="form-control me-4 form-nav">
+                            <input class="inp-nav" placeholder="Cari Buku" aria-label="Search" id="cari">
+                            <a onclick="cari()"><i class="fa fa-search fa-lg icon-src-nav" aria-hidden="true"></i></a>
+                        </div>
+                    </form>
+                    <a class="nav-link active semibold" style="color: black;" aria-current="page" href="/tambah">Input
+                        Buku</a>
+                    <a class="nav-link semibold" style="color: #D60000; cursor: pointer;"
+                        onclick="sign_out()">Keluar</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <nav class="navbar navbar-expand bg-nav" id="navuserdetail">
         <div class="container-fluid">
             <a class="navbar-brand" href="/">
                 <img src="{{ url_for('static', filename='logo.png') }}" alt="Logo" height="55" width="200">
@@ -103,7 +139,7 @@
 
     <div class="container mt-5">
         <div class="row" id="detailbuku">
-            
+
         </div>
     </div>
 </body>

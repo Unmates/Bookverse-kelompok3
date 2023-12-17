@@ -22,12 +22,34 @@
     <script src="{{ url_for('static', filename='myjs.js') }}"></script>
 
     <title>BookVerse - Favorite</title>
+    <script>
+        $(document).ready(function () {
+            no_login();
+            rolesearch();
+        });
+
+        function rolesearch() {
+            let role = $.cookie('role');
+            $('#navadmin').hide();
+            $('#navuser').hide();
+            $('#cardadmin').hide();
+            $('#carduser').hide();
+            if (role === 'admin') {
+                $('#navadmin').show();
+                $('#cardadmin').show();
+            }
+            if (role === 'user') {
+                $('#navuser').show();
+                $('#carduser').show();
+            }
+        }
+    </script>
 </head>
 
 <body>
-    <nav class="navbar fixed-top navbar-expand bg-nav">
+    <nav class="navbar fixed-top navbar-expand bg-nav" id="navadmin">
         <div class="container-fluid">
-            <a class="navbar-brand" href="/">
+            <a class="navbar-brand" href="/adminpage">
                 <img src="{{ url_for('static', filename='logo.png') }}" alt="Logo" height="55" width="200">
             </a>
             <div class="collapse navbar-collapse justify-content-end" id="navbarNavAltMarkup">
@@ -38,8 +60,29 @@
                             <a onclick="cari()"><i class="fa fa-search fa-lg icon-src-nav" aria-hidden="true"></i></a>
                         </div>
                     </form>
+                    <a class="nav-link active semibold" style="color: black;" aria-current="page" href="/tambah">Input
+                        Buku</a>
+                    <a class="nav-link semibold" style="color: #D60000; cursor: pointer;"
+                        onclick="sign_out()">Keluar</a>
                 </div>
-                <!-- <a class="login" style="margin-top: 3px;" href="/login"><img src="{{ url_for('static', filename='login.png') }}" alt="Icon" height="35"></a> -->
+            </div>
+        </div>
+    </nav>
+
+    <nav class="navbar fixed-top navbar-expand bg-nav" id="navuser">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="/">
+                <img src="{{ url_for('static', filename='logo.png') }}" alt="Logo" height="55" width="200">
+            </a>
+            <div class="collapse navbar-collapse justify-content-end" id="navbarNavAltMarkup">
+                <div class="navbar-nav">
+                    <form class="d-flex">
+                        <div class="form-control me-4 form-nav">
+                            <input class="inp-nav" placeholder="Cari Buku" aria-label="Search" id="cari" disabled>
+                            <a onclick="cari()"><i class="fa fa-search fa-lg icon-src-nav" aria-hidden="true"></i></a>
+                        </div>
+                    </form>
+                </div>
                 <a href="/favorite"><i class="fa fa-heart fa-2x me-4 black" aria-hidden="true"></i></a>
                 <a href="/cart"><i class="fa fa-shopping-cart fa-2x me-4 black" aria-hidden="true"></i></a>
                 <a href="/profile"><i class="fa fa-user fa-2x me-2 black" aria-hidden="true"></i></a>
@@ -52,7 +95,7 @@
         <hr>
     </div>
 
-    <div class="container">
+    <div class="container" id="cardadmin">
         <div class="row row-cols-1 row-cols-sm-2 row-cols-md-4 g-4 my-5" id="card-book">
             {% if hasil %}
             {% for search in hasil %}
@@ -62,8 +105,38 @@
             {% set harga = search['Harga'] %}
             <div class="col">
                 <div class="card card-book h-100">
-                    <a href="/detail/{{ url }}"><img src="/static/{{ cover }}" class="card-img-top card-book-img"
-                            alt="Book"></a>
+                    <a href="/detail/{{ url }}"><img src="/static/{{ cover }}" class="card-img-top card-book-img" alt="Book"></a>
+                    <div class="card-body">
+                        <h5 class="semibold" id="judulbuku">{{ judul }}</h5>
+                    </div>
+                    <h5 class="regular py-2" style="color: #004AD8;">{{ harga }}</h5>
+                    <div class="d-flex justify-content-center">
+                        <a href="/edit/{{ url }}" class="btn semibold card-admin-btn"
+                            style="background-color: #0A868C;">Edit</a>
+                    </div>
+                </div>
+            </div>
+            {% else %}
+            <div class="" id="nothing">
+                <h1 class="text-center">Judul buku tidak ditemukan</h1>
+            </div>
+
+            {% endfor %}
+            {% endif %}
+        </div>
+    </div>
+
+    <div class="container" id="carduser">
+        <div class="row row-cols-1 row-cols-sm-2 row-cols-md-4 g-4 my-5" id="card-book">
+            {% if hasil %}
+            {% for search in hasil %}
+            {% set url = search['URL'] %}
+            {% set cover = search['Cover'] %}
+            {% set judul = search['JudulBuku'] %}
+            {% set harga = search['Harga'] %}
+            <div class="col">
+                <div class="card card-book h-100">
+                    <a href="/detail/{{ url }}"><img src="/static/{{ cover }}" class="card-img-top card-book-img" alt="Book"></a>
                     <div class="card-body">
                         <h5 class="semibold">{{ judul }}</h5>
                     </div>
