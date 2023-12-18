@@ -26,59 +26,6 @@
         $(document).ready(function () {
             check_admin();
         });
-
-        function postbook() {
-            let judul = $('#judul').val();
-            if (!judul) {
-                return alert('Silahkan isi judul bukunya');
-            }
-            let deskripsi = $('#deskripsi').val();
-            if (!deskripsi) {
-                return alert('Silahkan isi deskripsinya');
-            }
-            let harga = $('#harga').val();
-            if (!harga) {
-                return alert('Silahkan isi harga bukunya');
-            }
-            let kategori = $('#kategori').val();
-            if (!kategori) {
-                return alert('Silahkan isi kategori bukunya');
-            }
-            let bahasa = $('#bahasa').val();
-            if (!bahasa) {
-                return alert('Silahkan isi bahasa bukunya');
-            }
-            let gambar = $("#gambar-buku").prop("files")[0];
-            if (!gambar) {
-                return alert('Silahkan input gambar');
-            }
-
-            let url = judul.replaceAll(/[^0-9a-zA-Z -]/g, '').toLowerCase();
-            let url1 = url.replaceAll(' ', '-');
-
-            let form_data = new FormData();
-
-            form_data.append("gambar_give", gambar);
-            form_data.append("judul_give", judul);
-            form_data.append("deskripsi_give", deskripsi);
-            form_data.append("harga_give", harga);
-            form_data.append("kategori_give", kategori);
-            form_data.append("bahasa_give", bahasa);
-            form_data.append("url_give", url1);
-
-            $.ajax({
-                type: 'POST',
-                url: '/tambahbuku',
-                data: form_data,
-                cache: false,
-                contentType: false,
-                processData: false,
-                success: function (response) {
-                    alert(response['msg']);
-                    window.location.href = '/adminpage';
-                }
-            });
-        }
     </script>
 </head>
 
@@ -98,7 +45,8 @@
                     </form>
                     <a class="nav-link active semibold" style="color: black;" aria-current="page" href="/tambah">Input
                         Buku</a>
-                    <a class="nav-link semibold" style="color: #D60000;" href="#">Keluar</a>
+                    <a class="nav-link semibold" style="color: #D60000; cursor: pointer;"
+                        onclick="sign_out()">Keluar</a>
                 </div>
             </div>
         </div>

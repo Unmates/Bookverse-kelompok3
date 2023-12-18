@@ -27,51 +27,6 @@
         $(document).ready(function () {
             role_log();
         });
-
-        function masukadmin() {
-            let username = $('#inputUsername').val();
-            if (!username) {
-                return alert('Silahkan isi username anda');
-            }
-            let password = $('#inputPassword').val();
-            if (!password) {
-                return alert('Silahkan isi password anda');
-            }
-            let email = $('#inputEmail').val();
-            if (!email) {
-                return alert('Silahkan isi email');
-            }
-            let nomor = $('#inputNomor').val();
-            if (!nomor) {
-                return alert('Silahkan isi nomor handphone');
-            }
-
-            let helpId = $("#helpId");
-            if (helpId.hasClass("fa-user")) {
-                alert("anda belum check id!");
-                return;
-            } else if (helpId.hasClass("fa-times")) {
-                alert("cek kembali id anda");
-                return;
-            }
-
-            $.ajax({
-                type: "POST",
-                url: "/radmin",
-                data: {
-                    email: email,
-                    nomor_give: nomor,
-                    username_give: username,
-                    password_give: password
-                },
-                success: function (response) {
-                    alert("You are signed up as Admin! Nice!");
-                    window.location.replace("/login");
-                }
-            });
-        }
-
-
     </script>
 
 </head>

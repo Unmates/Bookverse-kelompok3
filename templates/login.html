@@ -27,41 +27,6 @@
         $(document).ready(function () {
             role_log();
         });
-
-        function sign_in() {
-            let username = $('#inputUsername').val();
-            let password = $('#inputPassword').val();
-
-            $.ajax({
-                type: "POST",
-                url: "/sign_in",
-                data: {
-                    username_give: username,
-                    password_give: password,
-                },
-                success: function (response) {
-                    console.log(response)
-                    if (response["result"] === "success") {
-                        $.removeCookie('mytoken', { path: '/' });
-                        $.removeCookie('role', { path: '/' });
-                        if (response["role"] === "admin"){
-                            $.cookie("mytoken", response["token"], { path: "/" });
-                            $.cookie("role", response["role"], { path: "/" });
-                            $.cookie("username", response["username"], { path: "/" });
-                            window.location.replace("/adminpage");
-                        }
-                        else {
-                            $.cookie("mytoken", response["token"], { path: "/" });
-                            $.cookie("role", response["role"], { path: "/" });
-                            $.cookie("username", response["username"], { path: "/" });
-                            window.location.replace("/")
-                        }
-                    } else {
-                        alert(response["msg"]);
-                    }
-                },
-            });
-        }
     </script>
 
 </head>

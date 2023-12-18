@@ -27,46 +27,6 @@
         $(document).ready(function () {
             role_log();
         });
-
-        function masuk() {
-            let username = $('#inputUsername').val();
-            if (!username) {
-                return alert('Silahkan isi username anda');
-            }
-            let password = $('#inputPassword').val();
-            if (!password) {
-                return alert('Silahkan isi password anda');
-            }
-            let email = $('#inputEmail').val();
-            if (!email) {
-                return alert('Silahkan isi email');
-            }
-
-            let helpId = $("#helpId");
-            if (helpId.hasClass("fa-user")) {
-                alert("anda belum check id!");
-                return;
-            } else if (helpId.hasClass("fa-times")) {
-                alert("cek kembali id anda");
-                return;
-            }
-
-            $.ajax({
-                type: "POST",
-                url: "/ruser",
-                data: {
-                    email: email,
-                    username_give: username,
-                    password_give: password
-                },
-                success: function (response) {
-                    alert("You are signed up as User! Nice!");
-                    window.location.replace("/login");
-                }
-            });
-        }
-
-
     </script>
 </head>
 

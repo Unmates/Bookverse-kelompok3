@@ -30,66 +30,6 @@
             detail();
             roledetail();
         });
-
-        function roledetail() {
-            let role = $.cookie('role');
-            $('#navadmindetail').hide();
-            $('#navuserdetail').hide();
-            if (role === 'admin') {
-                $('#navadmindetail').show();
-            }
-            if (role === 'user') {
-                $('#navuserdetail').show();
-            }
-        }
-
-        function detail() {
-            let judul = detail_book['JudulBuku'];
-            let deskripsi = detail_book['Deskripsi'];
-            let harga = detail_book['Harga'];
-            let kategori = detail_book['Kategori'];
-            let bahasa = detail_book['Bahasa'];
-            let cover = detail_book['Cover'];
-
-            let temp_html = `
-            <div class="col mb-5">
-                <div style="max-width: 350px;">
-                    <img src="/static/${cover}" class="detail-img" alt="Book" width="350">
-                </div>
-            </div>
-            <div class="col-7">
-                <h1 class="fw-bolder">${judul}</h1>
-                <h6 class="fw-bold mt-3">Deskripsi Buku</h6>
-                <p>${deskripsi}</p>
-                <div class="row">
-                    <div class="col">
-                        <h6 class="fw-bold">Harga</h6>
-                    </div>
-                    <div class="col-10 harga">
-                        <p>: ${harga}</p>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col">
-                        <h6 class="fw-bold">Kategori</h6>
-                    </div>
-                    <div class="col-10">
-                        <p>: ${kategori}</p>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col">
-                        <h6 class="fw-bold">Bahasa</h6>
-                    </div>
-                    <div class="col-10">
-                        <p>: ${bahasa}</p>
-                    </div>
-                </div>
-            </div>
-            `;
-            $('#detailbuku').append(temp_html);
-        }
-
     </script>
 </head>
 

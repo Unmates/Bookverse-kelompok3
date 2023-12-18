@@ -30,133 +30,6 @@
             check_admin();
             edit();
         });
-
-        function edit() {
-            let judul = book_info['JudulBuku'];
-            let deskripsi = book_info['Deskripsi'];
-            let harga = book_info['Harga'];
-            let spl1= harga.split("Rp.")
-            let spl2= spl1[1].split(".")
-            let int = Number(spl2.join(""))
-            let kategori = book_info['Kategori'];
-            let bahasa = book_info['Bahasa'];
-            let cover = book_info['Cover'];
-
-            let temp_html = `
-            <div class="col">
-                <div style="max-width: 350px; margin-bottom: 10px;">
-                    <img src="/static/${cover}" class="card-img-top detail-img"
-                        alt="Book">
-                </div>
-                <div class="d-flex">
-                    <div class="custom-file-input">
-                        <label for="gambar-buku">Choose File</label>
-                        <input type="file" id="gambar-buku" name="gambar-buku">
-                    </div>
-                    <button onclick="editgambar()" class="btn btn-login ms-3" style="max-width: 90px;">Update</button>
-                </div>
-            </div>
-
-            <div class="col-7">
-                <div class="card px-5 py-3" style="border: 1px solid rgb(112, 112, 112);" >
-                    <div class="form-group">
-                        <label for="kategori">Judul Buku:</label>
-                        <input type="text" id="judul" name="judul"
-                            value="${judul}">
-                    </div>
-                    <div class="form-group">
-                        <label for="deskripsi">Deskripsi Buku:</label>
-                        <textarea class="me-4" id="deskripsi" name="deskripsi" rows="4">${deskripsi}</textarea>
-                    </div>
-                    <div class="form-group">
-                        <label for="harga">Harga Buku:</label>
-                        <input class="me-4" type="number" id="harga" name="harga" value="${int}">
-                    </div>
-                    <div class="form-group">
-                        <label for="kategori">Kategori Buku:</label>
-                        <select class="me-4" id="kategori" name="kategori">
-                            <option value="${kategori}">${kategori}</option>
-                            <option value="..." disabled>...</option>
-                            <option value="Novel">Novel</option>
-                            <option value="Biografi">Biografi</option>
-                            <option value="Ensiklopedia">Ensiklopedia</option>
-                            <option value="Komik">Komik</option>
-                            <option value="Buku Pelajaran">Buku Pelajaran</option>
-                            <option value="Buku masak">Buku masak</option>
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <label for="bahasa">Bahasa Buku:</label>
-                        <select class="me-4" id="bahasa" name="bahasa">
-                            <option value="${bahasa}">${bahasa}</option>
-                            <option value="..." disabled>...</option>
-                            <option value="Indonesia">Indonesia</option>
-                            <option value="Inggris">Inggris</option>
-                            <option value="Jepang">Jepang</option>
-                            <option value="Korea">Korea</option>
-                        </select>
-                    </div>
-                    <button onclick="editing()" class="btn semibold btn-login mb-3">Update</button>
-                </div>
-            </div>
-            `;
-            $('#editbuku').append(temp_html);
-        }
-
-        function editgambar() {
-            let waktu = book_info['Date'];
-            let gambar = $("#gambar-buku").prop("files")[0];
-            if (!gambar) {
-                return alert('Silahkan input gambar');
-            }
-
-            let form_data = new FormData();
-            form_data.append("gambar_update", gambar);
-            form_data.append("waktu_give", waktu);
-            $.ajax({
-                type: 'POST',
-                url: '/editcover',
-                data: form_data,
-                cache: false,
-                contentType: false,
-                processData: false,
-                success: function (response) {
-                    alert(response['msg']);
-                    window.location.reload();
-                }
-            });
-        }
-
-        function editing() {
-            let waktu = book_info['Date'];
-            let judul = $('#judul').val();
-            let deskripsi = $('#deskripsi').val();
-            let harga = $('#harga').val();
-            let kategori = $('#kategori').val();
-            let bahasa = $('#bahasa').val();
-
-            let form_data = new FormData();
-
-            form_data.append("judul_update", judul);
-            form_data.append("deskripsi_update", deskripsi);
-            form_data.append("harga_update", harga);
-            form_data.append("kategori_update", kategori);
-            form_data.append("bahasa_update", bahasa);
-            form_data.append("waktu_give", waktu);
-
-            $.ajax({
-                type: 'POST',
-                url: '/editbuku',
-                data: form_data,
-                cache: false,
-                contentType: false,
-                processData: false,
-                success: function (response) {
-                    alert(response['msg']);
-                    window.location.reload();
-                }
-            });
-        }
     </script>
 </head>
 
@@ -176,7 +49,8 @@
                     </form>
                     <a class="nav-link active semibold" style="color: black;" aria-current="page" href="/tambah">Input
                         Buku</a>
-                    <a class="nav-link semibold" style="color: #D60000;" href="#">Keluar</a>
+                    <a class="nav-link semibold" style="color: #D60000; cursor: pointer;"
+                        onclick="sign_out()">Keluar</a>
                 </div>
             </div>
         </div>

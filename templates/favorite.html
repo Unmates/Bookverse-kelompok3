@@ -28,58 +28,6 @@
             check_user();
             showfav();
         });
-
-        function showfav() {
-            $.ajax({
-                type: 'GET',
-                url: '/showfav',
-                data: {},
-                success: function (response) {
-                    let rows = response['daftarbuku'];
-                    let role = $.cookie('role');
-                    for (let i = 0; i < rows.length; i++) {
-                        let judul = rows[i]['JudulBuku'];
-                        let harga = rows[i]['Harga'];
-                        let cover = rows[i]['Cover'];
-                        let url = rows[i]['URL'];
-                        console.log("judul")
-                        let temp_html = `
-                        <div class="col">
-                            <div class="card card-book h-100">
-                                <a href="/detail/${url}"><img src="/static/${cover}"
-                                        class="card-img-top card-book-img" alt="Book"></a>
-                                <div class="card-body">
-                                    <h5 class="semibold">${judul}</h5>
-                                </div>
-                                <h5 class="regular py-2" style="color: #004AD8;">${harga}</h5>
-                                <div class="d-flex justify-content-between" id="book-btn">
-                                    <a onclick="favorite('${url}')"><i class="fa fa-heart-o fa-2x" aria-hidden="true" id="fav-${url}"></i></a>
-                                    <a href="/detail/${url}" class="btn semibold card-body-btn">Detail</a>
-                                    <a onclick="keranjang('${url}')"><i class="fa fa-cart-plus fa-2x" aria-hidden="true" id="cart-${url}"></i></a>
-                                </div>
-                            </div>
-                        </div>`;
-                        $('#card-book').append(temp_html);
-                    }
-                    if (role === "user") {
-                        let fav_rows = response['daftarfavorite']
-                        for (let i = 0; i < fav_rows.length; i++) {
-                            let favurl = fav_rows[i]["JudulBuku"]
-                            let fav_id = $(`#fav-${favurl}`)
-                            fav_id.removeClass("fa-heart-o")
-                            fav_id.addClass("fa-heart")
-                        }
-                        let cart_rows = response['daftarkeranjang']
-                        for (let i = 0; i < cart_rows.length; i++) {
-                            let carturl = cart_rows[i]["JudulBuku"]
-                            let cart_id = $(`#cart-${carturl}`)
-                            cart_id.removeClass("fa-cart-plus")
-                            cart_id.addClass("fa-cart-arrow-down")
-                        }
-                    }
-                }
-            })
-        }
     </script>
 </head>
 

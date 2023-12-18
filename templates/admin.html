@@ -26,68 +26,7 @@
         $(document).ready(function () {
             check_admin();
             tampil_admin();
-        });
-
-        function tampil_admin() {
-            $.ajax({
-                type: 'GET',
-                url: '/buku',
-                data: {},
-                success: function (response) {
-                    let rows = response['daftarbuku'];
-                    let rows1 = response['daftaruser'];
-
-                    let count = rows.length
-                    let count1 = rows1.length
-                    let dashboard = `
-                        <div class="box box-bg1 my-2 mx-2">
-                            <div class="info">
-                                <h3 class="semibold">User</h3>
-                                <p class="count regular"><b style="color: #004ad880;">${count1}</b> User</p>
-                            </div>
-                            <i class="fa fa-user"></i>
-                        </div>
-                        <div class="box box-bg2 my-2 mx-2">
-                            <div class="info">
-                                <h3 class="semibold">Book</h3>
-                                <p class="count regular"><b style="color: #d8410080;">${count}</b> Book</p>
-                            </div>
-                            <i class="fa fa-book"></i>
-                        </div>
-                        `;
-                    $('#dashboard').append(dashboard);
-
-                    for (let i = 0; i < rows.length; i++) {
-                        let judul = rows[i]['JudulBuku'];
-                        let deskripsi = rows[i]['Deskripsi'];
-                        let harga = rows[i]['Harga'];
-                        let kategori = rows[i]['Kategori'];
-                        let bahasa = rows[i]['Bahasa'];
-                        let cover = rows[i]['Cover'];
-                        let url = rows[i]['URL'];
-
-                        let temp_html = `
-                        <div class="col">
-                            <div class="card card-book h-100">
-                                <a href="/detail/${url}"><img src="/static/${cover}" class="card-img-top card-book-img" alt="Book"></a>
-                                <div class="card-body">
-                                    <h5 class="semibold" id="${url}">${judul}</h5>
-                                </div>
-                                <h5 class="regular py-2" style="color: #004AD8;">${harga}</h5>
-                                <div class="d-flex justify-content-between">
-                                    <a href="/edit/${url}" class="btn semibold card-admin-btn"
-                                        style="background-color: #0A868C;">Edit</a>
-                                    <button onclick="deleteadm('#${url}')" class="btn semibold card-admin-btn ms-3" style="background-color: #D60000;"
-                                        id="delete">Delete</button>
-                                </div>
-                            </div>
-                        </div>`;
-                        $('#card-book').append(temp_html);
-                    }
-                }
-            })
-        }
-        
+        });        
     </script>
 </head>
 
@@ -107,8 +46,7 @@
                     </form>
                     <a class="nav-link active semibold" style="color: black;" aria-current="page" href="/tambah">Input
                         Buku</a>
-                    <a class="nav-link semibold" style="color: #D60000; cursor: pointer;"
-                        onclick="sign_out()">Keluar</a>
+                    <a class="nav-link semibold" style="color: #D60000; cursor: pointer;" onclick="sign_out()">Keluar</a>
                 </div>
             </div>
         </div>

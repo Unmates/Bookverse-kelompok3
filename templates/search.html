@@ -27,22 +27,6 @@
             no_login();
             rolesearch();
         });
-
-        function rolesearch() {
-            let role = $.cookie('role');
-            $('#navadmin').hide();
-            $('#navuser').hide();
-            $('#cardadmin').hide();
-            $('#carduser').hide();
-            if (role === 'admin') {
-                $('#navadmin').show();
-                $('#cardadmin').show();
-            }
-            if (role === 'user') {
-                $('#navuser').show();
-                $('#carduser').show();
-            }
-        }
     </script>
 </head>
 
