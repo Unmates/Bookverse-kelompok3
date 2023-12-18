@@ -31,6 +31,8 @@
         });
 
         function tampil() {
+            $("#dashunlog").hide();
+            $("#dashlog").hide();
             $.ajax({
                 type: 'GET',
                 url: '/buku',
@@ -53,7 +55,7 @@
                         }
                         if (role === 'user'){
                             $("#right-nav").empty();
-                            $("#dashunlog").hide();
+                            $("#dashlog").show();
                             let temp_nav = `
                                 <a href="/favorite"><i class="fa fa-heart fa-2x me-4 black" aria-hidden="true"></i></a>
                                 <a href="/cart"><i class="fa fa-shopping-cart fa-2x me-4 black" aria-hidden="true"></i></a>
@@ -79,6 +81,7 @@
                             $("#right-nav").append(temp_nav);
                         }
                         else{
+                            $("#dashunlog").show();
                             let temp_html = `
                             <div class="col">
                                 <div class="card card-book h-100">
@@ -149,6 +152,9 @@
     </nav>
 
     <div class="container dash">
+        <div class="row justify-content-center" id="dashlog">
+            <h1 class="extrabold">Terbaru</h1>
+        </div>
         <div class="row align-items-center justify-content-between row-cols-md-2" id="dashunlog">
             <div class="col" style="width: 45%;">
                 <p class="semibold" style="color: #0A868C;">Hallo, Selamat Datang</p>
