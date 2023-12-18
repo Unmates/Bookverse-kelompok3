@@ -71,13 +71,13 @@
                             <div class="card card-book h-100">
                                 <a href="/detail/${url}"><img src="/static/${cover}" class="card-img-top card-book-img" alt="Book"></a>
                                 <div class="card-body">
-                                    <h5 class="semibold" id="judulbuku${i}">${judul}</h5>
+                                    <h5 class="semibold" id="${url}">${judul}</h5>
                                 </div>
                                 <h5 class="regular py-2" style="color: #004AD8;">${harga}</h5>
                                 <div class="d-flex justify-content-between">
                                     <a href="/edit/${url}" class="btn semibold card-admin-btn"
                                         style="background-color: #0A868C;">Edit</a>
-                                    <button onclick="deleteadm('#judulbuku${i}')" class="btn semibold card-admin-btn ms-3" style="background-color: #D60000;"
+                                    <button onclick="deleteadm('#${url}')" class="btn semibold card-admin-btn ms-3" style="background-color: #D60000;"
                                         id="delete">Delete</button>
                                 </div>
                             </div>
@@ -87,28 +87,7 @@
                 }
             })
         }
-
-        function deleteadm(para) {
-            let judul = $(para).text();
-            if (confirm(`Apakah anda ingin menghapus buku '${judul}'?`)) {
-                $.ajax({
-                    type: 'POST',
-                    url: '/deletebook',
-                    data: {
-                        judul_give: judul
-                    },
-                    success: function (response) {
-                        if (response.result === 'success') {
-                            alert(response.msg);
-                            window.location.reload();
-                        } else {
-                            alert('Something went wrong...');
-                        }
-                    }
-                });
-            }
-            return false;
-        }
+        
     </script>
 </head>
 

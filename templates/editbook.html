@@ -35,6 +35,9 @@
             let judul = book_info['JudulBuku'];
             let deskripsi = book_info['Deskripsi'];
             let harga = book_info['Harga'];
+            let spl1= harga.split("Rp.")
+            let spl2= spl1[1].split(".")
+            let int = Number(spl2.join(""))
             let kategori = book_info['Kategori'];
             let bahasa = book_info['Bahasa'];
             let cover = book_info['Cover'];
@@ -67,7 +70,7 @@
                     </div>
                     <div class="form-group">
                         <label for="harga">Harga Buku:</label>
-                        <input class="me-4" type="text" id="harga" name="harga" value="${harga}">
+                        <input class="me-4" type="number" id="harga" name="harga" value="${int}">
                     </div>
                     <div class="form-group">
                         <label for="kategori">Kategori Buku:</label>

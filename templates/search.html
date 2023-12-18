@@ -98,30 +98,31 @@
     <div class="container" id="cardadmin">
         <div class="row row-cols-1 row-cols-sm-2 row-cols-md-4 g-4 my-5" id="card-book">
             {% if hasil %}
-            {% for search in hasil %}
-            {% set url = search['URL'] %}
-            {% set cover = search['Cover'] %}
-            {% set judul = search['JudulBuku'] %}
-            {% set harga = search['Harga'] %}
-            <div class="col">
-                <div class="card card-book h-100">
-                    <a href="/detail/{{ url }}"><img src="/static/{{ cover }}" class="card-img-top card-book-img" alt="Book"></a>
-                    <div class="card-body">
-                        <h5 class="semibold" id="judulbuku">{{ judul }}</h5>
+                {% for search in hasil %}
+                    {% set url = search['URL'] %}
+                    {% set cover = search['Cover'] %}
+                    {% set judul = search['JudulBuku'] %}
+                    {% set harga = search['Harga'] %}
+                    <div class="col">
+                        <div class="card card-book h-100">
+                            <a href="/detail/{{ url }}"><img src="/static/{{ cover }}" class="card-img-top card-book-img" alt="Book"></a>
+                            <div class="card-body">
+                                <h5 class="semibold" id="{{ url }}">{{ judul }}</h5>
+                            </div>
+                            <h5 class="regular py-2" style="color: #004AD8;">{{ harga }}</h5>
+                            <div class="d-flex justify-content-center">
+                                <a href="/edit/{{ url }}" class="btn semibold card-admin-btn"
+                                    style="background-color: #0A868C;">Edit</a>
+                                <button onclick="deleteadm('#{{ url }}')" class="btn semibold card-admin-btn ms-3" style="background-color: #D60000;"
+                                                id="delete">Delete</button>
+                            </div>
+                        </div>
                     </div>
-                    <h5 class="regular py-2" style="color: #004AD8;">{{ harga }}</h5>
-                    <div class="d-flex justify-content-center">
-                        <a href="/edit/{{ url }}" class="btn semibold card-admin-btn"
-                            style="background-color: #0A868C;">Edit</a>
-                    </div>
-                </div>
-            </div>
+                {% endfor %}
             {% else %}
-            <div class="" id="nothing">
-                <h1 class="text-center">Judul buku tidak ditemukan</h1>
-            </div>
-
-            {% endfor %}
+                <div class="" id="nothing">
+                    <h1 class="text-center">Judul buku tidak ditemukan</h1>
+                </div>
             {% endif %}
         </div>
     </div>
@@ -129,31 +130,30 @@
     <div class="container" id="carduser">
         <div class="row row-cols-1 row-cols-sm-2 row-cols-md-4 g-4 my-5" id="card-book">
             {% if hasil %}
-            {% for search in hasil %}
-            {% set url = search['URL'] %}
-            {% set cover = search['Cover'] %}
-            {% set judul = search['JudulBuku'] %}
-            {% set harga = search['Harga'] %}
-            <div class="col">
-                <div class="card card-book h-100">
-                    <a href="/detail/{{ url }}"><img src="/static/{{ cover }}" class="card-img-top card-book-img" alt="Book"></a>
-                    <div class="card-body">
-                        <h5 class="semibold">{{ judul }}</h5>
+                {% for search in hasil %}
+                    {% set url = search['URL'] %}
+                    {% set cover = search['Cover'] %}
+                    {% set judul = search['JudulBuku'] %}
+                    {% set harga = search['Harga'] %}
+                    <div class="col">
+                        <div class="card card-book h-100">
+                            <a href="/detail/{{ url }}"><img src="/static/{{ cover }}" class="card-img-top card-book-img" alt="Book"></a>
+                            <div class="card-body">
+                                <h5 class="semibold">{{ judul }}</h5>
+                            </div>
+                            <h5 class="regular py-2" style="color: #004AD8;">{{ harga }}</h5>
+                            <div class="d-flex justify-content-between">
+                                <a onclick=""><i class="fa fa-heart-o fa-2x" aria-hidden="true"></i></a>
+                                <a href="/detail/{{ url }}" class="btn semibold card-body-btn">Detail</a>
+                                <a onclick=""><i class="fa fa-cart-plus fa-2x" aria-hidden="true"></i></a>
+                            </div>
+                        </div>
                     </div>
-                    <h5 class="regular py-2" style="color: #004AD8;">{{ harga }}</h5>
-                    <div class="d-flex justify-content-between">
-                        <a onclick=""><i class="fa fa-heart-o fa-2x" aria-hidden="true"></i></a>
-                        <a href="/detail/{{ url }}" class="btn semibold card-body-btn">Detail</a>
-                        <a onclick=""><i class="fa fa-cart-plus fa-2x" aria-hidden="true"></i></a>
-                    </div>
-                </div>
-            </div>
+                {% endfor %}
             {% else %}
             <div class="" id="nothing">
                 <h1 class="text-center">Judul buku tidak ditemukan</h1>
             </div>
-
-            {% endfor %}
             {% endif %}
         </div>
     </div>

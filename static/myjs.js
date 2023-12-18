@@ -173,3 +173,25 @@ function cari() {
     console.log(url1)
     window.location.href = `/search/${url1}`
 }
+
+function deleteadm(para) {
+    let judul = $(para).text();
+    if (confirm(`Apakah anda ingin menghapus buku '${judul}'?`)) {
+        $.ajax({
+            type: 'POST',
+            url: '/deletebook',
+            data: {
+                judul_give: judul
+            },
+            success: function (response) {
+                if (response.result === 'success') {
+                    alert(response.msg);
+                    window.location.reload();
+                } else {
+                    alert('Something went wrong...');
+                }
+            }
+        });
+    }
+    return false;
+}

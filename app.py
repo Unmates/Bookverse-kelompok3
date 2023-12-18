@@ -169,7 +169,7 @@ def tambahbuku():
         'Date': mytime,
         'JudulBuku': judul_receive,
         'Deskripsi': deskripsi_receive,
-        'Harga': harga_receive,
+        'Harga': f'Rp.{harga_receive}',
         'Kategori': kategori_receive,
         'Bahasa': bahasa_receive,
         'URL': url_receive,
@@ -333,7 +333,7 @@ def editbuku():
     new_doc = {
         'JudulBuku': update_judul,
         'Deskripsi': update_deskripsi,
-        'Harga': update_harga,
+        'Harga': f'Rp.{update_harga}',
         'Kategori': update_kategori,
         'Bahasa': update_bahasa,
     }
