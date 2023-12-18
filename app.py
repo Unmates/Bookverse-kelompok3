@@ -226,12 +226,13 @@ def favorite():
 def showfav():
     user_receive=request.cookies.get("username")
     favorite_list = list(db.favorite.find({'username': user_receive}, {'_id': False}))
+    cart_list = list(db.cart.find({'username': user_receive}, {'_id': False}))
     book_list=[]
     for i in favorite_list:
         judulfav= i["JudulBuku"]
         book_find = db.book.find_one({"URL": judulfav}, {"_id": False})
         book_list.append(book_find)
-    return jsonify({'daftarbuku': book_list, 'daftarfavorite':favorite_list})
+    return jsonify({'daftarbuku': book_list, 'daftarfavorite':favorite_list, 'daftarkeranjang': cart_list})
 
 @app.route('/fav', methods=["POST"])
 def fav():
