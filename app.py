@@ -71,6 +71,12 @@ def check_id():
     exists = bool(db.login.find_one({'username': username_receive}))
     return jsonify({'result': 'success', 'exists': exists})
 
+@app.route('/check_judul', methods=['POST'])
+def check_judul():
+    judul_receive = request.form['judul_give']
+    exists = bool(db.book.find_one({'JudulBuku': judul_receive}))
+    return jsonify({'result': 'success', 'exists': exists})
+
 @app.route('/registuser')
 def registuser():
     return render_template('regisuser.html')

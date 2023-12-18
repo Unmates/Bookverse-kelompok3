@@ -31,9 +31,9 @@
 </head>
 
 <body>
-    <nav class="navbar fixed-top navbar-expand bg-nav" id="navadmin">
+    <nav class="navbar fixed-top navbar-expand bg-nav">
         <div class="container-fluid">
-            <a class="navbar-brand" href="/adminpage">
+            <a class="navbar-brand" href="/">
                 <img src="{{ url_for('static', filename='logo.png') }}" alt="Logo" height="55" width="200">
             </a>
             <div class="collapse navbar-collapse justify-content-end" id="navbarNavAltMarkup">
@@ -44,32 +44,18 @@
                             <a onclick="cari()"><i class="fa fa-search fa-lg icon-src-nav" aria-hidden="true"></i></a>
                         </div>
                     </form>
-                    <a class="nav-link active semibold" style="color: black;" aria-current="page" href="/tambah">Input
+                </div>
+                <div class="d-flex" id="navadmin">
+                    <a class="nav-link semibold" style="color: black;" aria-current="page" href="/tambah">Input
                         Buku</a>
                     <a class="nav-link semibold" style="color: #D60000; cursor: pointer;"
                         onclick="sign_out()">Keluar</a>
                 </div>
-            </div>
-        </div>
-    </nav>
-
-    <nav class="navbar fixed-top navbar-expand bg-nav" id="navuser">
-        <div class="container-fluid">
-            <a class="navbar-brand" href="/">
-                <img src="{{ url_for('static', filename='logo.png') }}" alt="Logo" height="55" width="200">
-            </a>
-            <div class="collapse navbar-collapse justify-content-end" id="navbarNavAltMarkup">
-                <div class="navbar-nav">
-                    <form class="d-flex">
-                        <div class="form-control me-4 form-nav">
-                            <input class="inp-nav" placeholder="Cari Buku" aria-label="Search" id="cari" disabled>
-                            <a onclick="cari()"><i class="fa fa-search fa-lg icon-src-nav" aria-hidden="true"></i></a>
-                        </div>
-                    </form>
+                <div id="navuser">
+                    <a href="/favorite"><i class="fa fa-heart fa-2x me-4 black" aria-hidden="true"></i></a>
+                    <a href="/cart"><i class="fa fa-shopping-cart fa-2x me-4 black" aria-hidden="true"></i></a>
+                    <a href="/profile"><i class="fa fa-user fa-2x me-2 black" aria-hidden="true"></i></a>
                 </div>
-                <a href="/favorite"><i class="fa fa-heart fa-2x me-4 black" aria-hidden="true"></i></a>
-                <a href="/cart"><i class="fa fa-shopping-cart fa-2x me-4 black" aria-hidden="true"></i></a>
-                <a href="/profile"><i class="fa fa-user fa-2x me-2 black" aria-hidden="true"></i></a>
             </div>
         </div>
     </nav>

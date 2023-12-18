@@ -1,3 +1,39 @@
+// Page Login
+function sign_in() {
+    let username = $('#inputUsername').val();
+    let password = $('#inputPassword').val();
+
+    $.ajax({
+        type: "POST",
+        url: "/sign_in",
+        data: {
+            username_give: username,
+            password_give: password,
+        },
+        success: function (response) {
+            console.log(response)
+            if (response["result"] === "success") {
+                $.removeCookie('mytoken', { path: '/' });
+                $.removeCookie('role', { path: '/' });
+                if (response["role"] === "admin") {
+                    $.cookie("mytoken", response["token"], { path: "/" });
+                    $.cookie("role", response["role"], { path: "/" });
+                    $.cookie("username", response["username"], { path: "/" });
+                    window.location.replace("/adminpage");
+                }
+                else {
+                    $.cookie("mytoken", response["token"], { path: "/" });
+                    $.cookie("role", response["role"], { path: "/" });
+                    $.cookie("username", response["username"], { path: "/" });
+                    window.location.replace("/")
+                }
+            } else {
+                alert(response["msg"]);
+            }
+        },
+    });
+}
+
 function role_log() {
     let role = $.cookie('role');
     if (role === "admin") {
@@ -50,7 +86,6 @@ function check_id() {
                 helpId.removeClass("fa-user")
                     .removeClass("fa-check")
                     .addClass("fa-times");
-                inputUsername.focus();
             } else {
                 alert('Username bisa digunakan');
                 helpId.removeClass("fa-user")
@@ -497,7 +532,7 @@ function edit() {
                     <option value="Korea">Korea</option>
                 </select>
             </div>
-            <button onclick="editing()" class="btn semibold btn-login mb-3">Update</button>
+            <button onclick="check_judul_e()" class="btn semibold btn-login mb-3">Update</button>
         </div>
     </div>
     `;
@@ -702,98 +737,6 @@ function tampil() {
     })
 }
 
-function check_user() {
-    let role = $.cookie('role');
-    console.log(role);
-    if (role !== "user") {
-        window.location.replace("/login");
-    }
-}
-
-// Page Login
-function sign_in() {
-    let username = $('#inputUsername').val();
-    let password = $('#inputPassword').val();
-
-    $.ajax({
-        type: "POST",
-        url: "/sign_in",
-        data: {
-            username_give: username,
-            password_give: password,
-        },
-        success: function (response) {
-            console.log(response)
-            if (response["result"] === "success") {
-                $.removeCookie('mytoken', { path: '/' });
-                $.removeCookie('role', { path: '/' });
-                if (response["role"] === "admin") {
-                    $.cookie("mytoken", response["token"], { path: "/" });
-                    $.cookie("role", response["role"], { path: "/" });
-                    $.cookie("username", response["username"], { path: "/" });
-                    window.location.replace("/adminpage");
-                }
-                else {
-                    $.cookie("mytoken", response["token"], { path: "/" });
-                    $.cookie("role", response["role"], { path: "/" });
-                    $.cookie("username", response["username"], { path: "/" });
-                    window.location.replace("/")
-                }
-            } else {
-                alert(response["msg"]);
-            }
-        },
-    });
-}
-
-// Page Profile
-function profile() {
-    let username = user_list['username'];
-    let email = user_list['email'];
-    let nohp = user_list['nohp'];
-    let alamat = user_list['alamat'];
-    let profile = user_list['profile_default'];
-
-    let temp_html = `
-    <div class="col-4 photo">
-        <h2 class="bold mt-3 ms-1">FOTO PROFIL</h2>
-        <img src="/static/${profile}" class="img-thumbnail gambar mt-3"
-            alt="Profile">
-        <div class="custom-file-input ms-1 mt-4 mb-4 bold">
-            <label for="profile-user">Choose File</label>
-            <input type="file" id="profile-user" name="profile-user">
-        </div>
-    </div>
-    <div class="col-4 ms-4 info-akun">
-        <h3 class="bold mt-3">Informasi Akun</h3>
-        <hr>
-        <div class="mb-2">
-            <label for="inputUsername" class="form-label ps-1">Username</label>
-            <input type="email" class="form-control" id="inputUsername" value="${username}" disabled>
-        </div>
-        <div class="mb-2">
-            <label for="inputEmail" class="form-label ps-1">Email*</label>
-            <input type="email" class="form-control" id="inputEmail" value="${email}">
-        </div>
-        <div class="mb-2">
-            <label for="inputNomor" class="form-label ps-1">No HP*</label>
-            <input type="email" class="form-control" id="inputNomor" value="${nohp}">
-        </div>
-        <div class="mb-2">
-            <label for="inputAlamat" class="form-label ps-1">Alamat (opsional)</label>
-            <textarea class="form-control" id="inputAlamat" rows="2">${alamat}</textarea>
-        </div>
-        <div class="text-center">
-            <button type="button" onclick="update_profile()" class="btn mt-3 bold btn-info-save">SAVE</button>
-        </div>
-    </div>
-    <div class="text-center mt-5">
-        <button type="button" class="btn btn-lg text-center bold btn-logout" onclick="sign_out()">Log Out</button>
-    </div>
-    `;
-    $('#editprofile').append(temp_html);
-}
-
 function update_profile() {
     let file = $("#profile-user")[0].files[0];
     if (!file) {
@@ -866,6 +809,54 @@ function masukadmin() {
             window.location.replace("/login");
         }
     });
+}
+
+// Page Profile
+function profile() {
+    let username = user_list['username'];
+    let email = user_list['email'];
+    let nohp = user_list['nohp'];
+    let alamat = user_list['alamat'];
+    let profile = user_list['profile_default'];
+
+    let temp_html = `
+    <div class="col-4 photo">
+        <h2 class="bold mt-3 ms-1">FOTO PROFIL</h2>
+        <img src="/static/${profile}" class="img-thumbnail gambar mt-3"
+            alt="Profile">
+        <div class="custom-file-input ms-1 mt-4 mb-4 bold">
+            <label for="profile-user">Choose File</label>
+            <input type="file" id="profile-user" name="profile-user">
+        </div>
+    </div>
+    <div class="col-4 ms-4 info-akun">
+        <h3 class="bold mt-3">Informasi Akun</h3>
+        <hr>
+        <div class="mb-2">
+            <label for="inputUsername" class="form-label ps-1">Username</label>
+            <input type="email" class="form-control" id="inputUsername" value="${username}" disabled>
+        </div>
+        <div class="mb-2">
+            <label for="inputEmail" class="form-label ps-1">Email*</label>
+            <input type="email" class="form-control" id="inputEmail" value="${email}">
+        </div>
+        <div class="mb-2">
+            <label for="inputNomor" class="form-label ps-1">No HP*</label>
+            <input type="email" class="form-control" id="inputNomor" value="${nohp}">
+        </div>
+        <div class="mb-2">
+            <label for="inputAlamat" class="form-label ps-1">Alamat (opsional)</label>
+            <textarea class="form-control" id="inputAlamat" rows="2">${alamat}</textarea>
+        </div>
+        <div class="text-center">
+            <button type="button" onclick="update_profile()" class="btn mt-3 bold btn-info-save">SAVE</button>
+        </div>
+    </div>
+    <div class="text-center mt-5">
+        <button type="button" class="btn btn-lg text-center bold btn-logout" onclick="sign_out()">Log Out</button>
+    </div>
+    `;
+    $('#editprofile').append(temp_html);
 }
 
 // Page Regis User
@@ -975,5 +966,41 @@ function postbook() {
             alert(response['msg']);
             window.location.href = '/adminpage';
         }
+    });
+}
+
+function check_judul_t() {
+    let judul = $('#judul').val();
+    $.ajax({
+        type: "POST",
+        url: "/check_judul",
+        data: {
+            judul_give: judul,
+        },
+        success: function (response) {
+            if (response["exists"]) {
+                alert('Judul sudah digunakan!');
+            } else {
+                postbook();
+            }
+        },
+    });
+}
+
+function check_judul_e() {
+    let judul = $('#judul').val();
+    $.ajax({
+        type: "POST",
+        url: "/check_judul",
+        data: {
+            judul_give: judul,
+        },
+        success: function (response) {
+            if (response["exists"]) {
+                alert('Judul sudah digunakan!');
+            } else {
+                editing();
+            }
+        },
     });
 }
