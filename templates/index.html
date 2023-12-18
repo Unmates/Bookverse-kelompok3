@@ -52,7 +52,8 @@
                             window.location.href = '/adminpage';
                         }
                         if (role === 'user'){
-                            $("#right-nav").empty()
+                            $("#right-nav").empty();
+                            $("#dashunlog").hide();
                             let temp_nav = `
                                 <a href="/favorite"><i class="fa fa-heart fa-2x me-4 black" aria-hidden="true"></i></a>
                                 <a href="/cart"><i class="fa fa-shopping-cart fa-2x me-4 black" aria-hidden="true"></i></a>
@@ -136,7 +137,7 @@
                     <form class="d-flex">
                         <div class="form-control me-4 form-nav">
                             <input class="inp-nav" placeholder="Cari Buku" aria-label="Search" id="cari">
-                            <a href="/login"><i class="fa fa-search fa-lg icon-src-nav" aria-hidden="true"></i></a>
+                            <a onclick="cari()"><i class="fa fa-search fa-lg icon-src-nav" aria-hidden="true"></i></a>
                         </div>
                     </form>
                 </div>
@@ -148,7 +149,7 @@
     </nav>
 
     <div class="container dash">
-        <div class="row align-items-center justify-content-between row-cols-md-2">
+        <div class="row align-items-center justify-content-between row-cols-md-2" id="dashunlog">
             <div class="col" style="width: 45%;">
                 <p class="semibold" style="color: #0A868C;">Hallo, Selamat Datang</p>
                 <h1 class="extrabold">Beli Buku Jadi Mudah Dengan BookVerse</h1>
